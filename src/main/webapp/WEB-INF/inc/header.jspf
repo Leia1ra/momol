@@ -19,7 +19,7 @@
 					<div class="ect_header__logo">
 
 						<a href="/">
-							<img src="resources/main/cute-cat-9.png" alt="logo" class="ect_header__logo_img">
+							<img src="<%=request.getContextPath()%>/resources/main/cute-cat-9.png" alt="logo" class="ect_header__logo_img">
 						</a>
 					</div>
 
@@ -75,10 +75,10 @@
 
 					<div id="ect_header__user">
 
-						<a href="account/login" class="ect_header__user__text">
+						<a href="<%=request.getContextPath()%>/account/login" class="ect_header__user__text">
 							로그인
 						</a>
-						<a href="#" class="ect_header__user__text">
+						<a href="<%=request.getContextPath()%>/account/signIn" class="ect_header__user__text">
 							회원가입
 						</a>
 					</div>
