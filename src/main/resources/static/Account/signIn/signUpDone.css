@@ -1,0 +1,85 @@
+*{ box-sizing: border-box}
+/*파란색
+흐린선 #ddd
+진한선 #808080 더진한건 2px
+
+*/
+main{
+    max-width:1200px;
+    min-width:600px;
+    margin:0 auto;
+}
+#heawon-v{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#heawon-top{
+    min-width:800px;
+    width:100%;
+    display: flex;
+    border-bottom: 1px solid #808080;
+    align-items: flex-end;
+}
+#heawon-b1{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+#heawon-bottom{
+    min-width:800px;
+    width:70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#heawon-bottom-top{
+    width: 425px;
+    height: 425px;
+}
+#heawon-bottom-top {
+    width: 450px;
+    height: 450px;
+    overflow: hidden;
+}
+
+#heawon-bottom-top img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#heawon-p1{
+    text-align: center;
+}
+#heawon-bottom-bottom{
+    margin: 30px auto;
+}
+#heawon-bottom-bottom-top{
+    border-bottom: 1px solid #808080;
+    border-top: 1px solid #808080;
+    display: flex;
+}
+#heawon-bottom-bottom-bottom{
+    border-bottom: 1px solid #808080;
+    display: flex;
+}
+.heawon-span1{
+    width: 150px;
+    line-height: 40px;
+    border-right: 1px solid #808080;
+}
+.heawon-span2{
+    width: 450px;
+    line-height: 40px;
+}
+.heawon-p2{
+    text-align: center;
+
+    margin:0;
+}
+.heawon-p3{
+    margin: 0 0 0 20px;
+}
+#heawon-bottom-bottom-button{
+
+}
