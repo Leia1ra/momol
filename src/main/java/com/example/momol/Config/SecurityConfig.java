@@ -46,13 +46,13 @@ public class SecurityConfig {
         );
         http.formLogin((httpSecurityFormLoginConfigurer) ->
             httpSecurityFormLoginConfigurer
-                    .loginPage("/account/login")
-                    .loginProcessingUrl("/account/loginOk")
-                    .usernameParameter("Id") // login 시 필요한 id 값을 Id로 설정 (default는 username)
-                    .passwordParameter("Pw") // password 값을 Pw로 설정 (default는 password)로 설정
-                    // .defaultSuccessUrl("/") // login 성공시 /로 redirect
-                    .successHandler(new AuthSuccessHandler())
-                    .failureHandler(new AuthFailureHandler())
+                .loginPage("/account/login")
+                .loginProcessingUrl("/account/loginOk")
+                .usernameParameter("Id") // login 시 필요한 id 값을 Id로 설정 (default는 username)
+                .passwordParameter("Pw") // password 값을 Pw로 설정 (default는 password)로 설정
+                // .defaultSuccessUrl("/") // login 성공시 /로 redirect
+                .successHandler(new AuthSuccessHandler())
+                .failureHandler(new AuthFailureHandler())
         );
 
         http.logout((httpSecurityLogoutConfigurer) ->
