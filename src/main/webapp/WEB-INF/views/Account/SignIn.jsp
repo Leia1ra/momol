@@ -15,15 +15,14 @@
         <article>
             <form id="signIn" method="post" enctype="multipart/form-data"
                   action="<%=request.getContextPath()%>/account/signInOk">
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                <input type="text" name="Id" id="id" placeholder="아이디를 입력해주세요" value="dl1197">
-                <input type="password" name="Pw" id="pw" placeholder="비밀번호를 입력해 주세요" value="123!@#">
-                <input type="password" id="pwRe" placeholder="비밀번호 확인" value="123!@#">
+                <input type="text" name="Id" id="id" placeholder="아이디를 입력해주세요" >
+                <input type="password" name="Pw" id="pw" placeholder="비밀번호를 입력해 주세요" >
+                <input type="password" id="pwRe" placeholder="비밀번호 확인">
                 <progress max="4" value="0" id="meter"></progress>
                 
-                <input type="text" name="Nick" id="nick" placeholder="닉네임을 입력해주세요" value="leia92">
-                <input type="text" name="Name" id="name" placeholder="이름을 입력해주세요" value="이선왕">
-                <input type="email" name="email" id="email" placeholder="이메일을 입력해주세요" value="leiaira92@gmail.com">
+                <input type="text" name="Nick" id="nick" placeholder="닉네임을 입력해주세요">
+                <input type="text" name="Name" id="name" placeholder="이름을 입력해주세요">
+                <input type="email" name="email" id="email" placeholder="이메일을 입력해주세요">
                 <div id="tel-container">
                     <input type="hidden" name="Phone" id="tel">
                     <select class="tel-nums">
@@ -35,9 +34,9 @@
                         <option value="019">019</option>
                     </select>
                     <span>-</span>
-                    <input type="number" class="tel-nums" maxlength="4" placeholder="앞자리(4)" value="0000">
+                    <input type="number" class="tel-nums" maxlength="4" placeholder="앞자리(4)">
                     <span>-</span>
-                    <input type="number" class="tel-nums" maxlength="4" placeholder="뒷자리(4)" value="1234">
+                    <input type="number" class="tel-nums" maxlength="4" placeholder="뒷자리(4)">
                 </div>
                 
                 <div id="personal">
