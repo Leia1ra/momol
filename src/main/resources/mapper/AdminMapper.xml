@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.momol.Mapper.AdminMapper">
+
+    <!--    <select id="printEName" resultType="String">-->
+    <!--        SELECT ename FROM emp WHERE empno = ${param1};-->
+    <!--    </select>-->
+
+<!--    1. USER      -->
+    <select id="user_list" resultType="com.example.momol.DTO.UserVO">
+        SELECT UID, Id, Pw, Nick, Name, email, Birth, Phone, gender, JoinDate FROM user
+    </select>
+
+    <delete id="user_delete" parameterType="string" >
+        DELETE FROM user WHERE ID = {#param1}
+    </delete>
+
+
+
+</mapper>

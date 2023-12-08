@@ -1,9 +1,87 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
-<head>
-	<title>Title</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-<h1>ㅎㅇㅎㅇㅎㅇ</h1>
+
+	<head>
+		<title>Title</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="/resources/css/style.css" type="text/css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	</head>
+
+
+	<body>
+		<div id="wrap">
+			<header id="ect_header">
+				<div id="ect_header_wrap">
+					<div class="ect_header__logo">
+
+						<a href="/">
+							<img src="resources/main/cute-cat-9.png" alt="logo" class="ect_header__logo_img">
+						</a>
+					</div>
+
+					<nav id="ect_header__nav">
+						<ul class="ect_header__ul">
+							<li class="ect_header__ul_text" id="ect_header__1">
+								<a href="#" class="gnb_text">칵테일 정보</a>
+								<div class="gnb_active"></div>
+								<div class="ect_header__ul__deep1">
+									<ul class="gnb_deep1">
+										<li class="gnb_deep1__con">
+											<a href="#">칵테일 정보</a>
+											<a href="#">재료 정보</a>
+											<a href="#">용어사전</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+
+							<li class="ect_header__ul_text" >
+								<a href="/worldcup" class="gnb_text">월드컵</a>
+								<div class="gnb_active"></div>
+							</li>
+
+							<li class="ect_header__ul_text">
+								<a href="/combain" class="gnb_text">술장고</a>
+								<div class="gnb_active"></div>
+							</li>
+
+							<li class="ect_header__ul_text" id="ect_header__2">
+								<a href="#" class="gnb_text">커뮤니티</a>
+								<div class="gnb_active"></div>
+								<div class="ect_header__ul__deep1">
+									<ul class="gnb_deep1">
+										<li class="gnb_deep1__con">
+											<a href="#">담벼락 (자유게시판)</a>
+											<a href="#">뭐였더라</a>
+											<a href="#">다녀왔어요</a>
+											<a href="#">어쩌구저쩌구</a>
+											<a href="#">기억안나</a>
+										</li>
+									</ul>
+								</div>
+							</li>
+
+							<!--<li class="ect_header_underline">-->
+							<!--	<span class="nav_underline"></span>-->
+							<!--</li>-->
+
+						</ul>
+
+					</nav>
+
+					<div id="ect_header__user">
+
+						<a href="account/login" class="ect_header__user__text">
+							로그인
+						</a>
+						<a href="#" class="ect_header__user__text">
+							회원가입
+						</a>
+					</div>
+				</div>
+				<script src="/resources/main/header_gnb.js"></script>
+			</header>
