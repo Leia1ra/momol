@@ -1,9 +1,46 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%-- ID wrap 의 /div--%>
+</div>
+
 <!--Footer-->
-<footer>
-	@copyright
-	<br>
+<footer id="footer">
+	<section id="footer_wrap">
+		<!-- 상단 (로고+이름) -->
+		<div id="footer_top">
+			<!--나중에 로고로 바꿔야해용-->
+			<span class="material-icons" id="footer_logo">local_bar</span>
+			<p class="footer_logo_text">모히또에서 몰디브를</p>
+		</div>
+
+		<!-- 중간 (nav 링크들) -->
+		<div id="footer_middle">
+			<div class="footer_middle_wrap">
+				<a href="#">
+					<span>홈</span>
+				</a>
+				|
+				<a href="#">
+					<span>칵테일 정보</span>
+				</a>
+				|
+				<a href="#">냉장고</a>
+				|
+				<a href="#">월드컵</a>
+				|
+				<a href="#">커뮤니티</a>
+			</div>
+
+		</div>
+
+		<!--하단 (카피라이트)-->
+		<div id="footer_bottom">
+			<p>Copyright © 2023 MoMol. All right Reserved</p>
+		</div>
+	</section>
+
 </footer>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 </body>
 </html>
