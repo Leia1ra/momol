@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -45,10 +46,8 @@ public class AdminController {
             //유저 정보 가져오는거
             // UserVO vo = adminService.user_list(in);
             List<UserVO> vo = adminService.user_list(in);
-            System.out.println(vo.toString());
-
-            System.out.println("JoinDate from Controller: " + vo.get(0).getJoinDate()); // Check the first UserVO's JoinDate
-
+            // System.out.println(vo.toString());
+            // System.out.println("JoinDate from Controller: " + vo.get(0).getJoinDate()); // Check the first UserVO's JoinDate
             mv.addObject("user", vo);
 
         } catch (Exception e) {
@@ -60,14 +59,15 @@ public class AdminController {
     }
 
     //유저 - 유저정보 수정
-    @PostMapping ("/admin/useredit")
+    @RequestMapping("/admin/useredit")
     public ModelAndView admin_useredit(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         ModelAndView mv = new ModelAndView();
 
-
         try {
-            request.getParameter("user_id");
-            mv.addObject("user_id", request.getParameter("user_id"));
+            request.getParameter("userid");
+            request.getParameter("usernick");
+            mv.addObject("userid", request.getParameter("userid"));
+            mv.addObject("usernick", request.getParameter("usernick"));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,14 +77,58 @@ public class AdminController {
         return mv;
     }
 
+    @PostMapping("/admin/usernickedit")
+    public ModelAndView admin_usernickedit(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+        ModelAndView mv = new ModelAndView();
+
+
+        try {
+            String usernick = request.getParameter("usernick");
+            String userid = request.getParameter("userid");
+            System.out.println("들어온 값");
+            System.out.println("usernick: " + usernick);
+            System.out.println("userid: " + userid);
+
+            int result;
+
+            if (usernick != null && !usernick.isEmpty() && userid != null && !userid.isEmpty()) {
+                try {
+                    result = adminService.nick_edit(usernick, userid);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.out.println("닉네임 수정 실패");
+                    result = 0;
+                }
+                System.out.println("reslut : "+result);
+                mv.addObject("result", result);
+
+            } else {
+                // Handle invalid input or missing parameters
+                System.out.println("Invalid input: usernick or userid is missing or empty.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        mv.setViewName("Admin/admin_user_editOK");
+        return mv;
+    }
+
+
     // 유저 - 유저정보 삭제
-    @PostMapping ("/admin/admin_user_delete")
+    @RequestMapping  ("/admin/userdel")
     public ModelAndView admin_user_delete(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         ModelAndView mv = new ModelAndView();
 
         try {
 
-            // adminService.user_delete(String user_id);
+            String id = request.getParameter("userid");
+            System.out.println("들어온 id: " + id);
+
+            int result = adminService.user_delete(id);
+            System.out.println("result: " + result);
+
+            mv.addObject("result", result);
 
         }catch (Exception e) {
             e.printStackTrace();

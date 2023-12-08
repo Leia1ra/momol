@@ -7,9 +7,8 @@ import java.util.List;
 
 @Mapper
 public interface AdminMapper {
-
     List<UserVO> user_list(UserVO in);
-
     int user_delete(String id);
+    int nick_edit(String usernick, String userid);
 
 }

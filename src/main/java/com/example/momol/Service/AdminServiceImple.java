@@ -22,4 +22,9 @@ public class AdminServiceImple implements AdminService{
     public int user_delete(String id) {
         return mapper.user_delete(id);
     }
+
+    @Override
+    public int nick_edit(String usernick, String userid) {
+        return mapper.nick_edit(usernick, userid);
+    }
 }

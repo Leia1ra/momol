@@ -15,8 +15,12 @@
     </select>
 
     <delete id="user_delete" parameterType="string" >
-        DELETE FROM user WHERE ID = {#param1}
+        DELETE FROM user WHERE ID = #{param1}
     </delete>
+
+    <update id="nick_edit" >
+        update user set nick=#{usernick} where id=#{userid}
+    </update>
 
 
 
