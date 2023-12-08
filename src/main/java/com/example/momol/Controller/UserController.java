@@ -161,7 +161,7 @@ public class UserController {
 
         int index = tmpData.indexOf("_");
         if(tmpData.substring(0, index).equals("Tmp")){
-            // BUSI_20231207/000000 // GENE_20231207/000000 // ADMIN_0000000
+            // BUSI_20231207 000000 // GENE_20231207 000000 // ADMIN_0000000
             String accountType = tmpData.substring(index+1, index+2);
 
             if(accountType.equals("G")){ // 일반사용자

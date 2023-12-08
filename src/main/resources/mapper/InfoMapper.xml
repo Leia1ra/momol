@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.momol.Mapper.InfoMapper">
+    <select id="userSelectbyUID" resultType="com.example.momol.DTO.UserVO">
+        SELECT * FROM User WHERE UID = #{UID}
+    </select>
+
+    <!-- 추가: 사용자 정보 업데이트 -->
+    <update id="updateUser" parameterType="com.example.momol.DTO.UserVO">
+        UPDATE User
+        SET Id = #{id}, Pw = #{pw}, Name = #{name}, Nick = #{nick},
+        gender = #{gender}, Birth = #{birth}, Phone = #{phone}, email = #{email}
+        WHERE UID = #{UID}
+    </update>
+</mapper>
