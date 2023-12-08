@@ -14,6 +14,12 @@
 <a href="<%=request.getContextPath()%>/business/role">사업자 사용자</a>
 <a href="<%=request.getContextPath()%>/admin/role">관리자</a>
 <hr>
+<a href="<%=request.getContextPath()%>/community/wishlist">위시리스트</a>
+<a href="<%=request.getContextPath()%>/community/walls">담벼락</a>
+<a href="<%=request.getContextPath()%>/community/dadaima">다녀왔습니다</a>
+<a href="<%=request.getContextPath()%>/community/recommendme">추천해주세요</a>
+<a href="<%=request.getContextPath()%>/community/myrecipe">나만의 레시피</a>
+<a href="<%=request.getContextPath()%>/community/writing">글쓰기</a>
 <p>${logIn}</p>
 <p>${logUID}</p>
 <p>${logNick}</p>
