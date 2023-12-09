@@ -37,7 +37,7 @@ public class SecurityConfig {
         );
         http.authorizeHttpRequests(authorize ->
             authorize
-                .requestMatchers("/").permitAll()
+                .requestMatchers("/","/resources/**").permitAll()
                 // .requestMatchers("/", "/account/login", "/community/**").permitAll()
                 .requestMatchers("/general/**").hasRole(Role.GENERAL.name()) // ROLE_를 자동으로 붙임
                 .requestMatchers("/business/**").hasRole(Role.BUSINESS.name())
