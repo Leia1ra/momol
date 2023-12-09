@@ -18,6 +18,4 @@
 <p>${logUID}</p>
 <p>${logNick}</p>
 
-
-
 </body>
