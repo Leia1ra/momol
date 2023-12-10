@@ -147,14 +147,6 @@
             </table>
         </div>
     </div>
-
-    <%--재료 수정 모달--%>
-        <div class="modal">
-
-        </div>
-
-    <%-- 재료 삭제 모달 --%>
-
 </main>
 
 <%--저장 관련 스크립트--%>
@@ -257,7 +249,38 @@
         });
     });
 
+    delBtn.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            const ing_num = e.target.getAttribute('href').substr(33);
+            console.log(ing_num);
 
+            //진짜 삭제할래?
+            if(!confirm("정말 삭제하시겠습니까?")) {
+                return;
+            }
+
+            $.ajax({
+                url : 'ingredel',
+                type : 'GET',
+                contentType : "application/json; charset=utf-8",
+                dataType : "json",
+                data : {
+                    ing_num : ing_num
+                },
+                success : function(data) {
+                    console.log(data);
+                    alert("재료가 삭제되었습니다.");
+                    // location.reload();
+                },
+                error : function(error) {
+                    console.log(error);
+                    alert("재료 삭제에 실패하였습니다.");
+                    // location.reload();
+                }
+            })
+
+        });
+    });
 
 
 </script>

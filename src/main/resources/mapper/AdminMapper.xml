@@ -53,8 +53,23 @@
     </select>
 
     <insert id="cocktail_add" parameterType="com.example.momol.DTO.CocktailVO">
-        INSERT INTO cocktail (name, name_eng, abv, cocktail_detail, recipe, cocktail_img)
-        VALUES ("#{name}", "#{name_eng}", "#{abv}", "#{cocktail_detail}", "#{recipe}", "#{cocktail_img}");
+        INSERT INTO cocktail (name, name_eng, ABV, cocktail_detail, recipe, cocktail_img)
+        VALUES (#{name, jdbcType=VARCHAR}, #{name_eng, jdbcType=VARCHAR}, #{ABV, jdbcType=DECIMAL}, #{cocktail_detail, jdbcType=VARCHAR}, #{recipe, jdbcType=VARCHAR}, #{cocktail_img, jdbcType=VARCHAR});
     </insert>
+
+    <select id="cocktail_edit_load" parameterType="string" resultType="com.example.momol.DTO.CocktailVO">
+        select * from cocktail where name=#{param1}
+    </select>
+
+    <update id="cocktail_edit_submit" parameterType="com.example.momol.DTO.CocktailVO">
+        update cocktail set name_eng = #{name_eng}, ABV = #{ABV, jdbcType=DECIMAL}, cocktail_detail = #{cocktail_detail}, recipe = #{recipe}, cocktail_img = #{cocktail_img}
+        where name = #{name}
+    </update>
+
+    <delete id="cocktail_del" parameterType="string">
+        delete from cocktail where name = #{param1}
+    </delete>
+
+
 
 </mapper>

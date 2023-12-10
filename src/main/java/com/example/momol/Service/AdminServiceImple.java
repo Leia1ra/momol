@@ -64,4 +64,18 @@ public class AdminServiceImple implements AdminService{
     public int cocktail_add(CocktailVO in) {
         return mapper.cocktail_add(in);
     }
+
+    @Override
+    public CocktailVO cocktail_edit_load(String num) {
+        return mapper.cocktail_edit_load(num);
+    }
+    @Override
+    public int cocktail_edit_submit(CocktailVO in) {
+        return mapper.cocktail_edit_submit(in);
+    }
+
+    @Override
+    public int cocktail_del(String num) {
+        return mapper.cocktail_del(num);
+    }
 }

@@ -186,13 +186,150 @@ public class AdminController {
 
     //레시피 추가
     @RequestMapping("/admin/recipeAdd")
-    public ModelAndView recipeAdd ( HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-
-        ModelAndView mv = new ModelAndView();
+    public void recipeAdd ( HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         System.out.println("recipeAdd 들어옴");
-        mv.setViewName("Admin/recipe_add");
-        return null;
+
+        try {
+            String name =  request.getParameter("cocktail_name");
+            String name_eng = request.getParameter("cocktail_name_eng");
+            String abv = request.getParameter("cocktail_abv");
+            String recipe = request.getParameter("cocktail_recipe");
+            String cocktail_img = request.getParameter("cocktail_img");
+            String cocktail_detail = request.getParameter("cocktail_des");
+
+            CocktailVO vo = new CocktailVO();
+            vo.setName(name);
+            vo.setName_eng(name_eng);
+            vo.setABV(Float.parseFloat(abv));
+            vo.setCocktail_detail(cocktail_detail);
+            vo.setRecipe(recipe);
+            vo.setCocktail_img(cocktail_img);
+
+            System.out.println(vo.toString());
+
+            int result = adminService.cocktail_add(vo);
+            System.out.println("결과 : "+result);
+
+            //ajax 통신 JSON 작성
+            ObjectMapper mapper = new ObjectMapper();
+            String json = "";
+
+            try {
+                json = mapper.writeValueAsString(result);
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().print(json);
+            } catch (Exception e) {
+                System.out.println("json 변환 실패");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
+
+    @RequestMapping("/admin/recipeEdit")
+    public ModelAndView recipeEdit ( HttpServletRequest request, HttpServletResponse respon ) {
+        ModelAndView mv = new ModelAndView();
+        System.out.println("recipe edit 들어옴");
+        try {
+            String name = request.getParameter("cocktail_name");
+            System.out.println("name : " + name);
+
+            // 서비스로 나머지 정보 불러오기
+            CocktailVO vo = adminService.cocktail_edit_load(name);
+            System.out.println("vo : " + vo.toString());
+
+            mv.addObject("cocktail", vo);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        mv.setViewName("Admin/recipeEdit");
+
+        return mv;
+
+    }
+
+    @RequestMapping ("/admin/recipeEditSubmit")
+    public void recipeEditSubmit ( HttpServletRequest request, HttpServletResponse response ) {
+        System.out.println("recipeEditSubmit 들어옴");
+
+        try {
+
+            String name = request.getParameter("name");
+            String name_eng = request.getParameter("name_eng");
+            String abv = request.getParameter("ABV");
+            String detail = request.getParameter("cocktail_detail");
+            String recipe = request.getParameter("recipe");
+            String img = request.getParameter("cocktail_img");
+
+            System.out.println(name + name_eng + abv + detail + recipe + img);
+
+            CocktailVO vo = new CocktailVO();
+            vo.setName(name);
+            vo.setName_eng(name_eng);
+            vo.setABV(Float.parseFloat(abv));
+            vo.setCocktail_detail(detail);
+            vo.setRecipe(recipe);
+            vo.setCocktail_img(img);
+
+            System.out.println(vo.toString());
+
+            int result = adminService.cocktail_edit_submit(vo);
+            System.out.println("결과 : "+result);
+
+            //ajax 통신 JSON 작성
+            ObjectMapper mapper = new ObjectMapper();
+            String json = "";
+
+            try {
+                json = mapper.writeValueAsString(result);
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().print(json);
+            } catch (Exception e) {
+                System.out.println("json 변환 실패");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @RequestMapping ("/admin/recipeDel")
+    public void recipeDel ( HttpServletRequest request, HttpServletResponse response ) {
+        System.out.println("recipeDel 들어옴");
+
+        try {
+            String name = request.getParameter("cocktail_name");
+            System.out.println("name : " + name);
+
+            int result = adminService.cocktail_del(name);
+            System.out.println("결과 : "+result);
+
+            //ajax 통신 JSON 작성
+            ObjectMapper mapper = new ObjectMapper();
+            String json = "";
+
+            try {
+                json = mapper.writeValueAsString(result);
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().print(json);
+            } catch (Exception e) {
+                System.out.println("json 변환 실패");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     // -----------------------------------------------
 
@@ -336,6 +473,35 @@ public class AdminController {
 
     }
 
+    //재료 삭제하기 ingre del (완)
+    @RequestMapping(value = "/admin/ingredel", method = {RequestMethod.GET, RequestMethod.POST})
+    public void ingreDel ( HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("ingreDel 들어옴");
+
+        try {
+            String num = request.getParameter("ing_num");
+            System.out.println("num : " + num);
+
+            int result = adminService.ingre_del(num);
+
+            //JSON 작성
+            ObjectMapper mapper = new ObjectMapper();
+            String json = "";
+
+            try {
+                json = mapper.writeValueAsString(result);
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().print(json);
+            } catch (Exception e) {
+                System.out.println("json 변환 실패");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     // -----------------------------------------------
 
     //월드컵 관리
@@ -346,7 +512,6 @@ public class AdminController {
         mv.setViewName("Admin/admin_worldcup");
         return mv;
     }
-
 
     // 신고 관리
     @GetMapping ("/admin/report")

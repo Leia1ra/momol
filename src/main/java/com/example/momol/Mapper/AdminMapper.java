@@ -21,5 +21,8 @@ public interface AdminMapper {
 
     List<CocktailVO> cocktail_list(CocktailVO in);
     int cocktail_add(CocktailVO in);
+    CocktailVO cocktail_edit_load(String num);
+    int cocktail_edit_submit(CocktailVO in);
+    int cocktail_del(String num);
 
 }
