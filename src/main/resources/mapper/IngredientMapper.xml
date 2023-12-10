@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.momol.Mapper.IngredientMapper">
+    <select id="ingredientList" resultType="com.example.momol.DTO.IngredientVO">
+        select * from ingredient
+    </select>
+    <select id="jaeryoinfo" resultType="com.example.momol.DTO.IngredientVO">
+        select * from ingredient WHERE ing_num=#{ing_num}
+    </select>
+    <select id="jaeryoList" resultType="com.example.momol.DTO.CockIngredientVO">
+        select * from ingredient WHERE ing_num=#{ing_num}
+    </select>
+</mapper>

@@ -1,0 +1,257 @@
+@import url('https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css');
+
+@font-face {
+    font-family: 'NEXON Lv2 Gothic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+*{
+    box-sizing: border-box;
+}
+body {
+    font-family: NEXON Lv2 Gothic, sans-serif;
+    margin: 90px;
+    padding: 0;
+}
+
+main {
+    max-width: 1200px;
+    min-width: 600px;
+    margin: 0 auto;
+}
+
+.container {
+    display: flex;
+    border-bottom: 2px solid #808080;
+    padding-bottom: 15px;
+}
+.container a{
+    text-decoration: none;
+}
+.section {
+    margin-right: 40px;
+    cursor: pointer;
+    transition: font-weight 0.3s, font-size 0.3s;
+}
+
+.section h2 {
+    font-weight: normal;
+    font-size: 25px;
+    color: grey;
+}
+
+.section.active h2 {
+    font-weight: bold;
+    font-size: 30px;
+    color: black;
+}
+/*==================================================*/
+.first{
+    display: flex;
+}
+.imgsize{
+    width: auto;
+    height: 400px;
+    margin: 30px;
+    border: 2px solid #ddd;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.imgsize>img{
+    height: 100%;
+}
+/*칵테일설명(이름포함)*/
+.explain{
+    flex-grow: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+/*칵테일이름*/
+.cakname{
+    width: 100%;
+    height:40px;
+    line-height: 40px;
+    margin-top: 70px;
+    display: flex;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+/*칵테일영어이름*/
+.engname{
+    height:40px;
+    margin-left: 10px;
+    line-height: 40px;
+    font-weight: normal;
+    font-size: 0.65em;
+    color: darkgray;
+}
+/*칵테일설명*/
+.cakexplain {
+    line-height: 20px;
+    width: 100%;
+    height: 200px;
+}
+.tags{
+    font-weight: bold;
+    display: flex;
+}
+.tag1,.tag2,.tag3, .tag4{
+    border: 1px solid #ddd;
+    border-radius: 7px;
+    margin-right: 20px;
+    line-height: 15px;
+    padding: 5px;
+    font-size: 0.8em;
+}
+.tag1{
+    background-color: greenyellow;
+}
+.tag2{
+    background-color: orange;
+}
+.tag3{
+    background-color: deepskyblue;
+}
+.tag4{
+    background-color: palevioletred;
+}
+/*=====================================================*/
+.second{
+    display: flex;
+    margin: 50px 10px 0 50px;
+}
+/*재료정보칸 전부*/
+.jaeryo{
+    padding-right: 160px;
+    flex-basis: 300px;
+}
+/*용량*/
+.yang{
+    text-align: right;
+    margin-right: 20px;
+    margin-left: 320px;
+    margin-top: -20px;
+}
+/*재료정보, 만드는법*/
+.title{
+    font-size: 1.7em;
+    font-weight: bold;
+}
+/*재료 사진*/
+.jaeryoimg{
+    width: 45px;
+    border-radius: 50px;
+}
+.methods{
+    font-weight: bold;
+    margin: 80px auto;
+    line-height: 50px;
+}
+.jaeryos{
+    margin: 30px auto;
+}
+.jaeryoname{
+    line-height: 20px;
+    margin-left: 50px;
+    font-weight: bold;
+    font-size: 0.8em;
+}
+/*=========================================*/
+.third{
+    margin: 20px 0 0 50px;
+}
+.anju{
+    margin: 30px auto;
+    margin-left: 20px;
+    display: flex;
+}
+/*안주사진*/
+.anjuimg{
+    width: 120px;
+    border: 1px solid black;
+    border-radius: 140px;
+}
+/*안주이름*/
+.anjuname{
+    font-weight: bold;
+    margin: 15px;
+    text-align: center;
+}
+.d{
+    margin-right: 40px;
+}
+/*==============================================*/
+.fourth{
+    margin: 190px;
+    margin-left: 50px;
+}
+.title2{
+    margin: 10px;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+.fourthtitle{
+    font-size: 1.7em;
+    font-weight: bold;
+    border-bottom: 1px solid grey;
+    padding-bottom: 15px;
+    width: 1200px;
+}
+.explain2{
+    font-weight: bold;
+    font-size: 0.9em;
+    line-height: 20px;
+    width: 180px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+/*관련칵테일이미지*/
+.imgimg{
+    width: 150px;
+}
+.rhksfus{
+    margin-right: 30px;
+    width: 300px;
+}
+.ang{
+    width: 700px;
+    display:flex;
+    margin: 30px auto;
+    margin-left: 40px;
+}
+.imgimg{
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    width: 190px;
+}
+.tag10,.tag20,.tag30{
+    line-height: 20px;
+    padding: 4px;
+    margin-left: 5px;
+    font-size: 0.8em;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 7px;
+}
+.tag10{
+    background-color: greenyellow;
+}
+.tag20{
+    background-color: orange;
+}
+.tag30{
+    background-color: deepskyblue;
+}
+.tagss{
+    font-weight: bold;
+    display: flex;
+    justify-content: left;
+}
+
+
