@@ -1,5 +1,7 @@
 package com.example.momol.Controller;
 
+import com.example.momol.DTO.CocktailVO;
+import com.example.momol.DTO.IngrVO;
 import com.example.momol.DTO.UserVO;
 import com.example.momol.Service.AdminService;
 import com.example.momol.Service.UserService;
@@ -7,11 +9,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.List;
 
@@ -30,15 +33,17 @@ public class AdminController {
     }
 
     //관리자 페이지 홈
-    @GetMapping ("/admin")
+    @GetMapping("/admin")
     public ModelAndView admin() {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("Admin/admin_home");
         return mv;
     }
 
+    // -----------------------------------------------
+
     //유저관리
-    @GetMapping ("/admin/user")
+    @GetMapping("/admin/user")
     public ModelAndView admin_user(UserVO in) {
         ModelAndView mv = new ModelAndView();
 
@@ -58,7 +63,7 @@ public class AdminController {
         return mv;
     }
 
-    //유저 - 유저정보 수정
+    //유저 - 유저정보 수정 (완)
     @RequestMapping("/admin/useredit")
     public ModelAndView admin_useredit(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         ModelAndView mv = new ModelAndView();
@@ -77,10 +82,10 @@ public class AdminController {
         return mv;
     }
 
+    //유저 닉네임 변경 (완)
     @PostMapping("/admin/usernickedit")
     public ModelAndView admin_usernickedit(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
         ModelAndView mv = new ModelAndView();
-
 
         try {
             String usernick = request.getParameter("usernick");
@@ -91,7 +96,7 @@ public class AdminController {
 
             int result;
 
-            if (usernick != null && !usernick.isEmpty() && userid != null && !userid.isEmpty()) {
+            if (usernick != null && ! usernick.isEmpty() && userid != null && ! userid.isEmpty()) {
                 try {
                     result = adminService.nick_edit(usernick, userid);
                 } catch (Exception e) {
@@ -99,7 +104,7 @@ public class AdminController {
                     System.out.println("닉네임 수정 실패");
                     result = 0;
                 }
-                System.out.println("reslut : "+result);
+                System.out.println("reslut : " + result);
                 mv.addObject("result", result);
 
             } else {
@@ -115,9 +120,9 @@ public class AdminController {
     }
 
 
-    // 유저 - 유저정보 삭제
-    @RequestMapping  ("/admin/userdel")
-    public ModelAndView admin_user_delete(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+    // 유저 - 유저정보 삭제 (완)
+    @RequestMapping("/admin/userdel")
+    public ModelAndView admin_user_delete(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
 
         try {
@@ -130,7 +135,7 @@ public class AdminController {
 
             mv.addObject("result", result);
 
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -138,48 +143,210 @@ public class AdminController {
         return mv;
     }
 
+    // -----------------------------------------------
+
     //게시글 관리
-    @GetMapping ("/admin/board")
+    @GetMapping("/admin/board")
     public ModelAndView admin_board() {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("Admin/admin_board");
         return mv;
     }
 
+    // -----------------------------------------------
+
     //댓글관리
-    @GetMapping ("/admin/comment")
+    @GetMapping("/admin/comment")
     public ModelAndView admin_comment() {
         ModelAndView mv = new ModelAndView();
         mv.setViewName("Admin/admin_comment");
         return mv;
     }
 
+    // -----------------------------------------------
+
     //레시피 관리
-    @GetMapping ("/admin/recipe")
-    public ModelAndView admin_recipe() {
+    @GetMapping("/admin/recipe")
+    public ModelAndView admin_recipe(CocktailVO in) {
         ModelAndView mv = new ModelAndView();
+
+        try {
+
+            List<CocktailVO> vo = adminService.cocktail_list(in);
+            // System.out.println(vo.toString());
+            mv.addObject("cocktail", vo);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         mv.setViewName("Admin/admin_recipe");
         return mv;
     }
+
+    //레시피 추가
+    @RequestMapping("/admin/recipeAdd")
+    public ModelAndView recipeAdd ( HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+
+        ModelAndView mv = new ModelAndView();
+        System.out.println("recipeAdd 들어옴");
+        mv.setViewName("Admin/recipe_add");
+        return null;
+    }
+
+    // -----------------------------------------------
+
+    //재료 관리
+    @GetMapping("/admin/ingredient")
+    public ModelAndView ingredient(IngrVO in) {
+        ModelAndView mv = new ModelAndView();
+
+        try {
+            List<IngrVO> vo = adminService.ingre_list(in);
+            // System.out.println(vo.toString());
+            mv.addObject("ingre", vo);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        mv.setViewName("Admin/admin_ing");
+        return mv;
+    }
+
+    //재료 추가 ingre add
+    @RequestMapping(value = "/admin/ingreadd", method = {RequestMethod.GET, RequestMethod.POST})
+    public void add_ingre ( HttpServletRequest request, HttpServletResponse response) {
+        // ModelAndView mv = new ModelAndView();
+        System.out.println("add_ingre 들어옴");
+
+        try {
+            // 받아온 값
+            String ing_name = request.getParameter("ing_name");
+            String ing_name_eng = request.getParameter("ing_name_eng");
+            String ing_photo = request.getParameter("ing_photo");
+            String ing_detail = request.getParameter("ing_detail");
+            String ing_categ = request.getParameter("ing_categ");
+            String abv = request.getParameter("abv");
+
+            // 술 제외하고는 도수를 null로 처리
+            if ( (ing_categ != "강한도수")  || (ing_categ !="약한도수") ) {
+                System.out.println("술아님 :" + ing_categ);
+                abv = "0";
+            } else {
+                System.out.println("카테고리 :" + ing_categ );
+            }
+
+            System.out.println(ing_name + ing_name_eng + ing_photo + ing_detail + ing_categ + abv);
+
+            IngrVO vo = new IngrVO();
+            vo.setIng_name(ing_name);
+            vo.setIng_name_eng(ing_name_eng);
+            vo.setIng_photo(ing_photo);
+            vo.setIng_detail(ing_detail);
+            vo.setIng_categ(ing_categ);
+            vo.setAbv(Integer.valueOf(abv));
+
+            System.out.println("vo : " + vo.toString());
+
+            int result = adminService.ingre_add(vo);
+            System.out.println(result);
+            // 검색결과를 json 변환
+            ObjectMapper mapper = new ObjectMapper();
+            String json = "";
+            try {
+                json = mapper.writeValueAsString(result);
+
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().print(json);
+
+            } catch (Exception e) {
+                System.out.println("json 변환 실패");
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // return mv;
+    }
+
+    //재료수정 진입 - ingre edit
+    @RequestMapping(value = "/admin/ingreedit", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView ingreEdit(HttpServletRequest request, HttpServletResponse response) {
+        ModelAndView mv = new ModelAndView();
+        System.out.println("ingreEdit 들어옴");
+
+        try {
+            String num = request.getParameter("ing_num");
+            IngrVO vo = adminService.ingre_edit_load(num);
+
+            System.out.println("vo : " + vo.toString());
+
+            mv.addObject("ingre", vo);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        mv.setViewName("Admin/ingre_edit");
+
+        return mv;
+
+    };
+
+    //재료수정 submit
+    @RequestMapping(value = "/admin/ingreadd_submit", method = {RequestMethod.GET, RequestMethod.POST})
+    public void ingreSubmit ( HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("ingreSubmit 들어옴");
+
+        try {
+
+            IngrVO vo = new IngrVO();
+            vo.setIng_num(request.getParameter("ing_num"));
+            vo.setIng_name(request.getParameter("ing_name"));
+            vo.setIng_name_eng(request.getParameter("ing_name_eng"));
+            vo.setIng_photo(request.getParameter("ing_photo"));
+            vo.setIng_detail(request.getParameter("ing_detail"));
+            vo.setIng_categ(request.getParameter("ing_categ"));
+            vo.setAbv(Integer.valueOf(request.getParameter("abv")));
+
+            System.out.println("vo : " + vo.toString());
+
+            int result = adminService.ingre_edit_submit(vo);
+
+            //JSON 작성
+            ObjectMapper mapper = new ObjectMapper();
+            String json = "";
+
+            try {
+                json = mapper.writeValueAsString(result);
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().print(json);
+            } catch (Exception e) {
+                System.out.println("json 변환 실패");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    // -----------------------------------------------
 
     //월드컵 관리
     @GetMapping ("/admin/worldcup")
     public ModelAndView admin_worldcup() {
         ModelAndView mv = new ModelAndView();
+
         mv.setViewName("Admin/admin_worldcup");
         return mv;
     }
 
-    //재료관리
-    @GetMapping ("/admin/ingredient")
-    public ModelAndView ingredient() {
-        ModelAndView mv = new ModelAndView();
-
-
-
-        mv.setViewName("Admin/admin_ing");
-        return mv;
-    }
 
     // 신고 관리
     @GetMapping ("/admin/report")

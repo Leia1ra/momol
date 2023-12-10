@@ -1,5 +1,7 @@
 package com.example.momol.Service;
 
+import com.example.momol.DTO.CocktailVO;
+import com.example.momol.DTO.IngrVO;
 import com.example.momol.DTO.UserVO;
 import com.example.momol.Mapper.AdminMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +28,40 @@ public class AdminServiceImple implements AdminService{
     @Override
     public int nick_edit(String usernick, String userid) {
         return mapper.nick_edit(usernick, userid);
+    }
+
+    @Override
+    public List<IngrVO> ingre_list(IngrVO in) {
+        return mapper.ingre_list(in);
+    }
+
+    @Override
+    public int ingre_add(IngrVO in) {
+        return mapper.ingre_add(in);
+    }
+
+    @Override
+    public IngrVO ingre_edit_load(String num) {
+        return mapper.ingre_edit_load(num);
+    }
+
+    @Override
+    public int ingre_edit_submit(IngrVO in) {
+        return mapper.ingre_edit_submit(in);
+    }
+
+    @Override
+    public int ingre_del(String num) {
+        return mapper.ingre_del(num);
+    }
+
+    @Override
+    public List<CocktailVO> cocktail_list(CocktailVO in) {
+        return mapper.cocktail_list(in);
+    }
+
+    @Override
+    public int cocktail_add(CocktailVO in) {
+        return mapper.cocktail_add(in);
     }
 }
