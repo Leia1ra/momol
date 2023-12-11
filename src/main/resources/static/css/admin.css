@@ -1,0 +1,19 @@
+#admin_home{
+    display: flex;
+    flex-direction: column;
+    width : 800px;
+
+    margin : 0 auto;
+}
+
+.admin__list-wrap {
+    width : 200px;
+    height : 80px;
+
+    border : 1px solid gray;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}

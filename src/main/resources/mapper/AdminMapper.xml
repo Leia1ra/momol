@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.momol.Mapper.AdminMapper">
+
+    <!--    <select id="printEName" resultType="String">-->
+    <!--        SELECT ename FROM emp WHERE empno = ${param1};-->
+    <!--    </select>-->
+
+<!--    1. USER      -->
+    <select id="user_list" resultType="com.example.momol.DTO.UserVO">
+        SELECT UID, Id, Pw, Nick, Name, email, Birth, Phone, gender, JoinDate FROM user
+    </select>
+
+    <delete id="user_delete" parameterType="string" >
+        DELETE FROM user WHERE ID = #{param1}
+    </delete>
+
+    <update id="nick_edit" >
+        update user set nick=#{usernick} where id=#{userid}
+    </update>
+
+<!-- 2. 재료 관리   -->
+    <select id="ingre_list" resultType="com.example.momol.DTO.IngrVO">
+        SELECT * from ingredient
+    </select>
+
+    <insert id="ingre_add" parameterType="com.example.momol.DTO.IngrVO">
+        insert into ingredient (ing_name, ing_name_eng, ing_photo, ing_detail, ing_categ, abv)
+        values (#{ing_name}, #{ing_name_eng}, #{ing_photo}, #{ing_detail}, #{ing_categ}, #{abv})
+    </insert>
+
+    <select id="ingre_edit_load" parameterType="string" resultType="com.example.momol.DTO.IngrVO">
+        select * from ingredient where ing_num = #{param1}
+    </select>
+
+    <update id="ingre_edit_submit" parameterType="com.example.momol.DTO.IngrVO">
+        update ingredient set ing_name = #{ing_name}, ing_name_eng = #{ing_name_eng}, ing_photo = #{ing_photo}, ing_detail = #{ing_detail}, ing_categ = #{ing_categ}, abv = #{abv}
+        where ing_num = #{ing_num}
+    </update>
+
+    <delete id="ingre_del" parameterType="string">
+        delete from ingredient where ing_num = #{param1}
+    </delete>
+
+
+<!--    3. 칵테일 관리 -->
+    <!-- 칵테일 전체 불러오기 -->
+    <select id="cocktail_list" resultType="com.example.momol.DTO.CocktailVO" >
+        select * from cocktail
+    </select>
+
+    <insert id="cocktail_add" parameterType="com.example.momol.DTO.CocktailVO">
+        INSERT INTO cocktail (name, name_eng, ABV, cocktail_detail, recipe, cocktail_img)
+        VALUES (#{name, jdbcType=VARCHAR}, #{name_eng, jdbcType=VARCHAR}, #{ABV, jdbcType=DECIMAL}, #{cocktail_detail, jdbcType=VARCHAR}, #{recipe, jdbcType=VARCHAR}, #{cocktail_img, jdbcType=VARCHAR});
+    </insert>
+
+    <select id="cocktail_edit_load" parameterType="string" resultType="com.example.momol.DTO.CocktailVO">
+        select * from cocktail where name=#{param1}
+    </select>
+
+    <update id="cocktail_edit_submit" parameterType="com.example.momol.DTO.CocktailVO">
+        update cocktail set name_eng = #{name_eng}, ABV = #{ABV, jdbcType=DECIMAL}, cocktail_detail = #{cocktail_detail}, recipe = #{recipe}, cocktail_img = #{cocktail_img}
+        where name = #{name}
+    </update>
+
+    <delete id="cocktail_del" parameterType="string">
+        delete from cocktail where name = #{param1}
+    </delete>
+
+
+
+</mapper>

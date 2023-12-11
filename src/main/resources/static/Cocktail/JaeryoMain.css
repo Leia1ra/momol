@@ -1,0 +1,151 @@
+@import url('https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css');
+
+@font-face {
+    font-family: 'NEXON Lv2 Gothic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/NEXON Lv2 Gothic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: NEXON Lv2 Gothic, sans-serif;
+    margin: 90px;
+}
+
+main {
+    max-width: 1200px;
+    min-width: 600px;
+    margin: 0 auto;
+}
+
+.container {
+    display: flex;
+    border-bottom: 2px solid #808080;
+    padding-bottom: 15px;
+}
+.container a{
+    text-decoration: none;
+}
+/*=================================================*/
+.section {
+    margin-right: 40px;
+    cursor: pointer;
+    transition: font-weight 0.3s, font-size 0.3s;
+}
+
+.section h2 {
+    font-weight: normal;
+    font-size: 25px;
+    color: grey;
+}
+
+.section.active h2 {
+    font-weight: bold;
+    font-size: 30px;
+    color: black;
+}
+.topwrap{
+    justify-content: flex-start;
+    display: flex;
+    align-items: center;
+}
+.button {
+    padding: 8px 20px;
+    margin:0 10px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    font-size: 0.9em;
+    cursor: pointer;
+    color: dimgray;
+}
+.button>input{
+    display: none;
+}
+.button.selected {
+    border: none;
+    background-color: lightgreen;
+}
+.info_top_wrap {
+    display: flex;
+    justify-content:space-between;
+    width: 1200px;
+    margin-top : 15px;
+}
+
+/*베이스주, 도수, 맛, 그외 버튼*/
+.search-container {
+    display: flex;
+}
+/*검색*/
+.search{
+    background-color: #ddd;
+    border: 1px solid #ddd;
+    width: 250px;
+    height: 30px;
+    font-size: 0.7em;
+    text-align: center;
+}
+.material-icons{
+    margin: 3px 0 0 4px ;
+    width: 30px;
+}
+
+/*=================================================*/
+.grid-container {
+    margin: 30px auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);  /* 3개의 열 */
+    gap: 20px;
+}
+.grid-item {
+    text-align: center;
+}
+.grid-item a {
+    color: black;
+    text-decoration: none;
+}
+/*게시물 제목*/
+.grid-item a div:nth-child(2) {
+    font-size: 23px;
+    font-weight: bold;
+    margin: 15px 0  10px 5px;
+    color: black;
+}
+/*게시물 설명*/
+.grid-item a div {
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 20px;
+    text-align: left;
+    margin-left: 5px;
+    color: dimgray;
+}
+.thumbnail {
+    border:1px solid #ddd;
+    border-radius: 15px;
+    max-width: 220px;
+}
+.tags{
+    display: flex;
+    gap: 20px;
+    padding: 10px;
+    margin: 10px 0 0 5px;
+}
+.tag1,.tag2,.tag3{
+    width: 50px;
+    font-size: 0.8em;
+    height: 20px;
+    line-height: 20px;
+    font-weight: bold;
+}
+.tag1 {
+    background-color:greenyellow;
+}
+.tag2{
+    background-color:palevioletred;
+}
+.tag3{
+    background-color:orange;
+}
