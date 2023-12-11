@@ -15,17 +15,14 @@ import java.util.List;
 @Data @NoArgsConstructor @AllArgsConstructor
 public class UserVO implements UserDetails {
     private String UID;
-
     private String Id;
     private String Pw;
     private String Nick;
-
     private String Name;
     private String email;
     private String Birth;
     private String Phone;
     private String gender;
-
     private String JoinDate;
 
     @Override

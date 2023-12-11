@@ -24,4 +24,10 @@ public class IngredientServiceImpl implements IngredientService{
     public List<IngredientVO> jaeryoList(int ing_num) {
         return mapper.jaeryoList(ing_num);
     }
+
+    @Override
+    public List<IngredientVO> searchCocktails2(String searchText) {
+        return mapper.searchCocktails2(searchText);
+    }
+
 }

@@ -24,3 +24,40 @@ function changeActive(element) {
         element.classList.remove('active');
     }, 300);
 }
+
+
+function searchCocktails(searchText,context) {
+    console.log(searchText);
+    $.ajax({
+        type: "GET",
+        url: context + "/Cocktail/search",
+        data: { searchText: searchText },
+        dataType: "json",
+        success: function (data) {
+            let container = document.getElementsByClassName('grid-container')[0];
+            let inner = "";
+            data.forEach(function (r) {
+                inner += `
+                 <div class="grid-item">
+                    <a href="${context}/Cocktail/cakinfo?name=${r.name}">                  
+                        <img src=${r.cocktail_img} alt="게시물1썸네일" class="thumbnail">
+                        <div>${r.name}</div>
+                        <div class="dz">${r.cocktail_detail}</div>
+                    </a>
+                    <div class="tags">
+                        <div class="tag1"></div>
+                        <div class="tag2"></div>
+                        <div class="tag3"></div>
+                    </div>
+                </div>
+                `
+            })
+            container.innerHTML= inner;
+        },
+        error: function (error) {
+            console.error("Error during search:", error);
+        }
+    });
+}
+
+

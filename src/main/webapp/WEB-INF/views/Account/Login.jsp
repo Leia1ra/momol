@@ -18,7 +18,8 @@
                 <input type="password" name="Pw" id="pw" placeholder="비밀번호를 입력해주세요">
                 <div id="err">${exception}</div>
                 <div>
-                    <a href="">아이디</a> / <a href="">비밀번호</a> 찾기
+                    <a href="<%=request.getContextPath()%>/account/findAccount?type=ID">아이디</a> /
+                    <a href="<%=request.getContextPath()%>/account/findAccount?type=PW">비밀번호</a> 찾기
                 </div>
                 <input type="submit" id="submit" value="LogIn">
             </form>
