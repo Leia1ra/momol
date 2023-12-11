@@ -38,5 +38,25 @@ public class UserServiceImpl implements UserService {
         return mapper.updateUID(newUID, currentUID);
     }
 
+    @Override
+    public UserVO findCheck(UserVO vo) {
+        return mapper.findCheck(vo);
+    }
+
+    @Override
+    public int passwordUpdate(String UID, String tmpPw) {
+        return mapper.passwordUpdate(UID, tmpPw);
+    }
+
+    @Override
+    public UserVO pwMatchByUID(String UID) {
+        return mapper.pwMatchByUID(UID);
+    }
+
+    @Override
+    public int pwUpdate(String UID, String newPw) {
+        return mapper.pwUpdate(UID, newPw);
+    }
+
 
 }

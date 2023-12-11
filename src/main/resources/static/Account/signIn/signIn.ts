@@ -3,8 +3,11 @@ let errCnt = 0;
 let errMsg : HTMLDivElement;
 // @ts-ignore
 let id : HTMLInputElement;
+// @ts-ignore
 let pw : HTMLInputElement;
+// @ts-ignore
 let pwRe : HTMLInputElement;
+// @ts-ignore
 let meter : HTMLProgressElement;
 let nick : HTMLInputElement;
 // @ts-ignore
@@ -84,6 +87,7 @@ function validationCheck(element:HTMLInputElement, reg:RegExp, errMsgbox?:HTMLDi
 }
 
 /*비밀번호 강도 + 유효성 검사*/
+// @ts-ignore
 function StrengthCheck(pwValue:string, meter:HTMLProgressElement):boolean {
     let strength = 0;
     const pwReg:RegExp[] = [/* + 는 하나 이상 포함*/
@@ -127,6 +131,7 @@ function StrengthCheck(pwValue:string, meter:HTMLProgressElement):boolean {
     else { return false; }*/
     return strength >= 2
 }
+// @ts-ignore
 function pwCheck(pw:HTMLInputElement, meter:HTMLProgressElement, errMsg:HTMLDivElement){
     // let passable:boolean;
     pw.addEventListener('focusout', function () {
@@ -282,15 +287,13 @@ document.addEventListener('DOMContentLoaded', function () {
             // data.append(gender.name, gender.value);
             // data.append(birth.name, birth.value);
 
-            fetch(
-                "/account/accountCheck",{
-                    method:'POST',
-                    headers: {
+            fetch("/account/accountCheck",{
+                method:'POST',
+                headers: {
 
-                    },
-                    body:data
-                }
-            ).then((res)=>{
+                },
+                body:data
+            }).then((res)=>{
                 return res.json()
             }).then((data)=>{
                 let exist:string[] = new Array<string>();

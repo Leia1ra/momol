@@ -15,4 +15,12 @@ public interface UserService extends UserDetailsService {
     String lastUID(int index, String UID);
 
     int updateUID(String newUID, String currentUID);
+
+    UserVO findCheck(UserVO vo);
+
+    int passwordUpdate(String UID, String tmpPw);
+
+    UserVO pwMatchByUID(String UID);
+
+    int pwUpdate(String UID, String newPw);
 }
