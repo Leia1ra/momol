@@ -19,7 +19,10 @@
 					<div class="ect_header__logo">
 
 						<a href="/">
-							<img src="<%=request.getContextPath()%>/resources/main/momol_logo_vir.png" alt="logo" class="ect_header__logo_img">
+							<div class="no-drag">
+								<img src="<%=request.getContextPath()%>/resources/main/momol_logo2.svg" alt="logo" class="ect_header__logo_img">
+								<p style="font-family: YanoljaYacheR; font-size:3rem"  >모몰</p>
+							</div>
 						</a>
 					</div>
 

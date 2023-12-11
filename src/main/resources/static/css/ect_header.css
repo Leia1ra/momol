@@ -124,5 +124,12 @@
     height: 5px;
     background-color: olive;
     position: absolute;
-    transform: translateY(43px) ;
+    transform: translateY(43px);
+}
+
+#ect_header_wrap > div.ect_header__logo > a > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }

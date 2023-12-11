@@ -230,6 +230,15 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    //disabled 버튼 클릭시
+    const disableBtn = document.querySelectorAll('.disabled');
+    disableBtn.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('로그인 후 이용해주세요.');
+        });
+    });
+
 //실행 script
     search_btn.addEventListener("click", handleSearchClick);
     save_btn.addEventListener("click", ing_sava);

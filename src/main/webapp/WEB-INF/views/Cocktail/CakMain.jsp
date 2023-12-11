@@ -80,7 +80,7 @@
         <c:forEach var="data" items="${li}">
         <div class="grid-item">
             <a href="<%=request.getContextPath()%>/Cocktail/cakinfo?name=${data.name}">
-                <img src=${data.cocktail_img} alt="게시물1썸네일" class="thumbnail">
+                <img src="${data.cocktail_img}" alt="게시물1썸네일" class="thumbnail">
                 <div>${data.name}</div>
                 <div class="dz">${data.cocktail_detail}</div>
             </a>

@@ -12,14 +12,16 @@
     <!--로고 넣어야 하는 부분(좌측)-->
     <div>
         <a href="/">
-            <img src="/resources/main/logo_temp.png"
-                 alt="logo"
-                 class="main__main-logo">
+            <%--<img src="/resources/main/logo_temp.png"--%>
+            <%--     alt="logo"--%>
+            <%--     class="main__main-logo">--%>
+                <img src="<%=request.getContextPath()%>/resources/main/momol_logo2.svg" alt="logo" class="main_header__logo_img">
+                <span style="font-family: 'YanoljaYacheR'" class="no-drag">모히또에서 몰디브를</span>
         </a>
     </div>
 
     <!--메인페이지 헤더의 네비게이션 부분 (우측) -->
-    <nav class="main_header__nav">
+    <nav class="main_header__nav no-drag">
         <a href="/account/login">
             <div class="main_header__nav__iconbox">
                 <span class="material-icons">login</span>
@@ -32,11 +34,11 @@
             </div>
         </a>
 
-        <a href="#">
-            <div class="main_header__nav__iconbox">
-                <span class="material-icons">search</span>
-            </div>
-        </a>
+        <%--<a href="#"> --%>
+        <%--    <div class="main_header__nav__iconbox">--%>
+        <%--        <span class="material-icons">search</span>--%>
+        <%--    </div>--%>
+        <%--</a>--%>
     </nav>
 
 
@@ -52,28 +54,28 @@
 
         <!--메인 이미지 하단 네비게이션 메뉴바-->
         <div id="main__nav">
-            <a href="#">
+            <a href="<%=request.getContextPath()%>/Cocktail/cakmain">
                 <div class="main__nav__box">
                     <span class="material-icons">local_bar</span>
                     <p class="bold">칵테일 정보</p>
                 </div>
             </a>
 
-            <a href="#">
+            <a href="<%=request.getContextPath()%>/combain">
                 <div class="main__nav__box">
                     <span class="material-icons">shopping_bag</span>
-                    <p class="bold">냉장고</p>
+                    <p class="bold">술장고</p>
                 </div>
             </a>
 
-            <a href="#">
+            <a href="<%=request.getContextPath()%>/worldcup">
                 <div class="main__nav__box">
                     <span class="material-icons">thumb_up</span>
                     <p class="bold">월드컵</p>
                 </div>
             </a>
 
-            <a href="#">
+            <a href="<%=request.getContextPath()%>/community">
                 <div class="main__nav__box">
                     <span class="material-icons">forum</span>
                     <p class="bold">커뮤니티</p>
@@ -146,17 +148,11 @@
 
 
     function insert_img () {
-
-        const img_box = document.querySelectorAll(".main__content__box");
-
+        const img_box = document.querySelectorAll(".main__content__box")
         //현재시간 불러오기
         const date = new Date();
         const hour = date.getHours();
-
         //시간에 따라 배경이미지 변경
-
-
-
         img_box.forEach((box, index) => {
             box.style.backgroundImage = `url(/resources/main/main_img${index + 1}.png)`;
         });
@@ -193,7 +189,7 @@
                     const sunset_min = sunset.split(":")[1]; //일몰시간 - 분
 
 
-                    if ( hour >= sunset_hour && min >=sunrise_min ) {
+                    if ( (hour >= sunset_hour && min >=sunrise_min) || (hour <= sunrise_hour && min <= sunrise_min) ) {
                         main_img.style.backgroundImage = `url(/resources/main/main_img_1.png)`;
 
                     } else {
@@ -209,6 +205,24 @@
         }
 
     }
+</script>
 
+<script>
+    function handleScroll() {
+        const header = document.querySelector("#wrap > header.main_header");
+        // 현재 스크롤 위치를 가져옵니다.
+        var scrollY = window.scrollY || window.pageYOffset;
+        console.log(scrollY);
+
+        if (scrollY >= 750) {
+            header.style.backgroundColor = "#70a4db"
+        } else {
+            header.style.backgroundColor = "rgba(255, 255, 255, 0)";
+
+        }
+    }
+
+    // 스크롤 이벤트를 리스닝합니다.
+    window.addEventListener("scroll", handleScroll);
 
 </script>
