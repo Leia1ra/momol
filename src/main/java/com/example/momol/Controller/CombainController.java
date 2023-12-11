@@ -46,7 +46,7 @@ public class CombainController {
 
     // 검색
     @RequestMapping(value = "/combain/search", method = {RequestMethod.GET, RequestMethod.POST})
-    public void search(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+    public void search(HttpServletRequest request, HttpServletResponse response) {
         String searchWord = request.getParameter("searchWord");
         List<String> searchResult = service.ing_search(searchWord);
         System.out.println("가져온 값 : " + searchWord + " /// " + "검색 결과" + searchResult);
