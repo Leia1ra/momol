@@ -137,7 +137,9 @@ document.addEventListener("DOMContentLoaded", function () {
     function ing_sava() {
         //재료 리스트 가져오기
         const selectedList = document.querySelector("#selectedList");
-        const selectedItems = Array.from(selectedList.querySelectorAll("#selectedList > span > span.suljanggo__select_bubble"))
+        // const selectedItems = Array.from(selectedList.querySelectorAll("#selectedList > span > span.suljanggo__select_bubble"))
+        //     .map(span => span.textContent);
+        const selectedItems = Array.from(selectedList.querySelectorAll(".suljanggo__select_bubble span:first-child"))
             .map(span => span.textContent);
 
         //선택된 재료가 없으면
@@ -146,10 +148,12 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+        // console.log(selectedItems.toString());
+
         // console.log("selectedItems : " + selectedItems);
         //selectedItems 변수에 아무것도 포함되어 있지 않은 경우, selectedItems_toString 변수의 값을 null로 설정
         const selectedItems_toString = selectedItems.length > 0 ? selectedItems.toString() : null;
-        // console.log ("selectedItems_toString : " + selectedItems_toString);
+        console.log ("selectedItems_toString:" + selectedItems_toString +";" );
 
         //재료 리스트를 서버로 보내기
         $.ajax({
@@ -163,6 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 console.log("유저의 재료 : " + selectedItems_toString);
                 //재료 저장 성공시
                 console.log("재료 저장 성공!");
+                alert("재료 저장 완료");
             },
             error: function (request, status, error) {
                 console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
