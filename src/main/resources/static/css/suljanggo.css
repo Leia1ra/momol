@@ -155,9 +155,19 @@
 
 .suljanggo_sel__btn {
     padding : 2px 10px;
-    border-radius: 10px;
-    border : 1px solid black;
+    border-radius: 0.5rem;
+    border : 1px solid rgba(0,0,0,0);
     margin-left : 5px;
+    font-weight: bold;
+    color : white;
+
+    background-color: #6c757d;
+
+}
+
+.suljanggo_sel__btn + .disabled {
+    background-color: #6c757d;
+    opacity: 0.5;
 }
 
 

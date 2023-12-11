@@ -22,6 +22,10 @@ public class CombainController {
     public ModelAndView combain(HttpSession session) {
         ModelAndView mv = new ModelAndView();
 
+        //로그인 정보 가져오기
+        String UID = "";
+        boolean loginCheck = session.getAttribute("logUID") != null;
+
         //재료 정보 가져오기
         List<String> strong_list = service.load_strong();
         List<String> weak_list = service.load_weak();

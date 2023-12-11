@@ -512,3 +512,25 @@ body > header > nav > a > div {
     -ms-user-select: none;
     user-select: none;
 }
+
+#wrap > header.main_header > div > a {
+    margin-left : 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    filter: invert(98%) sepia(2%) saturate(579%) hue-rotate(308deg) brightness(117%) contrast(100%);
+
+}
+
+#wrap > header.main_header > div > a > span {
+    font-size : 3rem;
+    /*font-weight: bold;*/
+    margin-left : 10px;
+}
+
+.main_header__logo_img {
+    height: 80px;
+    width: auto;
+
+}
