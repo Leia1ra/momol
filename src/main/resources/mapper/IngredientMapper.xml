@@ -13,4 +13,7 @@
     <select id="jaeryoList" resultType="com.example.momol.DTO.CockIngredientVO">
         select * from ingredient WHERE ing_num=#{ing_num}
     </select>
+    <select id="searchCocktails2" resultType="com.example.momol.DTO.IngredientVO">
+        SELECT * FROM ingredient WHERE ing_name LIKE CONCAT('%', #{searchText}, '%')
+    </select>
 </mapper>

@@ -18,9 +18,9 @@
             <h2>재료 정보</h2>
         </div></a>
 
-        <div class="section" onclick="changeActive(this)">
+        <a href="<%=request.getContextPath()%>/Cocktail/wordbook"><div class="section" onclick="changeActive(this)">
             <h2>용어 사전</h2>
-        </div>
+        </div></a>
     </div>
 
     <div class="info_top_wrap">
@@ -70,8 +70,7 @@
         </div>
         <!--검색바-->
         <div class="search-container">
-            <input class="search" type="search" placeholder="검색내용을 입력해주세요">
-            <span class="material-icons">search</span>
+            <input class="search" type="search" placeholder="검색내용을 입력해주세요" oninput="searchCocktails(this.value,'<%=request.getContextPath()%>')">
         </div>
     </div>
 
@@ -80,7 +79,7 @@
         <c:forEach var="data" items="${li}">
         <div class="grid-item">
             <a href="<%=request.getContextPath()%>/Cocktail/cakinfo?name=${data.name}">
-                <img src=${data.cocktail_img} alt="게시물1썸네일" class="thumbnail">
+                <img src="${data.cocktail_img}" alt="게시물1썸네일" class="thumbnail">
                 <div>${data.name}</div>
                 <div class="dz">${data.cocktail_detail}</div>
             </a>
