@@ -4,25 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.momol.Mapper.UserMapper">
-    <select id="loadUserByUsername" resultType="com.example.momol.DTO.UserVO">
-        SELECT * FROM User WHERE Id=#{Id}
+    <select id="userSelect" resultType="com.example.momol.DTO.UserVO">
+        SELECT * FROM User WHERE Id = #{Id} AND Pw = #{Pw}
     </select>
-
-    <select id="checkedExist" resultType="com.example.momol.DTO.UserVO">
-        SELECT Id, Nick, email, Phone FROM User
-        WHERE Id=#{Id} OR Nick=#{Nick} OR email=#{email} OR Phone=#{Phone}
-    </select>
-
-    <insert id="userInsert" parameterType="com.example.momol.DTO.UserVO">
-        INSERT INTO user(UID, Id, Pw, Nick, Name, Birth, Phone, email, Gender)
-        VALUES(#{UID}, #{Id}, #{Pw}, #{Nick}, #{Name}, #{Birth}, #{Phone}, #{email}, #{gender})
-    </insert>
-
-    <select id="lastUID" resultType="String">
-        SELECT SUBSTRING(MAX(UID), #{index}) FROM user WHERE UID LIKE #{UID}
-    </select>
-
-    <update id="updateUID">
-        UPDATE User SET UID=#{newUID} WHERE UID=#{currentUID};
-    </update>
 </mapper>

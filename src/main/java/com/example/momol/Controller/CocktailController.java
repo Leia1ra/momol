@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -69,6 +70,24 @@ public class CocktailController {
         //mav.addObject("li", list);
         mav.setViewName("Cocktail/JaeryoInformation");
         return mav;
+    }
+
+    @GetMapping("/search") @ResponseBody
+    public List searchCocktails(String searchText) {
+        List<CocktailVO> list = service.searchCocktails(searchText);
+        System.out.println(list.toString());
+        return list;
+    }
+
+    @GetMapping("/search2") @ResponseBody
+    public List searchCocktails2(String searchText) {
+        List<IngredientVO> list = service2.searchCocktails2(searchText);
+        return list;
+    }
+
+    @GetMapping("/wordbook")
+    public String wordbook() {
+        return "Cocktail/WordBook";
     }
 
 

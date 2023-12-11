@@ -13,4 +13,7 @@
     <select id="cock_ingreList" resultType="com.example.momol.DTO.CockIngredientVO">
         select * from cock_ingre WHERE name=#{name}
     </select>
+    <select id="searchCocktails" resultType="com.example.momol.DTO.CocktailVO">
+        SELECT * FROM cocktail WHERE name LIKE CONCAT('%', #{searchText}, '%')
+    </select>
 </mapper>

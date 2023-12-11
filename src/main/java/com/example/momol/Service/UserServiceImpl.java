@@ -3,40 +3,15 @@ package com.example.momol.Service;
 import com.example.momol.DTO.UserVO;
 import com.example.momol.Mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService{
     @Autowired
     UserMapper mapper;
 
     @Override
-    public UserDetails loadUserByUsername(String Id) throws UsernameNotFoundException {
-        return mapper.loadUserByUsername(Id);
+    public UserVO userSelect(UserVO vo) {
+        return mapper.userSelect(vo);
     }
-
-    @Override
-    public List<UserVO> checkedExist(UserVO vo) {
-        return mapper.checkedExist(vo);
-    }
-
-    @Override
-    public int userInsert(UserVO vo) { return mapper.userInsert(vo); }
-
-    @Override
-    public String lastUID(int index, String UID) {
-        return mapper.lastUID(index, UID);
-    }
-
-    @Override
-    public int updateUID(String newUID, String currentUID) {
-        return mapper.updateUID(newUID, currentUID);
-    }
-
-
 }
