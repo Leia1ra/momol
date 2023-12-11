@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+        
+        </nav>
+    </header>
+       
+    <main>
+        <!-- 담벼락 -->
+        <div class="board-header">
+            <h2>위시리스트</h2>
+            <p class="add">주류 정보를 공유해 보아요.</p>
+            <div class="sort">
+                <button id="sort-lately">최신 순</button>
+                <button id="sort-likes">좋아요 순</button>
+            </div>
+        </div>
+        <section id="board">
+            <div class="table-header">
+                <div>제목</div>
+                <div>작성자</div>
+                <div>작성일</div>
+                <div>조회수</div>
+                <div>좋아요</div>
+            </div>
+            <div class="post">
+                <div>게시글1</div>
+                <div>작성자1</div>
+                <div>11-15</div>
+                <div>7</div>
+                <div>0</div>
+            </div>
+            <div class="post">
+                <div>게시글2</div>
+                <div>작성자2</div>
+                <div>11-14</div>
+                <div>13</div>
+                <div>0</div>
+            </div>
+            <div class="post">
+                <div>게시글3</div>
+                <div>작성자3</div>
+                <div>11-14</div>
+                <div>13</div>
+                <div>0</div>
+            </div>
+            <div class="post">
+                <div>게시글4</div>
+                <div>작성자4</div>
+                <div>11-14</div>
+                <div>13</div>
+                <div>0</div>
+            </div>
+        </section>
+      
+        <!-- 게시판 하단 -->
+        <section id="bottom">
+            <div class="buttons">
+                <div class="write">
+                    <button>글쓰기</button>
+                </div>
+                <div class="pages">
+                    <button>이전</button>
+                    <a href="#">1</a>
+                    <button>다음</button>
+                </div>
+            </div>
+            <div class="search">
+                <select name="case" id="case">
+                    <option value="title">제목</option>
+                    <option value="author">글쓴이</option>
+                    <option value="content">내용</option>
+                </select>
+                <input type="text">
+                <button>검색</button>
+            </div>
+        </section>
+    </main>
+       
+    <footer>
+        
+    </footer>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.momol.Mapper.CommunityMapper">
+    <insert id="communityInsert">
+        insert into board(catnum, UID, title, content) values(#{Catnum}, #{UID} ,#{title},#{Content})
+    </insert>
+
+    <select id="getPostByNum" resultType="com.example.momol.DTO.CommunityVO">
+        SELECT * FROM board WHERE num = #{num}
+    </select>
+
+</mapper>

@@ -83,8 +83,13 @@
                                     </c:choose>
                                 </th>
                                 <td>
-                                    <button class="btn btn-primary user_edit_btn">수정</button>
-                                    <button class="btn btn-danger user_del_btn">삭제</button>
+                                    <form method="post" class="btn btn-primary user_edit_btn">수정
+                                        <input type="hidden" name="userid" value="${user.id}">
+                                        <input type="hidden" name="usernick" value="${user.nick}">
+                                    </form>
+                                    <form method="post" class="btn btn-danger user_del_btn">삭제
+                                        <input type="hidden" name="userid" value="${user.id}">
+                                    </form>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -98,25 +103,29 @@
         const user_edit_btns = document.querySelectorAll('.user_edit_btn');
         const user_del_btns = document.querySelectorAll('.user_del_btn');
 
+        //작동 안하게
+
+
         user_edit_btns.forEach((user_edit_btn) => {
             user_edit_btn.addEventListener('click', () => {
-                // 유저 아이디 가져오기
                 // 부모 요소의 td 2번째 자식의 text 가져오기
-                const user_id = user_edit_btn.parentElement.parentElement.children[1].innerText;
-                console.log(user_id);
-
-                window.open('/admin/useredit?user_id=admin', '유저수정', 'width=500, height=500, left=100, top=50')
+                const userid = user_edit_btn.parentElement.parentElement.children[1].innerText;
+                const usernick = user_edit_btn.parentElement.parentElement.children[2].innerText;
+                // console.log(userid);
+                const edit_url = "/admin/useredit?userid=" + userid + "&usernick=" + usernick;
+                console.log(edit_url);
+                window.open(edit_url, '유저수정', 'width=500, height=500, left=100, top=50')
             });
         });
 
         user_del_btns.forEach((user_del_btn) => {
             user_del_btn.addEventListener('click', () => {
-                window.open('/admin/user/del', '유저삭제', 'width=500, height=500, left=100, top=50')
+                const userid = user_del_btn.parentElement.parentElement.children[1].innerText;
+                const del_url = "/admin/userdel?userid=" + userid;
+                window.open(del_url, '유저삭제', 'width=500, height=500, left=100, top=50')
             });
         });
 
-
-
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <main>
+    </main>

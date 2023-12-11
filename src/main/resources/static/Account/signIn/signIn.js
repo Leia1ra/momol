@@ -3,8 +3,11 @@ let errCnt = 0;
 let errMsg;
 // @ts-ignore
 let id;
+// @ts-ignore
 let pw;
+// @ts-ignore
 let pwRe;
+// @ts-ignore
 let meter;
 let nick;
 // @ts-ignore
@@ -89,6 +92,7 @@ function validationCheck(element, reg, errMsgbox, errMsg) {
     // return result;
 }
 /*비밀번호 강도 + 유효성 검사*/
+// @ts-ignore
 function StrengthCheck(pwValue, meter) {
     let strength = 0;
     const pwReg = [
@@ -134,6 +138,7 @@ function StrengthCheck(pwValue, meter) {
     else { return false; }*/
     return strength >= 2;
 }
+// @ts-ignore
 function pwCheck(pw, meter, errMsg) {
     // let passable:boolean;
     pw.addEventListener('focusout', function () {
