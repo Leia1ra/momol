@@ -15,4 +15,5 @@ public interface CommunityService {
     int getLikes(int num);
 
     int updateLikes(int num, int likes);
+
 }

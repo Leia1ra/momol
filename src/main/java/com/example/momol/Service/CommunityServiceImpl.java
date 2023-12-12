@@ -1,6 +1,5 @@
 package com.example.momol.Service;
 
-import com.example.momol.DAO.BoardDAO;
 import com.example.momol.DTO.CommunityVO;
 import com.example.momol.Mapper.CommunityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,4 +43,5 @@ public class CommunityServiceImpl implements CommunityService {
     public int updateLikes(int num, int likes) {
         return dao.updateLikes(num, likes);
     }
+
 }
