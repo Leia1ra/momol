@@ -8,4 +8,5 @@ public interface CommunityService {
     int communityInsert(CommunityVO vo);
     CommunityVO getPostByNum(int num);
 
+
 }
