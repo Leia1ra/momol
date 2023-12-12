@@ -13,5 +13,5 @@ public interface CockService {
 
     List<CocktailVO> searchCocktails(String searchText);
 
-
+    List<CockIngredientVO> cock_ingre(String name);
 }

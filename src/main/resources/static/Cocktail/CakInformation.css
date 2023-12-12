@@ -124,7 +124,7 @@ main {
 /*=====================================================*/
 .second{
     display: flex;
-    margin: 50px 10px 0 50px;
+    margin: 100px 10px 0 50px;
 }
 /*재료정보칸 전부*/
 .jaeryo{
@@ -164,7 +164,7 @@ main {
 }
 /*=========================================*/
 .third{
-    margin: 20px 0 0 50px;
+    margin: 100px 0 0 50px;
 }
 .anju{
     margin: 30px auto;
