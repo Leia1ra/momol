@@ -1,9 +1,9 @@
 package com.example.momol.DAO;
 
 import com.example.momol.DTO.CommunityVO;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,8 +13,6 @@ import java.util.List;
 public class BoardDAO {
     private Connection conn;
     private ResultSet rs;
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/momol";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "tiger1234";
@@ -49,7 +47,7 @@ public class BoardDAO {
         return boards;
     }
 
-    public CommunityVO vo(int num) {
+    public CommunityVO vo(int num){
         String SQL = "SELECT * from board where num = ?";
 
         try {
@@ -59,7 +57,7 @@ public class BoardDAO {
             pstmt.setInt(1, num);
             rs = pstmt.executeQuery();
 
-            if (rs.next()) {
+            if (rs.next()){
                 CommunityVO vo = new CommunityVO();
                 vo.setNum(rs.getInt("num"));
                 vo.setCatnum(rs.getInt("catnum"));
@@ -86,7 +84,7 @@ public class BoardDAO {
         return null;
     }
 
-    public int viewUpdate(int views, int num) {
+    public int viewUpdate(int views, int num){
         String SQL = "update board set views = ? where num = ?";
         try {
             conn = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
