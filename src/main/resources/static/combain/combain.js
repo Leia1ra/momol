@@ -151,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // console.log(selectedItems.toString());
 
         // console.log("selectedItems : " + selectedItems);
-        //selectedItems 변수에 아무것도 포함되어 있지 않은 경우, selectedItems_toString 변수의 값을 null로 설정
+        //selectedItems 변수에 아무것도 포함되어 있지 않은 경우, selectedItems_toString 변수의 값을 null 설정
         const selectedItems_toString = selectedItems.length > 0 ? selectedItems.toString() : null;
         console.log ("selectedItems_toString:" + selectedItems_toString +";" );
 

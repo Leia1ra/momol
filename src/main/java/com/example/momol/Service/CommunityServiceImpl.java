@@ -19,4 +19,5 @@ public class CommunityServiceImpl implements CommunityService {
     public CommunityVO getPostByNum(int num) {
         return mapper.getPostByNum(num);
     }
+
 }
