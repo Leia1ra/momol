@@ -15,4 +15,9 @@
         gender = #{gender}, Birth = #{birth}, Phone = #{phone}, email = #{email}
         WHERE UID = #{UID}
     </update>
+
+    <!-- 마이페이지 : 내 글 불러오기 -->
+    <select id="my_post" resultType="com.example.momol.DTO.CommunityVO">
+        SELECT * FROM board WHERE UID = #{UID}
+    </select>
 </mapper>
