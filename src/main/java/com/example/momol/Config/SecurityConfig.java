@@ -37,22 +37,22 @@ public class SecurityConfig {
         );
         http.authorizeHttpRequests(authorize ->
             authorize
-                .requestMatchers("/").permitAll()
+                .requestMatchers("/","/resources/**").permitAll()
                 // .requestMatchers("/", "/account/login", "/community/**").permitAll()
                 .requestMatchers("/general/**").hasRole(Role.GENERAL.name()) // ROLE_를 자동으로 붙임
                 .requestMatchers("/business/**").hasRole(Role.BUSINESS.name())
-                .requestMatchers("/admin/**").hasRole(Role.ADMIN.name())
+                // .requestMatchers("/admin/**").hasRole(Role.ADMIN.name())
                 .anyRequest().permitAll()//.authenticated()
         );
         http.formLogin((httpSecurityFormLoginConfigurer) ->
             httpSecurityFormLoginConfigurer
-                    .loginPage("/account/login")
-                    .loginProcessingUrl("/account/loginOk")
-                    .usernameParameter("Id") // login 시 필요한 id 값을 Id로 설정 (default는 username)
-                    .passwordParameter("Pw") // password 값을 Pw로 설정 (default는 password)로 설정
-                    // .defaultSuccessUrl("/") // login 성공시 /로 redirect
-                    .successHandler(new AuthSuccessHandler())
-                    .failureHandler(new AuthFailureHandler())
+                .loginPage("/account/login")
+                .loginProcessingUrl("/account/loginOk")
+                .usernameParameter("Id") // login 시 필요한 id 값을 Id로 설정 (default는 username)
+                .passwordParameter("Pw") // password 값을 Pw로 설정 (default는 password)로 설정
+                // .defaultSuccessUrl("/") // login 성공시 /로 redirect
+                .successHandler(new AuthSuccessHandler())
+                .failureHandler(new AuthFailureHandler())
         );
 
         http.logout((httpSecurityLogoutConfigurer) ->

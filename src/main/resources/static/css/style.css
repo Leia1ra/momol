@@ -1,0 +1,514 @@
+/*reset css*/
+@import url('https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css');
+
+/*IMPORT CSS FILES*/
+@import url("./font.css");
+@import url("./ect_header.css");
+@import url("./suljanggo.css");
+@import url("./root.css");
+@import url("./admin.css");
+
+/*폰트 MS-madi*/
+@import url("https://fonts.googleapis.com/css2?family=Ms+Madi:wght@400;700;900&display=swap");
+
+.hidden {
+    display: none;
+}
+
+html, body {
+    height: 100%
+}
+
+body {
+    font-family: "NEXON Lv2 Gothic", serif;
+    position: relative;
+}
+
+#wrap {
+    min-height: 100%;
+    position: relative;
+    /*padding-bottom: 60px;*/
+}
+
+.bold {
+    font-weight: bold;
+}
+
+a:visited, a {
+    color: black;
+    text-decoration: none;
+}
+
+/* ========== 헤더영역 ==========*/
+header {
+    width: 100%;
+    height: 91px;
+
+    /*헤더에 임시로 넣어둔 색상입니다*/
+    background-color : rgba(2,7,21,0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    /*position: absolute;*/
+}
+
+/* === 메인페이지 헤더 영역 ====*/
+
+.main_header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    position: sticky;
+    top : 0;
+    z-index: 100;
+}
+
+.main__main-logo {
+    margin-left : 15px;
+}
+
+.main_header__nav {
+    display: flex;
+    flex-direction: row;
+    margin-right: 15px;
+}
+
+.main_header__nav__iconbox {
+    width: 50px;
+    height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*헤더 상단 네비게이션 아이콘들*/
+.main_header__nav__iconbox > .material-icons {
+    color : white;
+    font-size : 30px;
+    text-decoration: none;
+}
+
+/* === 그외 페이지 헤더 영역 ===*/
+
+main {
+}
+
+
+/* ========== 메인 세션 부분 main section ========== */
+
+/*메인페이지 : 뒤에 들어가는 이미지*/
+#main__img {
+    width: 100%;
+    height: 750px;
+
+    /*background-image : url(/img/cocktail_img.jpg);*/
+    background-size : cover;
+    background-position : center;
+    background-repeat : no-repeat;
+
+    position: relative;
+    top : -91px;
+}
+
+/*칵테일이라고 써있는 글씨쪽*/
+.madi {
+    position: absolute;
+
+    font-family: "Ms Madi", sans-serif;
+    font-size:200px;
+    color : #fff;
+    text-shadow: black 0 0 15px;
+
+    bottom : 30px;
+    left : 30px;
+}
+
+.madi_d {
+    font-size : 1.5rem;
+    font-weight: bold;
+}
+
+#main__nav {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+
+    bottom: -75px;
+    right: 20px;
+}
+
+.main__nav__box {
+    background-color: #171398;
+
+    width: 150px;
+    height: 150px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size : 20px;
+    text-decoration: none;
+
+    margin : 10px;
+}
+
+body > header > nav > a {
+    text-decoration: none;
+}
+
+body > header > nav > a > div {
+    text-decoration: none;
+}
+
+#main__nav > a > div {
+    color : white;
+}
+
+
+#main__nav > a > div > span {
+    font-size : 40px;
+    margin-bottom: 15px;
+}
+
+#main__nav > a {
+    text-decoration: none;
+}
+
+/* ========== ★footer section ========== */
+
+#footer {
+
+    background-color: rgba(2,7,21,0.2);
+
+    display: flex;
+    width: 100%;
+    height: auto;
+    padding : 15px 0;
+
+    align-items: center;
+    justify-content: center;
+}
+
+#footer_wrap {
+    width: 800px;
+}
+
+#footer_top {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    padding : 10px 0;
+}
+
+#footer_logo {
+    width: 50px;
+    height: 50px;
+    font-size: 50px;
+}
+
+/*푸터 로고 텍스트*/
+.footer_logo_text {
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+#footer_middle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding : 10px 0;
+}
+
+#footer_middle > div > a {
+    text-decoration: none;
+    padding : 5px 5px;
+    color : black;
+}
+
+#footer_bottom {
+    padding : 3px 0;
+}
+
+/* ========== 메인 콘텐츠 부분 ==========*/
+#main__content {
+    /*margin : 15px auto;*/
+}
+
+.main__content__wrap{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    height: auto;
+    margin : 0 auto;
+}
+
+.main__content__box {
+
+    /*background-color: aqua;*/
+    width: 100%;
+    max-width : 1200px;
+    height: 700px;
+    display: flex;
+    margin : 30px auto 15px auto;
+    position: relative;
+}
+
+.main__content__box_text {
+    position: absolute;
+    bottom : 15px;
+    right : 15px;
+
+    display: flex;
+    width: 200px;
+    height: 50px;
+
+    background-color: antiquewhite;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+#main__content > div > div {
+
+    /*border : 1px solid gray;*/
+    /*border-radius: 20px;*/
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#main__content > div:nth-child(1) > div {
+    /*background-image: url("img/main/1.jpg");*/
+
+}
+
+.main__beige_area {
+    position: absolute;
+    top : 0;
+    left : 0;
+
+    background-color: #f8f2ed;
+    height: 100%;
+    width : 40%;
+}
+
+.main__img_area_1 {
+    position: absolute;
+    top : 0;
+    right : 0;
+
+    background-image: url("resources/img/main/main_img_1.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    height: auto;
+    width : 60%;
+}
+
+
+.f_2rem {
+    font-size: 2rem;
+}
+
+.main__beige_area {
+    position: absolute;
+    top : 0;
+    left : 0;
+
+    background-color: #f8f2ed;
+    height: 100%;
+    width : 40%;
+}
+
+.main__img_area_1 {
+    position: absolute;
+    top : 35%;
+    left : 5%;
+
+    background-color: #171398;
+
+    /*background-image: url("resources/img/main/main_img_1.png");*/
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    height: 60%;
+    width : 45%;
+}
+
+.main__img_area_2 {
+    position: absolute;
+    top : 5%;
+    right : 0;
+
+    background-color: #171398;
+
+    background-image: url("resources/img/main/main_img_2.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    height: 60%;
+    width : 35%;
+}
+
+.main__text_area_1 {
+    position: absolute;
+    top : 10%;
+    left : 10%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #93C759;
+
+    height: 20%;
+    width : 35%;
+}
+
+.main__beige_area_2 {
+    position: absolute;
+    top : 0;
+    right : 0;
+
+    background-color: #f8f2ed;
+    height: 100%;
+    width : 65%;
+}
+
+.main__img_area_3 {
+    position: absolute;
+    top : 15%;
+    left : 10%;
+
+    background-color: #171398;
+
+    background-image: url("resources/img/main/main_img_2.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    width : 60%;
+    height: 60%;
+}
+
+.main__img_area_4{
+    position: absolute;
+    bottom : 10%;
+    right : 10%;
+    background-color: darkslateblue;
+
+    background-image: url("resources/img/main/main_img_2.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    width : 35%;
+    height: 35%;
+}
+
+.main__text_area_2{
+    position: absolute;
+    top : 15%;
+    right : 3%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #93C759;
+
+    height: 30%;
+    width : 25%;
+}
+
+.main__text_area_3 {
+    position: absolute;
+    bottom : 10%;
+    left : 10%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #93C759;
+
+    height: 12.5%;
+    width : 43.5%;
+}
+
+.main__img_area_5 {
+
+    background-image: url("https://cdn.pixabay.com/photo/2017/08/03/21/48/drinks-2578446_1280.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    background-color: #171398;
+    position: absolute;
+    top : 0;
+    right : 0;
+
+    width: 100%;
+    height: 90%;
+}
+
+.main__text_area_4 {
+    position: absolute;
+    bottom : 50%;
+    right : 50%;
+    transform: translate(50%, 50%);
+
+    width: 50%;
+    height: 10%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size : 3rem;
+    font-weight: bold;
+
+    color : #fff;
+    text-shadow: black 0 0 10px;
+
+}
+
+.main__content__box > div {
+    font-size: 1.5rem;
+}
+
+.main__content__box  > div > p {
+    padding : 20px;
+}
+
+#main__content > div:nth-child(3) > div > div.main__text_area_4 {
+    font-size : 3rem;
+    font-weight: bold;
+}
+
+.no-drag {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

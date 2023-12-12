@@ -1,0 +1,240 @@
+*{ box-sizing: border-box}
+
+
+
+/*파란색
+흐린선 #ddd
+진한선 #808080 더진한건 2px
+
+*/
+
+main{
+    max-width:1200px;
+    min-width:600px;
+    margin:0 auto;
+}
+
+/*마이페이지 활동내역과 회원정보수정 페이지*/
+#activity-top{
+    min-width:800px;
+    width:100%;
+    display: flex;
+    border-bottom: 1px solid #808080;
+    align-items: flex-end;
+}
+#activity-b1{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.activity-b2{
+    font-size: 15px;
+    color: gray;
+}
+.activity-b3{
+    font-size: 15px;
+    color: gray;
+}
+.activity-btn{
+    opacity: 0;
+}
+.activity-lable{
+    margin-bottom: 10px;
+}
+/*활동내역과 프로필 설정 선택된거 불 들어오게 하는 코드*/
+input[type=radio]:checked+label>.activity-b2{
+    color: black;
+}
+input[type=radio]:checked+label>.activity-b3{
+    color: black;
+}
+/*즐겨찾기부터 코드*/
+.activity-p1{
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+/*즐겨찾기 객체들 코드*/
+#activity-mid{
+    width:100%;
+    min-width:800px;
+    height: 475px;
+    display: flex;
+    border-bottom: 1px solid #808080;
+    flex-direction:column;
+}
+#activity-mid-button{
+    display:flex;
+    flex-direction:column;
+    align-items: flex-end;
+    height: 0;
+}
+#show-more-btn{
+    position: relative;
+    top: -45px;
+}
+
+#activity-ul{
+    list-style:none;
+    padding-left:0px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    justify-content: space-evenly;
+}
+.activity-li{
+    width: 180px;
+    height: 150px;
+    margin: 30px 10px 30px 10px;
+    display: flex;
+    flex-direction:column;
+}
+.activity-li-div{
+    background-color: gray;
+    width: 100%;
+    height: 120px;
+}
+.activity-p2{
+    margin: 3px;
+    text-align: center;
+}
+
+/*내가 쓴 글 부분 코드*/
+#activity-bottom{
+    width:90%;
+    min-width:800px;
+    display: flex;
+    flex-direction:column;
+}
+#activity-bottom-subject{
+    border-bottom: 1px solid #808080;
+    border-top: 1px solid #808080;
+    display: flex;
+    height: 40px;
+}
+.activity-bottom-subject-1{
+    width: 60%;
+    line-height: 40px;
+}
+.activity-bottom-subject-2{
+    width: 10%;
+    line-height: 40px;
+}
+.activity-bottom-subject-3{
+    width: 15%;
+    line-height: 40px;
+}
+.activity-bottom-subject-4{
+    width: 7.5%;
+    line-height: 40px;
+}
+.activity-bottom-subject-5{
+    width: 7.5%;
+    line-height: 40px;
+}
+.activity-p3-1{
+    font-weight: bold;
+    margin: 0;
+}
+.activity-p3{
+    font-weight: bold;
+    margin: 0;
+    height: 100%;
+}
+#activity-ul2{
+    list-style:none;
+    padding-left:0px;
+    display: flex;
+    flex-direction:column;
+    margin: 0;
+}
+.activity-li2{
+    display: flex;
+    height: 40px;
+    border-bottom: 1px solid  #ddd;
+}
+#page-buttons{
+    margin: 5px;
+}
+.page-btn{
+    margin: 2px;
+}
+#activity-pagenb{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+
+/*v1과 v2는 활동내역과 회원정보 수정 페이지의 가장 큰 div이다.*/
+#v1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#v2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#activity-v2{
+    width: 550px;
+    display: flex;
+    border: 1px solid  #ddd;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px 10px gray;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#activity-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.activity-text{
+    height: 40px;
+    width: 450px;
+    border: 1px solid  #ddd;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    line-height: 40px;
+}
+#activity-button{
+    width: 460px;
+    height: 40px;
+    font-size: 1em;
+    background-color: skyblue;
+    border-radius: 10px;
+}
+#activity-button-submit {
+    width: 460px;
+    height: 40px;
+    font-size: 1em;
+    background-color: skyblue;
+    border-radius: 10px;
+    display:none;
+}
+#activity-button-business{
+    width: 460px;
+    height: 40px;
+    font-size: 1em;
+    background-color: #ddd;
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+
+
+#activity-ul {
+    max-height: 420px;
+    overflow-y: hidden;
+}
+
+#activity-ul.show-more {
+    overflow-y: auto;
+}
+
+#activity-ul.show-more .activity-li {
+    display: block;
+}
+

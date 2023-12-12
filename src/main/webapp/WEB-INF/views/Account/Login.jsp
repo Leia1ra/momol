@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <head>
 <%--    <link rel="stylesheet" href="resources/Account/login.css">--%>
-    <link rel="stylesheet" href="/resources/Account/login/login.css" type="text/css">
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/Account/login/login.css" type="text/css">
     <script src="/resources/Account/login/login.js"></script>
 </head>
 <body>
@@ -14,7 +14,6 @@
         </header>
         <article>
             <form id="login" method="post" action="<%=request.getContextPath()%>/account/loginOk">
-                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                 <input type="text" name="Id" id="id" placeholder="아이디를 입력해주세요">
                 <input type="password" name="Pw" id="pw" placeholder="비밀번호를 입력해주세요">
                 <div id="err">${exception}</div>

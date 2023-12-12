@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.momol.Mapper.CombainMapper">
+<!--    === 재료 선택 관련 쿼리문 ===         -->
+
+    <!--
+
+    1. 전체 / 2. 강한도수 / 3.약한도수 / 4. 음료수 / 5. 기타 -->
+    <select id="load_total" resultType="java.lang.String">
+        select ing_name from ingredient
+    </select>
+
+    <select id="load_strong" resultType="java.lang.String">
+        select ing_name from ingredient where ing_categ = "강한도수"
+    </select>
+
+    <select id="load_weak" resultType="java.lang.String">
+        select ing_name from ingredient where ing_categ = "약한도수"
+    </select>
+
+    <select id="load_drink" resultType="java.lang.String">
+        select ing_name from ingredient where ing_categ = "음료수"
+    </select>
+
+    <select id="load_etc" resultType="java.lang.String">
+        select ing_name from ingredient where ing_categ = "기타"
+    </select>
+
+<!--    === 검색 === -->
+    <select id="ing_search" resultType="java.lang.String">
+        select ing_name from ingredient where ing_name like concat('%',#{param1},'%')
+    </select>
+
+<!--         ===  재료 저장 관련 쿼리문 ===             -->
+    <insert id="save_user_ing" parameterType="string" >
+        insert into liquor_refi(UID,ing_name) values(#{param1},#{param2})
+    </insert>
+
+<!--    === 재료 불러오기 관련 ===                  -->
+    <select id="load_ing" resultType="java.lang.String">
+        select ing_name, save_time from liquor_refi where UID = #{param1} order by save_time desc limit 1
+    </select>
+
+
+<!--    카테고리별 재료 출력 -->
+    <select id="category_select" resultType="string">
+        select ing_name from ingredient where ing_categ = #{param1}
+    </select>
+
+<!--    만들 수 있는 칵테일 리스트 출력 -->
+    <select id="find" parameterType="java.util.List" resultType="java.lang.String">
+        SELECT c.name AS cocktail_name
+        FROM cocktail c
+        WHERE (
+        SELECT COUNT(DISTINCT ci.ing_num)
+        FROM cock_ingre ci
+        JOIN ingredient i ON ci.ing_num = i.ing_num
+        WHERE ci.name = c.name AND i.ing_name IN
+        <foreach item="ingredient" collection="ingredients" open="(" separator="," close=")">
+            #{ingredient}
+        </foreach>
+        ) = (
+        SELECT COUNT(DISTINCT ci.ing_num)
+        FROM cock_ingre ci
+        WHERE ci.name = c.name
+        );
+    </select>
+
+    <select id="getCocktailInfo" parameterType="string" resultType="string">
+        select cocktail_num from cocktail where name=#{param1}
+    </select>
+
+    <select id="getCocktailInfo_detail" parameterType="string" resultType="string">
+        select cocktail_detail from cocktail where name=#{param1}
+    </select>
+
+    <select id="getCocktailImg" parameterType="string" resultType="string">
+        select cocktail_img from cocktail where name=#{param1}
+    </select>
+
+
+</mapper>
