@@ -6,6 +6,8 @@ import com.example.momol.DTO.CommunityVO;
 import com.example.momol.Service.CommentService;
 import com.example.momol.Service.CommunityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -143,6 +145,32 @@ public class CommunityController {
 
         // 리다이렉트할 경로를 반환
         return "redirect:/"; // 리다이렉트할 경로를 적절하게 수정
+    }
+
+    @GetMapping("/delete/{num}")
+    public String deletePost(@PathVariable int num, RedirectAttributes redirectAttributes) {
+        int result = service.deletePost(num);
+
+        if (result > 0) {
+            redirectAttributes.addFlashAttribute("message", "게시글이 삭제되었습니다.");
+        } else {
+            redirectAttributes.addFlashAttribute("message", "게시글 삭제에 실패했습니다.");
+        }
+
+        return "redirect:/community/walls";
+    }
+
+    @PostMapping("/like/{num}")
+    @ResponseBody
+    public ResponseEntity<String> likePost(@PathVariable int num) {
+        // 좋아요 처리 로직 추가
+        int updatedLikes = service.updateLikes(num);
+
+        if (updatedLikes > 0) {
+            return new ResponseEntity<>("Liked post " + num, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Failed to update likes for post " + num, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 
