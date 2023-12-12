@@ -16,9 +16,9 @@
             <h2>재료 정보</h2>
         </div></a>
 
-        <div class="section" onclick="changeActive(this)">
+        <a href="<%=request.getContextPath()%>/Cocktail/wordbook"><div class="section" onclick="changeActive(this)">
             <h2>용어 사전</h2>
-        </div>
+        </div></a>
     </div>
 
     <div class="first">
@@ -43,7 +43,11 @@
             <div class="title">재료 정보</div>
             <div class="jaeryos">
                 <c:forEach var="data" items="${li}">
-                <div><img src="/resources/img/나.jpg" class="jaeryoimg"><div class="jaeryoname">${data.name}<div class="yang">${data.ing_amount}</div></div></div>
+                <div><img src="${data.ing_photo}" class="jaeryoimg">
+                    <div class="jaeryoname">${data.ing_name}
+                        <div class="yang">${data.ing_amount}</div>
+                    </div>
+                </div>
                 </c:forEach>
             </div>
         </div>
