@@ -24,6 +24,16 @@ body {
     position: relative;
 }
 
+
+
+main {
+    min-width: var(--min-width);
+    width : var(--default-width);
+    max-width: var(--max-width);
+    margin : 0 auto;
+    padding : 25px 0 10px 0;
+}
+
 #wrap {
     min-height: 100%;
     position: relative;
@@ -533,4 +543,9 @@ body > header > nav > a > div {
     height: 80px;
     width: auto;
 
+}
+
+.title_active {
+    font-size : 30px;
+    font-weight: bold;
 }

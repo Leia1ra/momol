@@ -22,7 +22,7 @@
     </div>
 
     <div class="first">
-        <div class="imgsize"><img src="${vo.cocktail_img}"></div>
+        <img class="imgsize" src="${vo.cocktail_img}" alt="${vo.name} 이미지">
         <div class="explain">
             <div class="cakname">
                 ${vo.name}
@@ -43,8 +43,10 @@
             <div class="title">재료 정보</div>
             <div class="jaeryos">
                 <c:forEach var="data" items="${li}">
-                <div><img src="${data.ing_photo}" class="jaeryoimg">
-                    <div class="jaeryoname">${data.ing_name}
+                <div>
+                    <img src="/resources/img/나.jpg" class="jaeryoimg">
+                    <div class="jaeryoname_wrap">
+                        <p class="jaeryoname">${data.name}</p>
                         <div class="yang">${data.ing_amount}</div>
                     </div>
                 </div>

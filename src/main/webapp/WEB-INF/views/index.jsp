@@ -9,6 +9,10 @@
     #ect_header {
         display: none;
     }
+
+    main {
+        width: 100%;
+    }
 </style>
 
 <header class="main_header">

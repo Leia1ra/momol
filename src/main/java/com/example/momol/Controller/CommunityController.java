@@ -192,7 +192,7 @@ public class CommunityController {
         redirectAttributes.addFlashAttribute("result", result);
 
         // 리다이렉트할 경로를 반환
-        return "redirect:/"; // 리다이렉트할 경로를 적절하게 수정
+        return "redirect:/community/wishlist"; // 리다이렉트할 경로를 적절하게 수정
     }
 
     @GetMapping("/delete/{num}")
