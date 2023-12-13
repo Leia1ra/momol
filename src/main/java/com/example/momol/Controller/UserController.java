@@ -70,7 +70,6 @@ public class UserController {
 
     @PostMapping("/accountCheck") @ResponseBody /* 회원가입 비동기 처리 */
     public Map<String, Boolean> accountCheck(UserVO vo){
-        UserVO v = new UserVO();
         List<UserVO> list = service.checkedExist(vo);
         Map<String, Boolean> duplicate = null;
         if(list != null){
@@ -103,7 +102,6 @@ public class UserController {
                 temp += "B";
                 temp += now.format(formatter);
                 String path = session.getServletContext().getRealPath("/img/Certificate");
-
                 fileUpload(req, temp, path); /* 오류 생성기1 */
             } else {
                 temp += "G";
@@ -134,10 +132,8 @@ public class UserController {
     private void fileUpload(HttpServletRequest req, String fileName, String path) throws IOException {
         MultipartHttpServletRequest mr = (MultipartHttpServletRequest) req;
         MultipartFile multipartFile = mr.getFile("Business_certificate");
-
         if(multipartFile != null && !multipartFile.isEmpty()){
             String orgFileName = multipartFile.getOriginalFilename();
-
             if(orgFileName != null && !orgFileName.equals("")){
                 String ext = orgFileName.substring(orgFileName.indexOf("."));
                 String newFileName = fileName + ext;
@@ -289,7 +285,7 @@ public class UserController {
         }
     }
     @PostMapping("/pwChangeAsync") @ResponseBody
-    public Map pwChangeAsyne(String Pw, String UID){
+    public Map pwChangeAsync(String Pw, String UID){
         Map result = new HashMap();
         UserVO vo = service.pwMatchByUID(new String(decode.decode(UID)));
         String decodePw = new String(decode.decode(Pw));
