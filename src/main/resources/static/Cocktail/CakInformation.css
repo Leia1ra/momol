@@ -180,6 +180,12 @@ main {
     padding : 0 15px;
 }
 .jaeryoname{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left : 15px;
+
     font-weight: bold;
     font-size: 1rem;
 }
@@ -278,6 +284,7 @@ main {
 /*연주 추가 코드*/
 .jaeryos > div {
     display: flex;
+    justify-content: space-between;
     flex-direction: row;
     align-items: center;
     margin : 10px 0;
