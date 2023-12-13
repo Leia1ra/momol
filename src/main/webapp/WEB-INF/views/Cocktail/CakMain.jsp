@@ -3,16 +3,17 @@
 <link rel="stylesheet" href="/resources/Cocktail/CakMain.css" type="text/css">
 <%--<body onload="setDefaultActive()">--%>
 <main>
+
     <div class="container">
-        <a href="<%=request.getContextPath()%>/Cocktail/cakmain"><div class="section">
+        <a href="<%=request.getContextPath()%>/Cocktail/cakmain"><div class="section" onclick="changeActive(this)">
             <h2>칵테일 정보</h2>
         </div></a>
 
-        <a href="<%=request.getContextPath()%>/Cocktail/jaeryomain"><div class="section" >
+        <a href="<%=request.getContextPath()%>/Cocktail/jaeryomain"><div class="section" onclick="changeActive(this)">
             <h2>재료 정보</h2>
         </div></a>
 
-        <a href="<%=request.getContextPath()%>/Cocktail/wordbook"><div class="section" >
+        <a href="<%=request.getContextPath()%>/Cocktail/wordbook"><div class="section" onclick="changeActive(this)">
             <h2>용어 사전</h2>
         </div></a>
     </div>
@@ -21,7 +22,7 @@
         <div class="topwrap">
             <div class="btn">
                 <select class = "button" >
-                    <option value="one">전체(베이스주)</option>
+                    <option value="one">전체 (베이스 주)</option>
                     <option value="two">맥주</option>
                     <option value="three">막걸리</option>
                     <option value="four">양주</option>
@@ -64,7 +65,6 @@
         </div>
         <!--검색바-->
         <div class="search-container">
-            <span class="material-icons no-drag">search</span>
             <input class="search" type="search" placeholder="검색내용을 입력해주세요" oninput="searchCocktails(this.value,'<%=request.getContextPath()%>')">
         </div>
     </div>
@@ -79,14 +79,13 @@
                     <div class="dz">${data.cocktail_detail}</div>
                 </a>
                 <div class="tags">
-                    <div class="tag1"></div>
-                    <div class="tag2"></div>
-                    <div class="tag3"></div>
+                    <div class="tag1">${data.basetag}</div>
+                    <div class="tag2">${data.tastetag}</div>
+                    <div class="tag3">${data.smelltag}</div>
                 </div>
             </div>
         </c:forEach>
     </div>
 
 </main>
-<script src="/resources/Cocktail/pagechange.js"></script>
-<%--</body>--%>
+</body>
