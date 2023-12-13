@@ -1,5 +1,6 @@
 package com.example.momol.Service;
 
+import com.example.momol.DAO.BoardDAO;
 import com.example.momol.DTO.CommunityVO;
 import com.example.momol.Mapper.CommunityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,9 @@ public class CommunityServiceImpl implements CommunityService {
     @Autowired
     CommunityMapper mapper;
 
+    @Autowired
+    private BoardDAO dao;
+
     @Override
     public int communityInsert(CommunityVO vo) {
         return mapper.communityInsert(vo);
@@ -18,5 +22,26 @@ public class CommunityServiceImpl implements CommunityService {
     @Override
     public CommunityVO getPostByNum(int num) {
         return mapper.getPostByNum(num);
+    }
+
+    @Override
+    public int deletePost(int num) {
+        // 게시글 삭제 로직
+        return dao.deletePost(num);
+    }
+
+    @Override
+    public int updateLikes(int num) {
+        return 0;
+    }
+
+    @Override
+    public int getLikes(int num) {
+        return dao.getLikes(num);
+    }
+
+    @Override
+    public int updateLikes(int num, int likes) {
+        return dao.updateLikes(num, likes);
     }
 }

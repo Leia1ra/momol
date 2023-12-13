@@ -1,5 +1,6 @@
 package com.example.momol.Service;
 
+import com.example.momol.DAO.BoardDAO;
 import com.example.momol.DTO.CommentsVO;
 import com.example.momol.Mapper.CommentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,8 @@ import java.util.List;
 public class CommentServiceImpl implements CommentService{
     private final CommentMapper commentMapper;
 
+    @Autowired
+    private BoardDAO boardDAO;
     @Autowired
     public CommentServiceImpl(CommentMapper commentMapper){
         this.commentMapper = commentMapper;
@@ -25,4 +28,5 @@ public class CommentServiceImpl implements CommentService{
     public void addComment(CommentsVO comment) {
         commentMapper.addComment(comment);
     }
+
 }
