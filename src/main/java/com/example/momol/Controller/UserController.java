@@ -33,6 +33,9 @@ import java.util.Base64.Decoder;
 @Controller
 @RequestMapping("/account")
 public class UserController {
+    private final static String clientId = "lm5g3zx9ad";//애플리케이션 클라이언트 아이디값";
+    private final static String clientSecret = "mtO7Cz9bk12SX2LRxcXYxVTYOWkwVVIPu1LrjrOd";//애플리케이션 클라이언트 시크릿값";
+
     @Autowired
     UserService service;
     @Resource(name = "mailService")
