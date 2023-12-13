@@ -5,16 +5,17 @@
     min-height: 300px;
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
 
-main {
-    width: 60%;
-}
+/*body {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    flex-direction: column;*/
+/*}*/
+
+/*main {*/
+/*    width: 60%;*/
+/*}*/
 
 .board-header {
     display: flex;

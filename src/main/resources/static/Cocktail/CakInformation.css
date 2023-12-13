@@ -9,27 +9,34 @@
 *{
     box-sizing: border-box;
 }
+
 body {
     font-family: NEXON Lv2 Gothic, sans-serif;
-    margin: 90px;
-    padding: 0;
 }
 
 main {
-    max-width: 1200px;
-    min-width: 600px;
-    margin: 0 auto;
+    margin : 0 auto;
+    padding : 25px 0 10px 0;
 }
 
 .container {
     display: flex;
     border-bottom: 2px solid #808080;
     padding-bottom: 15px;
+    /*height: 30px;*/
 }
 .container a{
     text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.container > a > div {
+    display: flex;
+    align-items: center;
 }
 .section {
+    height: 30px;
     margin-right: 40px;
     cursor: pointer;
     transition: font-weight 0.3s, font-size 0.3s;
@@ -51,7 +58,7 @@ main {
     display: flex;
 }
 .imgsize{
-    width: auto;
+    width: 40%;
     height: 400px;
     margin: 30px;
     border: 2px solid #ddd;
@@ -60,13 +67,17 @@ main {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+
+    object-fit: cover;
 }
 .imgsize>img{
     height: 100%;
+    object-fit: cover;
 }
 /*칵테일설명(이름포함)*/
 .explain{
     flex-grow: 1;
+    width: auto;
     padding: 30px;
     display: flex;
     flex-direction: column;
@@ -93,9 +104,10 @@ main {
 }
 /*칵테일설명*/
 .cakexplain {
-    line-height: 20px;
+    line-height: 30px;
     width: 100%;
     height: 200px;
+    word-break: keep-all;
 }
 .tags{
     font-weight: bold;
@@ -124,43 +136,52 @@ main {
 /*=====================================================*/
 .second{
     display: flex;
-    margin: 50px 10px 0 50px;
+    margin: 50px 30px;
+    justify-content: space-around;
 }
 /*재료정보칸 전부*/
 .jaeryo{
-    padding-right: 160px;
-    flex-basis: 300px;
+    display: flex;
+    flex-direction: column;
+    min-width: 30%;
+    width: 35%;
+    margin : 0 15px;
 }
 /*용량*/
 .yang{
     text-align: right;
-    margin-right: 20px;
-    margin-left: 320px;
-    margin-top: -20px;
 }
 /*재료정보, 만드는법*/
 .title{
+    padding : 5px;
     font-size: 1.7em;
     font-weight: bold;
 }
 /*재료 사진*/
 .jaeryoimg{
-    width: 45px;
-    border-radius: 50px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    padding : 3px;
+    object-fit: cover;
+    background-color: rgb(250, 240, 238);
 }
 .methods{
+    display: flex;
+    align-items: center;
     font-weight: bold;
-    margin: 80px auto;
+    width: 100%;
+    padding : 5px;
+    margin: 30px auto 15px auto;
     line-height: 50px;
 }
 .jaeryos{
-    margin: 30px auto;
+    margin: 15px 0;
+    padding : 0 15px;
 }
 .jaeryoname{
-    line-height: 20px;
-    margin-left: 50px;
     font-weight: bold;
-    font-size: 0.8em;
+    font-size: 1rem;
 }
 /*=========================================*/
 .third{
@@ -254,4 +275,28 @@ main {
     justify-content: left;
 }
 
+/*연주 추가 코드*/
+.jaeryos > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin : 10px 0;
+}
 
+.jaeryoname_wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding : 10px 20px;
+    width: 100%;
+
+}
+
+.method {
+    margin : 0 15px;
+}
+
+.methods > div {
+    white-space: pre-line;
+}

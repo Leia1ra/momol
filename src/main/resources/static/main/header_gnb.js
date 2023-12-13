@@ -1,7 +1,8 @@
-$(document).ready(function(){
-    $('.gnb_deep1').hide();
-    $('.gnb_active').hide();
 
+$('.gnb_deep1').hide();
+$('.gnb_active').hide();
+
+$(document).ready(function(){
     //마우스 올렸을 때,
     $('.ect_header__ul_text').mouseenter(function(){
         $('.gnb_deep1').not($(this).find('.gnb_deep1')).hide();
