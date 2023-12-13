@@ -42,9 +42,6 @@ public class CocktailController {
         List<CockIngredientVO> list = service.cock_ingre(name);
 
         System.out.println(vo.toString());
-
-//        System.out.println(list.toString());
-
         mav.addObject("vo",vo);
         mav.addObject("li", list);
         mav.setViewName("Cocktail/CakInformation");
@@ -68,12 +65,13 @@ public class CocktailController {
         ModelAndView mav = new ModelAndView();
 
         IngredientVO vo = service2.jaeryoinfo(ing_num);
-        System.out.println(vo.toString());
+//        System.out.println(vo.toString());
 
-        //List<IngredientVO> list = service2.jaeryoinfo(ing_num);
+        List<CocktailVO> list = service2.make_list(String.valueOf(ing_num));
+        System.out.println(list.toString());
 
         mav.addObject("vo",vo);
-        //mav.addObject("li", list);
+        mav.addObject("li", list);
         mav.setViewName("Cocktail/JaeryoInformation");
         return mav;
     }

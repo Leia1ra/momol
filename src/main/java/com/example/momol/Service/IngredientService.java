@@ -1,5 +1,6 @@
 package com.example.momol.Service;
 
+import com.example.momol.DTO.CocktailVO;
 import com.example.momol.DTO.IngredientVO;
 
 import java.util.List;
@@ -10,4 +11,5 @@ public interface IngredientService {
     List<IngredientVO> jaeryoList(int ing_num);
     List<IngredientVO> searchCocktails2(String searchText);
     List<IngredientVO> getCategoryData(String category);
+    List<CocktailVO> make_list (String name);
 }

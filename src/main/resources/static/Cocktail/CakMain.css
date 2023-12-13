@@ -107,7 +107,7 @@ main {
 .grid-item a div:nth-child(2) {
     font-size: 23px;
     font-weight: bold;
-    margin: 15px 0  10px 5px;
+    margin: 15px 0  10px 15px;
     color: black;
 }
 /*게시물 설명*/
@@ -116,7 +116,7 @@ main {
     font-weight: bold;
     line-height: 20px;
     text-align: left;
-    margin-left: 5px;
+    margin-left: 15px;
     color: dimgray;
 }
 .dz{
@@ -133,24 +133,27 @@ main {
     max-width: 220px;
 }
 .tags{
+    justify-content: space-around;
     display: flex;
     gap: 20px;
     padding: 10px;
     margin: 10px 0 0 0px;
 }
 .tag1,.tag2,.tag3{
-    width: 50px;
-    font-size: 0.7em;
-    height: 20px;
-    line-height: 22px;
+    flex-basis: 60px;
+    border-radius: 11px;
+    font-size: 0.8em;
+    height: 25px;
+    line-height: 25px;
     font-weight: bold;
+    color: beige;
 }
 .tag1 {
-    background-color:#ddd;
+    background-color: darksalmon;
 }
 .tag2{
-    background-color:#ddd;
+    background-color: darkorange;
 }
 .tag3{
-    background-color:#ddd;
+    background-color: darkturquoise;
 }

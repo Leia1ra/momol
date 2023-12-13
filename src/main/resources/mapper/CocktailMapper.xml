@@ -35,4 +35,9 @@
         select name, ing_name, ing_amount, ing_photo from cock_ingre cross join momol.ingredient i on cock_ingre.ing_num = i.ing_num
         where name=#{name}
     </select>
+    <select id="jaeryoinfo" resultType="com.example.momol.DTO.CocktailVO">
+        select name, ing_photo, ing_detail
+        from cock_ingre cross join ingredient i on i.ing_num = cock_ingre.ing_num
+        where ing_name="#{name}";
+    </select>
 </mapper>
