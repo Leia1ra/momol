@@ -20,6 +20,9 @@ public class CocktailVO {
     private int baseNo;
     private int tasteNo;
     private int smellNo;
-    private String TagName;
+
+    private String basetag;
+    private String tastetag;
+    private String smelltag;
 }
 

@@ -28,6 +28,8 @@ public class CocktailController {
         ModelAndView mav = new ModelAndView();
         List<CocktailVO> list = service.cocktailList();
 
+        System.out.println( list.toString() );
+
         mav.addObject("li", list);
         mav.setViewName("Cocktail/CakMain");
         return mav;
@@ -39,7 +41,9 @@ public class CocktailController {
         CocktailVO vo = service.cocktailInfo(name);
         List<CockIngredientVO> list = service.cock_ingre(name);
 
-        System.out.println(list.toString());
+        System.out.println(vo.toString());
+
+//        System.out.println(list.toString());
 
         mav.addObject("vo",vo);
         mav.addObject("li", list);

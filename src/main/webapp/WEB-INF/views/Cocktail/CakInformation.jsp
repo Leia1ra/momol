@@ -30,10 +30,9 @@
             </div>
             <div class="cakexplain">${vo.cocktail_detail}</div>
             <div class="tags">
-                <div class="tag1">#진베이스</div>
-                <div class="tag2">#베르무트</div>
-                <div class="tag3">#도수강한</div>
-                <div class="tag4">#강렬하고진한</div>
+                    <div class="tag1">#${vo.basetag}</div>
+                    <div class="tag2">#${vo.tastetag}</div>
+                    <div class="tag3">#${vo.smelltag}</div>
             </div>
         </div>
     </div>

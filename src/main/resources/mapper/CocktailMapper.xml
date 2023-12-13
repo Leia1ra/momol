@@ -5,11 +5,26 @@
 
 <mapper namespace="com.example.momol.Mapper.CockMapper">
     <select id="cocktailList" resultType="com.example.momol.DTO.CocktailVO">
-        select * from cocktail
+        SELECT
+        c.name,c.name_eng,c.ABV,c.cocktail_detail,c.recipe,c.cocktails,c.cocktail_img,
+        b.tagName AS basetag,t.tagName AS tastetag, s.TagName AS smelltag
+        FROM
+        cocktail c LEFT JOIN basetag b ON c.baseNo = b.tagNo
+        LEFT JOIN tastetag t ON c.tasteNo = t.tagNo
+        LEFT JOIN smelltag s ON c.smellNo = s.TagNo
     </select>
+
     <select id="cocktailInfo" resultType="com.example.momol.DTO.CocktailVO">
-        select * from cocktail WHERE name=#{name}
+        SELECT
+        c.name,c.name_eng,c.ABV,c.cocktail_detail,c.recipe,c.cocktails,c.cocktail_img,
+        b.tagName AS basetag,t.tagName AS tastetag, s.TagName AS smelltag
+        FROM
+        cocktail c LEFT JOIN basetag b ON c.baseNo = b.tagNo
+        LEFT JOIN tastetag t ON c.tasteNo = t.tagNo
+        LEFT JOIN smelltag s ON c.smellNo = s.TagNo
+        WHERE name=#{name}
     </select>
+
     <select id="cock_ingreList" resultType="com.example.momol.DTO.CockIngredientVO">
         select * from cock_ingre WHERE name=#{name}
     </select>
