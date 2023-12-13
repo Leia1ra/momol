@@ -216,21 +216,48 @@
         <div id="activity-v2">
 
             <form id="activity-form" method="post" action="/mmypage/mypageOk">
+
+                <label for="activity-id">아이디</label>
                 <input type="text" class="activity-text" id="activity-id" name= "id" value="${user.getId()}" placeholder="ID" readonly>
-                <input type="text" class="activity-text" id="activity-pw" name= "pw" value="${user.getPw()}" placeholder="PW" readonly>
-                <input type="text" class="activity-text" id="activity-name" name= "name" value="${user.getName()}" placeholder="이름" readonly>
-                <input type="text" class="activity-text" id="activity-nick" name= "nick" value="${user.getNick()}" placeholder="닉네임" readonly>
-                <select class="activity-text" id="activity-gender" name= "gender" value="${user.getGender()}" placeholder="성별" readonly>
-                    <option value="mail">남성</option>
-                    <option value="femail">여성</option>
-                    <option value="privat">비공개</option>
-                </select>
+
+                <%--<input type="text" class="activity-text" id="activity-pw" name= "pw" value="${user.getPw()}" placeholder="PW" readonly>--%>
+
+                <label fo="activity-pw">비밀번호</label>
+                <a href="/account/pwChange" >
+                    <input type="button" id="activity-pw" value="비밀번호 변경" />
+                </a>
+
+
+                <label for="activity-name">이름</label>
+                <input type="text" class="activity-text no-drag" id="activity-name" name= "name" value="${user.getName()}" placeholder="이름" readonly>
+
+                <label for="activity-nick">닉네임</label>
+                <input type="text" class="activity-text no-drag" id="activity-nick" name= "nick" value="${user.getNick()}" placeholder="닉네임">
+
+                <%--<select class="activity-text" id="activity-gender" name= "gender" value="${user.getGender()}" placeholder="성별" readonly>--%>
+                <%--    <option value="mail">남성</option>--%>
+                <%--    <option value="femail">여성</option>--%>
+                <%--    <option value="privat">비공개</option>--%>
+                <%--</select>--%>
+
+                <label for="activity-gender">성별</label>
+                <input type="text" name="gender" id="activity-gender" class="activity-text" placeholder="성별" value="${user.getGender()}" readonly>
+
+
+                <label for="activity-birth">생년월일</label>
                 <input type="date" class="activity-text" id="activity-birth" name= "birth" value="${user.getBirth()}" placeholder="생년월일" readonly>
-                <input type="text" class="activity-text" id="activity-phone" name= "phone" value="${user.getPhone()}" placeholder="전화번호" readonly>
+
+                <label for="activity-phone">전화번호</label>
+                <input type="text" class="activity-text" id="activity-phone" name= "phone" value="${user.getPhone()}" placeholder="전화번호">
+
+                <label for="activity-email">이메일</label>
                 <input type="text" class="activity-text" id="activity-email" name= "email" value="${user.getEmail()}" placeholder="이메일" readonly>
+
                 <input type="button" id="activity-button-business"
                        value="사업자 인증하기 or 사업자 프로필 보기" />
-                <input type="button" id="activity-button" value="정보수정" />
+
+                <%--<input type="button" id="activity-button" value="정보수정" />--%>
+
                 <input type="submit" id="activity-button-submit" value="정보저장" />
             </form>
         </div>

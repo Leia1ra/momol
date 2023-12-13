@@ -8,6 +8,6 @@ import java.util.List;
 public interface MypageService {
     UserVO userSelectbyUID(String UID);
 
-    void updateUser(UserVO updatedUser);
+    int updateUser(UserVO updatedUser);
     List<CommunityVO> my_post(String UID);
 }

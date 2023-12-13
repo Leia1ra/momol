@@ -15,6 +15,7 @@
 				<div id="ect_header_wrap">
 					<div class="ect_header__logo">
 
+						<%--헤더의 로고부분ㄴ--%>
 						<a href="/">
 							<div class="no-drag">
 								<img src="<%=request.getContextPath()%>/resources/main/momol_logo_2.svg" alt="logo" class="ect_header__logo_img">
@@ -26,14 +27,14 @@
 					<nav id="ect_header__nav">
 						<ul class="ect_header__ul">
 							<li class="ect_header__ul_text" id="ect_header__1">
-								<a href="#" class="gnb_text">칵테일 정보</a>
+								<a href="/Cocktail/cakmain" class="gnb_text">칵테일 정보</a>
 								<div class="gnb_active"></div>
 								<div class="ect_header__ul__deep1">
 									<ul class="gnb_deep1">
 										<li class="gnb_deep1__con">
 											<a href="/Cocktail/cakmain">칵테일 정보</a>
 											<a href="/Cocktail/jaeryomain">재료 정보</a>
-											<a href="#">용어사전</a>
+											<a href="/Cocktail/wordbook">용어사전</a>
 										</li>
 									</ul>
 								</div>
@@ -50,16 +51,16 @@
 							</li>
 
 							<li class="ect_header__ul_text" id="ect_header__2">
-								<a href="#" class="gnb_text">커뮤니티</a>
+								<a href="/community" class="gnb_text">커뮤니티</a>
 								<div class="gnb_active"></div>
 								<div class="ect_header__ul__deep1">
 									<ul class="gnb_deep1">
 										<li class="gnb_deep1__con">
-											<a href="#">담벼락 (자유게시판)</a>
-											<a href="#">뭐였더라</a>
-											<a href="#">다녀왔어요</a>
-											<a href="#">어쩌구저쩌구</a>
-											<a href="#">기억안나</a>
+											<a href="/community/walls">담벼락 (자유게시판)</a>
+											<a href="/community/wishlist">위시리스트</a>
+											<a href="/community/dadaima">다녀왔어요</a>
+											<a href="/community/myrecipe">나의 레시피</a>
+											<a href="/community/recommendme">추천해주세요</a>
 										</li>
 									</ul>
 								</div>

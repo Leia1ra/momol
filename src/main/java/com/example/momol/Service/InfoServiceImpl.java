@@ -21,9 +21,8 @@ public class InfoServiceImpl implements MypageService, BusinessService {
     }
 
     @Override
-    public void updateUser(UserVO updatedUser) {
-        System.out.println("UpdateUser method is called."); // 디버그 로그 추가
-        mapper.updateUser(updatedUser);
+    public int updateUser(UserVO updatedUser) {
+        return mapper.updateUser(updatedUser);
     }
 
     @Override

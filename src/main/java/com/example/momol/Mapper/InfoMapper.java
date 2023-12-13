@@ -12,7 +12,7 @@ public interface InfoMapper {
 
     UserVO userSelectbyUID(String UID);
 
-    void updateUser(UserVO updatedUser);
+    int  updateUser(UserVO updatedUser);
 
     BusinessVO businessSelectbyUID(String UID);
 

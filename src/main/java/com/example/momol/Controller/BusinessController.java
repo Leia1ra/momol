@@ -18,16 +18,21 @@ public class BusinessController {
 
     @Autowired
     BusinessService businessService;
-//임폴트, 골뱅이 붙이기
+    //임폴트, 골뱅이 붙이기
     @GetMapping("/business")
     ModelAndView business(HttpSession session){
         ModelAndView mav = new ModelAndView();
+
         if("Y".equals(session.getAttribute("logIn"))){
-            BusinessVO vo = new BusinessVO();
-            vo = businessService.businessSelectbyUID((String) session.getAttribute("logUID"));
+            // BusinessVO vo = new BusinessVO();
+            String UID = (String) session.getAttribute("logUID");
+            System.out.println("UID ;" + UID);
+            BusinessVO vo = businessService.businessSelectbyUID(UID);
 
             mav.addObject("business", vo);
             mav.setViewName("Mypage/business");
+        } else {
+            mav.setViewName("redirect:/account/login");
         }
         return mav;
     }

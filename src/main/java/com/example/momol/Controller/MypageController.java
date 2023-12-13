@@ -33,6 +33,7 @@ public class MypageController {
             String userUID = (String) session.getAttribute("logUID");
             System.out.println("userUID : " + userUID);
 
+            //본인이 작성한 게시글 불러오기
             try {
                 List<CommunityVO> postList = service.my_post(userUID);
                 System.out.println("postList : " + postList.toString());
@@ -58,17 +59,23 @@ public class MypageController {
         // 현재 로그인한 사용자의 UID를 가져와서 UserVO에 설정
         String logUID = (String) session.getAttribute("logUID");
         updatedUser.setUID(logUID);
-
         System.out.println(updatedUser.toString());
 
-        // 업데이트된 정보를 데이터베이스에 반영
-        service.updateUser(updatedUser);
+        try {
+            // 업데이트된 정보를 데이터베이스에 반영
+            int result = service.updateUser(updatedUser);
 
-        // 업데이트된 정보를 다시 조회하여 화면에 표시
-        UserVO vo = service.userSelectbyUID(logUID);
+            // 업데이트된 정보를 다시 조회하여 화면에 표시
+            UserVO vo = service.userSelectbyUID(logUID);
 
-        mav.addObject("user", vo);
-        mav.setViewName("Mypage/mypage");
+            mav.addObject("user", vo);
+            mav.setViewName("Mypage/mypage");
+
+        } catch (Exception e) {
+            //회원정보 수정 실패시 다시 마이페이지로 이동
+            e.printStackTrace();
+            mav.setViewName("Mypage/mypageUpdateFail");
+        }
 
         return mav;
     }
