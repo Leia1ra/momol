@@ -120,7 +120,7 @@ public class BoardDAO {
         int commentCount = 0;
 
         try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
-             PreparedStatement pstmt = connection.prepareStatement("SELECT COUNT(*) AS commentCount FROM comments WHERE num = ?")) {
+                     PreparedStatement pstmt = connection.prepareStatement("SELECT COUNT(*) AS commentCount FROM comments WHERE num = ?")) {
             pstmt.setInt(1, num);
 
             try (ResultSet resultSet = pstmt.executeQuery()) {
@@ -131,6 +131,18 @@ public class BoardDAO {
         }
 
         return commentCount;
+    }
+
+    public void incrementLikes(int num) {
+        // 게시글 번호를 이용하여 데이터베이스에서 좋아요 수를 증가시키는 로직
+        String sql = "UPDATE board SET likes = likes + 1 WHERE num = ?";
+        jdbcTemplate.update(sql, num);
+    }
+
+    public int getLikes(int num) {
+        // 게시글 번호를 이용하여 데이터베이스에서 현재 좋아요 수를 가져오는 로직
+        String sql = "SELECT likes FROM board WHERE num = ?";
+        return jdbcTemplate.queryForObject(sql, Integer.class, num);
     }
 }
 

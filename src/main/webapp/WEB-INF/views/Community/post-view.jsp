@@ -41,19 +41,19 @@
             // 게시글 번호를 가져오기
             const num = <%= board.getNum() %>;
 
-            fetch(`/community/walls/${num}`, {
+            fetch(`/community/walls/${num}/like`, {
                 method: 'POST'
             })
                 .then(response => {
                     if (response.ok) {
-                        return response.json(); // JSON 응답을 파싱합니다.
+                        return response.json(); // JSON 응답을 파싱
                     } else {
                         throw new Error('좋아요 실패');
                     }
                 })
                 .then(data => {
-                    // 좋아요 수를 동적으로 화면에 업데이트합니다.
-                    document.getElementById('likesCount').innerText = data.likes;
+                    // 좋아요 수를 동적으로 화면에 업데이트
+                    document.getElementById('likesCount').innerText = data;
                 })
                 .catch(error => {
                     console.error('에러', error);
