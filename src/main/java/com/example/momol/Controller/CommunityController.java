@@ -142,7 +142,6 @@ public class CommunityController {
         return "Community/posting";
     }
 
-
     private String saveUploadedFile(MultipartFile file) throws IOException {
         // 업로드할 디렉토리 경로를 설정 (프로젝트 내의 원하는 위치로 설정 가능)
         String uploadDir = "path/to/upload/directory";
@@ -173,18 +172,18 @@ public class CommunityController {
         System.out.println(">" + vo.toString());
 
         // 파일 업로드 처리
-        if (file != null && !file.isEmpty()) {
-            try {
-                // 파일 업로드 로직 적용
-                String fileName = saveUploadedFile(file);
-
-                // 이제 setFileName 메서드를 사용하여 fileName을 vo에 설정
-                vo.setFileName(fileName);
-            } catch (IOException e) {
-                e.printStackTrace();
-                // 파일 업로드 중 오류 발생 시, 적절한 처리를 수행하거나 예외를 던질 수 있습니다.
-            }
-        }
+        // if (file != null && !file.isEmpty()) {
+        //     try {
+        //         // 파일 업로드 로직 적용
+        //         String fileName = saveUploadedFile(file);
+        //
+        //         // 이제 setFileName 메서드를 사용하여 fileName을 vo에 설정
+        //         vo.setFileName(fileName);
+        //     } catch (IOException e) {
+        //         e.printStackTrace();
+        //         // 파일 업로드 중 오류 발생 시, 적절한 처리를 수행하거나 예외를 던질 수 있습니다.
+        //     }
+        // }
 
         int result = service.communityInsert(vo);
 
@@ -192,7 +191,7 @@ public class CommunityController {
         redirectAttributes.addFlashAttribute("result", result);
 
         // 리다이렉트할 경로를 반환
-        return "redirect:/"; // 리다이렉트할 경로를 적절하게 수정
+        return "redirect:/community/wishlist"; // 리다이렉트할 경로를 적절하게 수정
     }
 
     @GetMapping("/delete/{num}")

@@ -1,10 +1,11 @@
 package com.example.momol.DTO;
 
+import lombok.Data;
 import lombok.ToString;
 
 import java.util.Date;
 
-@ToString
+@ToString @Data
 public class CommunityVO {
     private int num;
 

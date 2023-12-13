@@ -121,9 +121,9 @@ public class BoardDAO {
         return jdbcTemplate.queryForObject(SQL, Integer.class, num);
     }
 
-    public int updateLikes(int num, int likes) {
+    public int updateLikes(int num) {
         String SQL = "UPDATE board SET likes = ? WHERE num = ?";
-        return jdbcTemplate.update(SQL, likes, num);
+        return jdbcTemplate.update(SQL, num);
     }
 }
 

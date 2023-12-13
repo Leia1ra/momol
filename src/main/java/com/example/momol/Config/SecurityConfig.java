@@ -41,7 +41,7 @@ public class SecurityConfig {
                 // .requestMatchers("/", "/account/login", "/community/**").permitAll()
                 .requestMatchers("/general/**").hasRole(Role.GENERAL.name()) // ROLE_를 자동으로 붙임
                 .requestMatchers("/business/**").hasRole(Role.BUSINESS.name())
-                // .requestMatchers("/admin/**").hasRole(Role.ADMIN.name())
+                .requestMatchers("/admin/**").hasRole(Role.ADMIN.name())
                 .anyRequest().permitAll()//.authenticated()
         );
         http.formLogin((httpSecurityFormLoginConfigurer) ->

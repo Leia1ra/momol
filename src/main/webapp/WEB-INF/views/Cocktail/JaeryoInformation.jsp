@@ -29,6 +29,7 @@
                 <div class="engname">${vo.ing_name_eng}</div>
             </div>
             <div class="cakexplain">${vo.ing_detail}</div>
+
         </div>
     </div>
 

@@ -9,22 +9,23 @@
 
 body {
     font-family: NEXON Lv2 Gothic, sans-serif;
-    margin: 90px;
 }
 
 main {
-    max-width: 1200px;
-    min-width: 600px;
-    margin: 0 auto;
+    margin : 0 auto;
+    padding : 25px 0 10px 0;
 }
 
 .container {
     display: flex;
     border-bottom: 2px solid #808080;
     padding-bottom: 15px;
+    height: 30px;
 }
 .container a{
     text-decoration: none;
+    display: flex;
+    align-items: center;
 }
 /*=================================================*/
 .section {
@@ -69,13 +70,15 @@ main {
 .info_top_wrap {
     display: flex;
     justify-content:space-between;
-    width: 1200px;
+    width: auto;
     margin-top : 15px;
 }
 
 /*베이스주, 도수, 맛, 그외 버튼*/
 .search-container {
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 /*검색*/
 .search{
@@ -96,11 +99,11 @@ main {
     margin: 30px auto;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);  /* 3개의 열 */
-    gap: 20px;
+    grid-template-columns: repeat(5, 20%);  /* 5개의 열 */
 }
 .grid-item {
     text-align: center;
+    margin : 10px;
 }
 .grid-item a {
     color: black;
@@ -123,10 +126,25 @@ main {
     color: dimgray;
 }
 .thumbnail {
+    width: 100%;
     border:1px solid #ddd;
     border-radius: 15px;
-    max-width: 220px;
+    min-height: 200px;
+    max-height: 222px;
 }
+
+/*재료 설명쪽*/
+.grid-container > div > a > div {
+    height: auto;
+    overflow: hidden;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+}
+
+
 .tags{
     display: flex;
     gap: 20px;
