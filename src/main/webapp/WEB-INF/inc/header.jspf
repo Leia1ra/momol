@@ -19,7 +19,7 @@
 					<div class="ect_header__logo">
 
 						<a href="/">
-							<img src="<%=request.getContextPath()%>/resources/main/cute-cat-9.png" alt="logo" class="ect_header__logo_img">
+							<img src="<%=request.getContextPath()%>/resources/main/momol_logo_vir.png" alt="logo" class="ect_header__logo_img">
 						</a>
 					</div>
 
@@ -31,8 +31,8 @@
 								<div class="ect_header__ul__deep1">
 									<ul class="gnb_deep1">
 										<li class="gnb_deep1__con">
-											<a href="#">칵테일 정보</a>
-											<a href="#">재료 정보</a>
+											<a href="/Cocktail/cakmain">칵테일 정보</a>
+											<a href="/Cocktail/jaeryomain">재료 정보</a>
 											<a href="#">용어사전</a>
 										</li>
 									</ul>

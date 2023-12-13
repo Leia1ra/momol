@@ -4,7 +4,45 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.momol.Mapper.UserMapper">
-    <select id="userSelect" resultType="com.example.momol.DTO.UserVO">
-        SELECT * FROM User WHERE Id = #{Id} AND Pw = #{Pw}
+    <select id="loadUserByUsername" resultType="com.example.momol.DTO.UserVO">
+        SELECT * FROM User WHERE Id=#{Id}
     </select>
+
+    <select id="checkedExist" resultType="com.example.momol.DTO.UserVO">
+        SELECT Id, Nick, email, Phone FROM User
+        WHERE Id=#{Id} OR Nick=#{Nick} OR email=#{email} OR Phone=#{Phone}
+    </select>
+
+    <insert id="userInsert" parameterType="com.example.momol.DTO.UserVO">
+        INSERT INTO user(UID, Id, Pw, Nick, Name, Birth, Phone, email, Gender)
+        VALUES(#{UID}, #{Id}, #{Pw}, #{Nick}, #{Name}, #{Birth}, #{Phone}, #{email}, #{gender})
+    </insert>
+
+    <select id="lastUID" resultType="String">
+        SELECT SUBSTRING(MAX(UID), #{index}) FROM user WHERE UID LIKE #{UID}
+    </select>
+
+    <update id="updateUID">
+        UPDATE User SET UID=#{newUID} WHERE UID=#{currentUID};
+    </update>
+
+    <select id="findCheck" resultType="com.example.momol.DTO.UserVO">
+        SELECT UID, Id, email, Name FROM User WHERE email = #{email}
+        <if test="Id != null">
+            AND Id=#{Id}
+        </if>
+        <if test="Name != null">
+            AND Name=#{Name}
+        </if>
+    </select>
+
+    <update id="passwordUpdate">
+        UPDATE User SET Pw=#{tmpPw} WHERE UID=#{UID}
+    </update>
+    <select id="pwMatchByUID" resultType="com.example.momol.DTO.UserVO">
+        SELECT * FROM User WHERE UID=#{UID}
+    </select>
+    <update id="pwUpdate">
+        UPDATE User SET Pw=#{newPw} WHERE UID=#{UID}
+    </update>
 </mapper>

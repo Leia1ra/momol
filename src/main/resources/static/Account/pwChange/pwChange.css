@@ -1,0 +1,121 @@
+*{
+    box-sizing: border-box;
+}
+
+main{
+    max-width: 1200px;
+    min-width: 600px;
+    margin: 0 auto;
+}
+
+#pwCh_section{
+    max-width: 600px;
+    width: 75%;
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+#pwCh_section>header{
+    text-align: center;
+}
+#pwCh_section>header>h1{
+    margin-top: 0;
+}
+#pwCh_section>article{
+    flex-grow: 1;
+
+    width: 100%;
+    border-radius: 25px;
+    box-shadow: 0 5px 25px 0 #909090;
+}
+#pwCh_section>article>form{
+    width: 100%;
+    height: 100%;
+    padding: 25px 50px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#pwCh_section>article>form>*, #sign_section>article>form>#business-input>*{
+    margin-top: 10px;
+}
+
+/*에러 메시지*/
+#pwCh_section>article>form>#err{
+    /*display: none;*/
+    width: 100%;
+    height: 20px;
+    color: red;
+    font-size: 14px;
+}
+/* 전체 입력창 제어 */
+#pwCh_section>article>form input{
+    width: 100%;
+    height: 50px;
+    padding: 0 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 1.25em;
+}
+#pwCh_section>article>form select{
+    font-size: 1.25em;
+}
+#pwCh_section>article>form input:focus{
+    outline: none;
+    border: 2px solid #1ebee6;
+}
+
+/* 비밀번호 간격 */
+#pwCh_section>article>form>input:nth-child(2){
+    margin-top: 20px;
+}
+#meter{
+    --progress: red;
+    width: 100%;
+    height: 5px;
+    appearance: none;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #808080;
+    /*border: 1px solid #808080;*/
+}
+#meter::-webkit-progress-bar{
+    background: white;
+    border-radius: 5px;
+}
+#meter::-moz-progress-bar{
+    border-radius: 5px;
+    background-color: var(--progress);
+}
+#meter::-webkit-progress-value{
+    border-radius: 5px;
+    background-color: var(--progress);
+}
+#meter[value]::-webkit-progress-value{
+    -webkit-transition : width .5s ease;
+    -moz-transition : width .5s ease;
+    -o-transition : width .5s ease;
+    transition : width .5s ease;
+}
+
+
+/* submit 버튼 */
+#pwCh_section>article>form>#submit{
+    background-color: #1ebee6;
+    color: white;
+    transition: 0.3s;
+}
+#pwCh_section>article>form>#submit:hover{
+    filter:brightness(110%);
+    cursor: pointer;
+}
+hr{
+    width: 100%;
+    margin: 2.5px 0;
+}
