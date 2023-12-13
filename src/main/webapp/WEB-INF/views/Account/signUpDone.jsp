@@ -39,7 +39,7 @@
                 </span>
 					<span class="heawon-span2">
                     <p class="heawon-p3">
-	                    ${vo.getNick()}
+	                    ${vo.getId()}
                     </p>
                 </span>
 				</div>
