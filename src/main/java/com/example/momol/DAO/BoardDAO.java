@@ -116,14 +116,21 @@ public class BoardDAO {
         return -1;
     }
 
-    public int getLikes(int num) {
-        String SQL = "SELECT likes FROM board WHERE num = ?";
-        return jdbcTemplate.queryForObject(SQL, Integer.class, num);
-    }
+    public int getCommentCount(int num) throws SQLException {
+        int commentCount = 0;
 
-    public int updateLikes(int num, int likes) {
-        String SQL = "UPDATE board SET likes = ? WHERE num = ?";
-        return jdbcTemplate.update(SQL, likes, num);
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+             PreparedStatement pstmt = connection.prepareStatement("SELECT COUNT(*) AS commentCount FROM comments WHERE num = ?")) {
+            pstmt.setInt(1, num);
+
+            try (ResultSet resultSet = pstmt.executeQuery()) {
+                if (resultSet.next()) {
+                    commentCount = resultSet.getInt("commentCount");
+                }
+            }
+        }
+
+        return commentCount;
     }
 }
 

@@ -5,8 +5,12 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.momol.DTO.CommentsVO" %>
 <%@ page import="com.example.momol.DAO.CommentsDAO" %>
+<%@ page import="com.example.momol.DAO.BoardDAO" %>
 
-<% CommunityVO board = (CommunityVO) request.getAttribute("board"); %>
+<% CommunityVO board = (CommunityVO) request.getAttribute("board");
+    BoardDAO boardDAO = new BoardDAO();
+    int commentCount = boardDAO.getCommentCount(board.getNum());
+%>
 
 <html>
 <head>
@@ -66,13 +70,13 @@
                 <div class="title"><%= board.getTitle() %>
                 </div>
                 <div class="post-info">
-                    <div class="author"><%= board.getAuthor() %>
+                    <div class="author"><%= board.getUID() %>
                     </div>
                     <div class="writetime"><%= board.getWritetime() %>
                     </div>
                     <div class="views">조회 <%= board.getViews() %>
                     </div>
-                    <div class="comments">댓글 <%= board.getAuthor() %>
+                    <div class="comments">댓글 <%= commentCount %>
                     </div> <!-- 확인하기 -->
                     <button onclick="deletePost(<%= board.getNum() %>)">삭제</button>
                 </div>
@@ -86,22 +90,22 @@
 
 
             <div class="viewcomment">
-                <div><h3>댓글( )</h3></div>
+                <div><h3>댓글(<%= commentCount %>)</h3></div>
                 <c:forEach var="comments" items="${comments}">
-                <!-- 코멘트 데이터베이스 확인하고 수정 요함 -->
-                <div class="comment">
-                    <div class="c-author">${comments.getUID2()}</div>
-                    <div class="c-comment">${comments.getContent()}</div>
-                    <div class="comment-info">
-                        <div class="c-writetime">
-                            ${comments.getWritetime()}
+                    <!-- 코멘트 데이터베이스 확인하고 수정 요함 -->
+                    <div class="comment">
+                        <div class="c-author">${comments.getUID2()}</div>
+                        <div class="c-comment">${comments.getContent()}</div>
+                        <div class="comment-info">
+                            <div class="c-writetime">
+                                    ${comments.getWritetime()}
+                            </div>
+                            <div class="c-likes">
+                                좋아요 (${comments.getLikes()})
+                            </div>
+                            <div class="report"> 신고</div>
                         </div>
-                        <div class="c-likes">
-                            좋아요 (${comments.getLikes()})
-                        </div>
-                        <div class="report"> 신고</div>
                     </div>
-                </div>
                 </c:forEach>
 
                 <div class="comment-input">
