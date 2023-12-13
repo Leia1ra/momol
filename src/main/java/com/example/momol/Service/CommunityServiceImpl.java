@@ -39,4 +39,9 @@ public class CommunityServiceImpl implements CommunityService {
         return dao.getLikes(num);
     }
 
+    @Override
+    public int updatePost(CommunityVO vo) {
+        return dao.updatePost(vo);
+    }
+
 }

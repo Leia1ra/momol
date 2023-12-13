@@ -1,4 +1,5 @@
-
+<%@ page import="com.example.momol.DTO.CommunityVO" %>
+<%@ page import="com.example.momol.DAO.BoardDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -8,14 +9,18 @@
     <link rel="stylesheet" href="/resources/Community/style.css" type="text/css">
 </head>
 <body>
+<script>
+
+</script>
+
 <main>
     <!-- 담벼락 -->
     <div class="board-header">
         <h2>담벼락</h2>
         <p class="add">자유롭게 이야기를 나눠보세요..</p>
         <div class="sort">
-            <button id="sort-lately">최신 순</button>
-            <button id="sort-likes">좋아요 순</button>
+            <button id="sort-lately" onclick="sortPosts('최신')">최신 순</button>
+            <button id="sort-likes" onclick="sortPosts('좋아요')">좋아요 순</button>
         </div>
     </div>
     <section id="board">

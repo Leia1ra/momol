@@ -120,7 +120,7 @@ public class BoardDAO {
         int commentCount = 0;
 
         try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
-                     PreparedStatement pstmt = connection.prepareStatement("SELECT COUNT(*) AS commentCount FROM comments WHERE num = ?")) {
+             PreparedStatement pstmt = connection.prepareStatement("SELECT COUNT(*) AS commentCount FROM comments WHERE num = ?")) {
             pstmt.setInt(1, num);
 
             try (ResultSet resultSet = pstmt.executeQuery()) {
@@ -143,6 +143,31 @@ public class BoardDAO {
         // 게시글 번호를 이용하여 데이터베이스에서 현재 좋아요 수를 가져오는 로직
         String sql = "SELECT likes FROM board WHERE num = ?";
         return jdbcTemplate.queryForObject(sql, Integer.class, num);
+    }
+
+    public int updatePost(CommunityVO vo) {
+        String SQL = "UPDATE board SET catnum=?, UID=?, title=?, writetime=?, content=?, likes=?, views=?, deleted=? WHERE num=?";
+
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+             PreparedStatement pstmt = connection.prepareStatement(SQL)) {
+
+            pstmt.setInt(1, vo.getCatnum());
+            pstmt.setString(2, vo.getUID());
+            pstmt.setString(3, vo.getTitle());
+            pstmt.setDate(4, (Date) vo.getWritetime());
+            pstmt.setString(5, vo.getContent());
+            pstmt.setInt(6, vo.getLikes());
+            pstmt.setInt(7, vo.getViews());
+            pstmt.setBoolean(8, vo.isDeleted());
+            pstmt.setInt(9, vo.getNum());
+
+            return pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return -1;
     }
 }
 

@@ -15,4 +15,5 @@ public interface CommunityService {
 
     int likePost(int num);
 
+    int updatePost(CommunityVO vo);
 }

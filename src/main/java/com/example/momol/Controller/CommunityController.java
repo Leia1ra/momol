@@ -112,6 +112,20 @@ public class CommunityController {
         return "Community/myrecipe";
     }
 
+    @GetMapping("/myrecipe/{num}")
+    public String myrcp_view(@PathVariable int num, Model model) {
+        BoardDAO boardDAO = new BoardDAO();
+        CommunityVO board = boardDAO.vo(num);
+
+        // 조회수 업데이트
+        boardDAO.viewUpdate(board.getViews() + 1, num);
+        List<CommentsVO> commentList = commentService.getCommentsByBoardNum(num);
+
+        model.addAttribute("board", board);
+        model.addAttribute("comments", commentList);
+        return "Community/post-view";
+    }
+
     @GetMapping("/recommendme")
     public String recommendme(Model model) {
         BoardDAO boardDAO = new BoardDAO();
@@ -171,20 +185,6 @@ public class CommunityController {
             RedirectAttributes redirectAttributes) {
         System.out.println(">" + vo.toString());
 
-        // 파일 업로드 처리
-        if (file != null && !file.isEmpty()) {
-            try {
-                // 파일 업로드 로직 적용
-                String fileName = saveUploadedFile(file);
-
-                // 이제 setFileName 메서드를 사용하여 fileName을 vo에 설정
-                vo.setFileName(fileName);
-            } catch (IOException e) {
-                e.printStackTrace();
-                // 파일 업로드 중 오류 발생 시, 적절한 처리를 수행하거나 예외를 던질 수 있습니다.
-            }
-        }
-
         int result = service.communityInsert(vo);
         redirectAttributes.addFlashAttribute("result", result);
 
@@ -211,5 +211,28 @@ public class CommunityController {
         int updatedLikes = service.likePost(num);
         return ResponseEntity.ok(updatedLikes);
     }
+
+    @GetMapping("/edit/{num}")
+    public String editPost(@PathVariable int num, Model model) {
+        BoardDAO boardDAO = new BoardDAO();
+        CommunityVO board = boardDAO.vo(num);
+
+        model.addAttribute("board", board);
+        return "Community/edit";
+    }
+
+    @PostMapping("/edit/{num}")
+    public String updatePost(@PathVariable int num, @ModelAttribute CommunityVO vo, RedirectAttributes redirectAttributes) {
+        int result = service.updatePost(vo);
+
+        if (result > 0) {
+            redirectAttributes.addFlashAttribute("message", "게시글이 수정되었습니다.");
+        } else {
+            redirectAttributes.addFlashAttribute("message", "게시글 수정에 실패했습니다.");
+        }
+
+        return "redirect:/community/walls/" + num;
+    }
+
 
 }

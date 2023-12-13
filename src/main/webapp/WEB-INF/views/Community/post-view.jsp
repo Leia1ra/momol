@@ -131,7 +131,9 @@
             <a href="writing">
                 <button>글쓰기</button>
             </a>
-            <button>수정</button>
+            <a href="/community/edit/<%= board.getNum() %>">
+                <button>수정</button>
+            </a>
             <button onclick="toList()">목록</button>
             <button>TOP</button>
         </div>

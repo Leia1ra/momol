@@ -36,12 +36,6 @@
 
     <input type="hidden" name="UID" VALUE="asdads">
 
-    <!-- 파일 업로드 인풋 추가 -->
-    <div class="file-upload">
-      <label for="file">파일 업로드:</label>
-      <input type="file" id="file" name="file" accept="image/*">
-    </div>
-
     <div class="btns">
       <a id="canclebtn" href="javascript:history.back()">취소</a>
       <input type="submit" id="confirmbtn" value="등록">
