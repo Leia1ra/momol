@@ -236,11 +236,11 @@
 
 
                     if ( (hour >= sunset_hour && min >=sunrise_min) || (hour <= sunrise_hour && min <= sunrise_min) ) {
-                        main_img.style.backgroundImage = `url(/resources/main/main_img_2.png)`;
+                        main_img.style.backgroundImage = `url(/resources/main/main_img_1.png)`;
                         console.log("낮");
 
                     } else {
-                        main_img.style.backgroundImage = `url(/resources/main/main_img_1.png)`;
+                        main_img.style.backgroundImage = `url(/resources/main/main_img_2.png)`;
                         console.log("밤");
                     }
 
