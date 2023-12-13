@@ -6,7 +6,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/resources/Cocktail/JaeryoMain.css" type="text/css">
 </head>
-<body onload="setDefaultActive()">
+<body>
 <main>
 
     <div class="container">
@@ -27,27 +27,23 @@
 
         <div class="topwrap">
             <label class="button" id="labelOne">
-                <input type="radio" name="drinkType" value="one" onclick="changeColor('labelOne')" checked="checked">전체
+                <input type="radio" name="drinkType" value="one" onclick="changeColor('labelOne'); searchCocktails2('','<%=request.getContextPath()%>')" checked>전체
             </label>
 
             <label class="button" id="labelTwo">
-                <input type="radio" name="drinkType" value="two" onclick="changeColor('labelTwo')">술(약한도수)
+                <input type="radio" name="drinkType" value="two" onclick="changeColor('labelTwo'); getCategoryData('<%=request.getContextPath()%>','약한도수')">약한도수
             </label>
 
             <label class="button" id="labelThree">
-                <input type="radio" name="drinkType" value="three" onclick="changeColor('labelThree')">술(강한도수)
+                <input type="radio" name="drinkType" value="three" onclick="changeColor('labelThree'); getCategoryData('<%=request.getContextPath()%>','강한도수')">강한도수
             </label>
 
             <label class="button" id="labelFour">
-                <input type="radio" name="drinkType" value="four" onclick="changeColor('labelFour')">음료수
+                <input type="radio" name="drinkType" value="four" onclick="changeColor('labelFour'); getCategoryData('<%=request.getContextPath()%>','음료수')">음료수
             </label>
 
             <label class="button" id="labelFive">
-                <input type="radio" name="drinkType" value="five" onclick="changeColor('labelFive')">주스
-            </label>
-
-            <label class="button" id="labelSix">
-                <input type="radio" name="drinkType" value="six" onclick="changeColor('labelSix')">기타
+                <input type="radio" name="drinkType" value="five" onclick="changeColor('labelFive') ; getCategoryData('<%=request.getContextPath()%>','주스')">주스
             </label>
         </div>
 

@@ -92,5 +92,12 @@ public class CocktailController {
         return "Cocktail/WordBook";
     }
 
+    @GetMapping("/getCategoryData")
+    @ResponseBody
+    public List<IngredientVO> getCategoryData(String category) {
+        List<IngredientVO> categoryData = service2.getCategoryData(category);
+        return categoryData;
+    }
+
 
 }

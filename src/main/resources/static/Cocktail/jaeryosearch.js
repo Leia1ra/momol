@@ -1,6 +1,16 @@
 window.onload = function () {
     setDefaultActive();
     changeColor('labelOne');
+    let type = document.getElementsByName("drinkType");
+
+    type.forEach((value, key)=> {
+        let arr = ['One','Two','Three','Four','Five'];
+        value.addEventListener("",function () {
+            if(value.checked === true){
+                changeColor('label'+arr[key])
+            }
+        })
+    });
 };
 
 function setDefaultActive() {
@@ -65,3 +75,32 @@ function searchCocktails2(searchText,context) {
         }
     });
 }
+
+function getCategoryData(context, category) {
+    $.ajax({
+        type: "GET",
+        url: context + "/Cocktail/getCategoryData",
+        data: { category: category },
+        dataType: "json",
+        success: function (data) {
+            let container = document.getElementsByClassName('grid-container')[0];
+            let inner = "";
+            data.forEach(function (r) {
+                inner += `
+                    <div class="grid-item">
+                        <a href="${context}/Cocktail/jaeryoinfo?ing_num=${r.ing_num}">
+                            <img src="${r.ing_photo}" alt="게시물1 썸네일" class="thumbnail">
+                            <div>${r.ing_name}</div>
+                            <div>${r.ing_detail}</div>
+                            </a>
+                    </div>
+                    `
+            })
+            container.innerHTML= inner;
+        },
+        error: function (error) {
+            console.error("Error during category data retrieval:", error);
+        }
+    });
+}
+
