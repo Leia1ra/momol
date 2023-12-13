@@ -37,7 +37,9 @@ public class CocktailController {
     public ModelAndView CocktailInfo(String name){
         ModelAndView mav = new ModelAndView();
         CocktailVO vo = service.cocktailInfo(name);
-        List<CockIngredientVO> list = service.cock_ingreList(name);
+        List<CockIngredientVO> list = service.cock_ingre(name);
+
+        System.out.println(list.toString());
 
         mav.addObject("vo",vo);
         mav.addObject("li", list);
@@ -88,6 +90,13 @@ public class CocktailController {
     @GetMapping("/wordbook")
     public String wordbook() {
         return "Cocktail/WordBook";
+    }
+
+    @GetMapping("/getCategoryData")
+    @ResponseBody
+    public List<IngredientVO> getCategoryData(String category) {
+        List<IngredientVO> categoryData = service2.getCategoryData(category);
+        return categoryData;
     }
 
 

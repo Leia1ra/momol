@@ -16,9 +16,9 @@
             <h2>재료 정보</h2>
         </div></a>
 
-        <div class="section" onclick="changeActive(this)">
+        <a href="<%=request.getContextPath()%>/Cocktail/wordbook"><div class="section" onclick="changeActive(this)">
             <h2>용어 사전</h2>
-        </div>
+        </div></a>
     </div>
 
     <div class="first">
@@ -30,12 +30,6 @@
                 <div class="engname">${vo.ing_name_eng}</div>
             </div>
             <div class="cakexplain">${vo.ing_detail}</div>
-            <div class="tags">
-                <div class="tag1">#시럽</div>
-                <div class="tag2">#시럽시러</div>
-                <div class="tag3">#시럽조아</div>
-                <div class="tag4">#ㅗ</div>
-            </div>
         </div>
 
     </div>

@@ -16,4 +16,7 @@
     <select id="searchCocktails2" resultType="com.example.momol.DTO.IngredientVO">
         SELECT * FROM ingredient WHERE ing_name LIKE CONCAT('%', #{searchText}, '%')
     </select>
+    <select id="getCategoryData" resultType="com.example.momol.DTO.IngredientVO">
+        SELECT * FROM ingredient WHERE ing_categ = #{category}
+    </select>
 </mapper>

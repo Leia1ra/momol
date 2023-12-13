@@ -30,4 +30,9 @@ public class IngredientServiceImpl implements IngredientService{
         return mapper.searchCocktails2(searchText);
     }
 
+    @Override
+    public List<IngredientVO> getCategoryData(String category) {
+        return mapper.getCategoryData(category);
+    }
+
 }

@@ -16,4 +16,8 @@
     <select id="searchCocktails" resultType="com.example.momol.DTO.CocktailVO">
         SELECT * FROM cocktail WHERE name LIKE CONCAT('%', #{searchText}, '%')
     </select>
+    <select id="cock_ingre" resultType="com.example.momol.DTO.CockIngredientVO">
+        select name, ing_name, ing_amount, ing_photo from cock_ingre cross join momol.ingredient i on cock_ingre.ing_num = i.ing_num
+        where name=#{name}
+    </select>
 </mapper>

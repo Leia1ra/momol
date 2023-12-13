@@ -12,5 +12,6 @@ public interface CockMapper {
     CocktailVO cocktailInfo(String name);
     List<CockIngredientVO> cock_ingreList(String name);
     List<CocktailVO> searchCocktails(String searchText);
+    List<CockIngredientVO> cock_ingre(String name);
 
 }
