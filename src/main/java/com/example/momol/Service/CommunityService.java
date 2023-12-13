@@ -1,7 +1,6 @@
 package com.example.momol.Service;
 
 import com.example.momol.DTO.CommunityVO;
-import org.springframework.stereotype.Service;
 
 
 public interface CommunityService {
@@ -13,7 +12,4 @@ public interface CommunityService {
     int updateLikes(int num);
 
     int getLikes(int num);
-
-    int updateLikes(int num, int likes);
-
 }

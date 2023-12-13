@@ -31,18 +31,12 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
     @Override
-    public int updateLikes(int num) {
-        return 0;
-    }
-
-    @Override
     public int getLikes(int num) {
         return dao.getLikes(num);
     }
 
     @Override
-    public int updateLikes(int num, int likes) {
-        return dao.updateLikes(num, likes);
+    public int updateLikes(int num) {
+        return dao.updateLikes(num);
     }
-
 }
