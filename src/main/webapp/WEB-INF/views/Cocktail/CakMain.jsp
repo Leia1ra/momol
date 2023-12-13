@@ -84,9 +84,9 @@
                 <div class="dz">${data.cocktail_detail}</div>
             </a>
             <div class="tags">
-                <div class="tag1"></div>
-                <div class="tag2"></div>
-                <div class="tag3"></div>
+                <div class="tag1">${data.basetag}</div>
+                <div class="tag2">${data.tastetag}</div>
+                <div class="tag3">${data.smelltag}</div>
             </div>
         </div>
         </c:forEach>
