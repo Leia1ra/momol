@@ -1,13 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
-
 	<head>
 		<title>Title</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="/resources/css/style.css" type="text/css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	</head>
 	<body>
@@ -18,7 +17,7 @@
 
 						<a href="/">
 							<div class="no-drag">
-								<img src="<%=request.getContextPath()%>/resources/main/momol_logo2.svg" alt="logo" class="ect_header__logo_img">
+								<img src="<%=request.getContextPath()%>/resources/main/momol_logo_2.svg" alt="logo" class="ect_header__logo_img">
 								<p style="font-family: YanoljaYacheR; font-size:3rem"  >모몰</p>
 							</div>
 						</a>
@@ -76,12 +75,25 @@
 
 					<div id="ect_header__user">
 
-						<a href="<%=request.getContextPath()%>/account/login" class="ect_header__user__text">
-							로그인
-						</a>
-						<a href="<%=request.getContextPath()%>/account/signIn" class="ect_header__user__text">
-							회원가입
-						</a>
+						<c:if test="${empty sessionScope.logUID}" >
+							<a href="<%=request.getContextPath()%>/account/login" class="ect_header__user__text">
+								로그인
+							</a>
+							<a href="<%=request.getContextPath()%>/account/signIn" class="ect_header__user__text">
+								회원가입
+							</a>
+						</c:if>
+
+						<c:if test="${not empty sessionScope.logUID}" >
+							<a href="<%=request.getContextPath()%>/account/logout" class="ect_header__user__text">
+								로그아웃
+							</a>
+							<a href="<%=request.getContextPath()%>/mmypage/mypage" class="ect_header__user__text">
+								마이페이지
+							</a>
+						</c:if>
+
+
 					</div>
 				</div>
 				<script src="/resources/main/header_gnb.js"></script>

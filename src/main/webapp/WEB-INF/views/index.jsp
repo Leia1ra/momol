@@ -10,9 +10,14 @@
         display: none;
     }
 
-    main {
+    #main_wrap {
         width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        padding : 0;
     }
+
+
 </style>
 
 <header class="main_header">
@@ -23,18 +28,45 @@
             <%--<img src="/resources/main/logo_temp.png"--%>
             <%--     alt="logo"--%>
             <%--     class="main__main-logo">--%>
-                <img src="<%=request.getContextPath()%>/resources/main/momol_logo2.svg" alt="logo" class="main_header__logo_img">
-                <span style="font-family: 'YanoljaYacheR'" class="no-drag">모히또에서 몰디브를</span>
+            <img src="<%=request.getContextPath()%>/resources/main/momol_logo_2.svg" alt="logo" class="main_header__logo_img">
+            <span style="font-family: 'YanoljaYacheR'" class="no-drag">모히또에서 몰디브를</span>
         </a>
     </div>
 
     <!--메인페이지 헤더의 네비게이션 부분 (우측) -->
+
+
     <nav class="main_header__nav no-drag">
-        <a href="/account/login">
-            <div class="main_header__nav__iconbox">
-                <span class="material-icons">login</span>
-            </div>
-        </a>
+
+        <c:if test="${empty sessionScope.logUID}" >
+            <a href="/account/signIn">
+                <div class="main_header__nav__iconbox">
+                    <span class="material-icons">person_add</span>
+                </div>
+            </a>
+
+            <a href="/account/login">
+                <div class="main_header__nav__iconbox">
+                    <span class="material-icons">login</span>
+                </div>
+            </a>
+        </c:if>
+
+        <c:if test="${not empty sessionScope.logUID}" >
+            <%--        로그아웃--%>
+            <a href="/account/logout">
+                <div class="main_header__nav__iconbox">
+                    <span class="material-icons">logout</span>
+                </div>
+            </a>
+
+            <%--마이페이지--%>
+            <a href="/mmypage/mypage">
+                <div class="main_header__nav__iconbox">
+                    <span class="material-icons">account_circle</span>
+                </div>
+            </a>
+        </c:if>
 
         <a href="#">
             <div class="main_header__nav__iconbox">
@@ -42,20 +74,26 @@
             </div>
         </a>
 
-        <%--<a href="#"> --%>
-        <%--    <div class="main_header__nav__iconbox">--%>
-        <%--        <span class="material-icons">search</span>--%>
-        <%--    </div>--%>
-        <%--</a>--%>
     </nav>
 
 
 </header>
 
-<div id="header_menu">
-</div>
+<%--<div id="header_menu">--%>
+<%--    <div class="header_menu_wrap">--%>
+<%--        <div class="header_menu__title">--%>
+<%--            &lt;%&ndash;<span class="material-icons">menu</span>&ndash;%&gt;--%>
+<%--            <p>모히또에서 몰디브를</p>--%>
+<%--        </div>--%>
+<%--        <div class="header_menu__content_area">--%>
 
-<main>
+<%--        </div>--%>
+
+<%--    </div>--%>
+
+<%--</div>--%>
+
+<main id="main_wrap">
     <section id="main__img">
 
         <p class="madi no-drag">Cocktail</p>
