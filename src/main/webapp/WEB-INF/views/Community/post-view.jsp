@@ -11,6 +11,51 @@
 <html>
 <head>
     <link rel="stylesheet" href="/resources/Community/style.css" type="text/css">
+    <script>
+        function deletePost(num) {
+            if (confirm("정말로 삭제하시겠습니까?")) {
+                // 확인을 누르면 서버로 삭제 요청을 보냄
+                fetch(`/community/delete/${num}`, {
+                    method: 'GET'
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            alert("게시글이 삭제되었습니다.");
+                            window.location.href = '/community/walls'; // 삭제 후 목록 페이지로 이동
+                        } else {
+                            alert("게시글 삭제에 실패했습니다.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+        }
+
+
+        function likePost() {
+            // 게시글 번호를 가져오기
+            const num = <%= board.getNum() %>;
+
+            fetch(`/community/walls/${num}`, {
+                method: 'POST'
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json(); // JSON 응답을 파싱합니다.
+                    } else {
+                        throw new Error('좋아요 실패');
+                    }
+                })
+                .then(data => {
+                    // 좋아요 수를 동적으로 화면에 업데이트합니다.
+                    document.getElementById('likesCount').innerText = data.likes;
+                })
+                .catch(error => {
+                    console.error('에러', error);
+                });
+        }
+    </script>
 </head>
 <body>
 <main>
@@ -29,13 +74,16 @@
                     </div>
                     <div class="comments">댓글 <%= board.getAuthor() %>
                     </div> <!-- 확인하기 -->
-                    <button>신고</button>
+                    <button onclick="deletePost(<%= board.getNum() %>)">삭제</button>
                 </div>
             </div>
             <div class="post-main">
                 <%= board.getContent() %>
             </div>
-            <div class="likes">좋아요 (<%= board.getLikes() %>)</div>
+            <div class="likes">
+                <button onclick="likePost()">좋아요</button> (<span id="likesCount"><%= board.getLikes() %></span>)
+            </div>
+
 
             <div class="viewcomment">
                 <div><h3>댓글( )</h3></div>
