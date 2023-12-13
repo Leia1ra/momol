@@ -1,9 +1,7 @@
 package com.example.momol.DTO;
 
 import com.example.momol.Config.Role.Role;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,7 +22,6 @@ public class UserVO implements UserDetails {
     private String Phone;
     private String gender;
     private String JoinDate;
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if(this.UID != null){
@@ -52,7 +49,6 @@ public class UserVO implements UserDetails {
     public String getPassword() {
         return this.Pw;
     }
-
     @Override
     public String getUsername() {
         return this.Id;

@@ -71,20 +71,20 @@
 
 
     <div class="grid-container">
-        <c:forEach var="data" items="${li}">
-            <div class="grid-item">
-                <a href="<%=request.getContextPath()%>/Cocktail/cakinfo?name=${data.name}">
-                    <img src="${data.cocktail_img}" alt="" class="thumbnail">
-                    <div>${data.name}</div>
-                    <div class="dz">${data.cocktail_detail}</div>
-                </a>
-                <div class="tags">
-                    <div class="tag1"></div>
-                    <div class="tag2"></div>
-                    <div class="tag3"></div>
-                </div>
+    <c:forEach var="data" items="${li}">
+        <div class="grid-item">
+            <a href="<%=request.getContextPath()%>/Cocktail/cakinfo?name=${data.name}">
+                <img src="${data.cocktail_img}" alt="" class="thumbnail">
+                <div>${data.name}</div>
+                <div class="dz">${data.cocktail_detail}</div>
+            </a>
+            <div class="tags">
+                <div class="tag1">${data.basetag}</div>
+                <div class="tag2">${data.tastetag}</div>
+                <div class="tag3">${data.smelltag}</div>
             </div>
-        </c:forEach>
+        </div>
+    </c:forEach>
     </div>
 
 </main>
