@@ -9,7 +9,7 @@
     <!--        SELECT ename FROM emp WHERE empno = ${param1};-->
     <!--    </select>-->
 
-<!--    1. USER      -->
+    <!--    1. USER      -->
     <select id="user_list" resultType="com.example.momol.DTO.UserVO">
         SELECT UID, Id, Pw, Nick, Name, email, Birth, Phone, gender, JoinDate FROM user
     </select>
@@ -22,7 +22,7 @@
         update user set nick=#{usernick} where id=#{userid}
     </update>
 
-<!-- 2. 재료 관리   -->
+    <!-- 2. 재료 관리   -->
     <select id="ingre_list" resultType="com.example.momol.DTO.IngrVO">
         SELECT * from ingredient
     </select>
@@ -46,7 +46,7 @@
     </delete>
 
 
-<!--    3. 칵테일 관리 -->
+    <!--    3. 칵테일 관리 -->
     <!-- 칵테일 전체 불러오기 -->
     <select id="cocktail_list" resultType="com.example.momol.DTO.CocktailVO" >
         select * from cocktail
@@ -70,12 +70,34 @@
         delete from cocktail where name = #{param1}
     </delete>
 
-<!--    === cock-ingre === -->
+    <!--    === cock-ingre === -->
 
     <select id="cocktail_ingre_list" resultType="com.example.momol.DTO.AdminCockIngreVO">
         SELECT name as "name", i.ing_num as "ing_num", ing_name as "ing_name", ing_amount
         FROM cock_ingre A CROSS JOIN ingredient i on A.ing_num = i.ing_num;
     </select>
 
+
+    <!--   통계 -->
+    <select id="count_user_all" resultType="int" >
+        select count(*) from user
+    </select>
+
+    <select id="count_user_else" resultType="int">
+        <![CDATA[
+    select count(*) from user where UID like CONCAT('%', #{param1}, '%')
+    ]]>
+    </select>
+
+    <select id="count_news" resultType="int">
+        select count(*) from user where UID like #{name} and DATE_FORMAT(JoinDate, '%Y-%m-%d') = #{y}-#{m}-#{d}
+    </select>
+
+    <select id="count_board_new" resultType="int">
+        <![CDATA[
+    SELECT COUNT(*) FROM board
+    WHERE writetime LIKE CONCAT(#{y}, '-', #{m}, '-', #{d}, '%')
+    ]]>
+    </select>
 
 </mapper>
