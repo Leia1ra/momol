@@ -11,4 +11,13 @@
     <select id="getCommentsbyBoardNum" resultType="com.example.momol.DTO.CommentsVO">
         SELECT * FROM comments WHERE num = #{num}
     </select>
+
+    <select id ="getComLikeNum" resultType="com.example.momol.DTO.CommentsVO">
+        SELECT UID FROM comments WHERE num = #{num}
+    </select>
+
+    <delete id="deleteComment" parameterType="int">
+        DELETE FROM comments WHERE UID = #{UID}
+    </delete>
+
 </mapper>

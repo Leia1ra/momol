@@ -8,14 +8,7 @@
 <body>
 <main>
     <h2>글쓰기</h2>
-    <form method="post" action="<%=request.getContextPath()%>/community/writing" id="posting">
-
-        <!-- 생략... 나머지 폼 요소들 추가 -->
-
-        <div class="btns">
-            <a href="../"> <button id="cancelbtn">취소</button></a>
-            <button type="button" id="confirmbtn">등록</button>
-        </div>
+    <form method="post" action="<%=request.getContextPath()%>/community/posting" id="posting" onsubmit="return validate();">
 
         <div class="boardselect">
             <select name="Catnum" id="Catnum">
@@ -30,31 +23,92 @@
 
         <div class="title"><input type="text" name="title" placeholder="제목을 입력해 주세요"></div>
 
-        <textarea name="Content" id="editor">
+        <!-- CKEditor -->
+        <textarea name="Content" id="editor"></textarea>
 
-    </textarea>
+        <!-- UploadAdapter 클래스 정의 -->
+        <script>
+            class UploadAdapter {
+                constructor(loader) {
+                    this.loader = loader;
+                }
 
+                upload() {
+                    return this.loader.file.then( file => new Promise(((resolve, reject) => {
+                        this._initRequest();
+                        this._initListeners( resolve, reject, file );
+                        this._sendRequest( file );
+                    })));
+                }
+
+                _initRequest() {
+                    const xhr = this.xhr = new XMLHttpRequest();
+                    xhr.open('POST', 'http://localhost:8080/community/imgs/upload', true);
+                    xhr.responseType = 'json';
+                }
+
+                _initListeners(resolve, reject, file) {
+                    const xhr = this.xhr;
+                    const loader = this.loader;
+                    const genericErrorText = '파일을 업로드 할 수 없습니다.';
+
+                    xhr.addEventListener('error', () => {reject(genericErrorText);});
+                    xhr.addEventListener('abort', () => reject());
+                    xhr.addEventListener('load', () => {
+                        const response = xhr.response;
+                        if(!response || response.error) {
+                            return reject( response && response.error ? response.error.message : genericErrorText );
+                        }
+
+                        resolve({
+                            default: response.url //업로드된 파일 주소
+                        });
+                    });
+                }
+
+                _sendRequest(file) {
+                    const data = new FormData();
+                    data.append('upload', file);
+                    this.xhr.send(data);
+                }
+            }
+        </script>
+
+        <script>
+            ClassicEditor
+                .create( document.querySelector( '#editor' ), {
+                    extraPlugins: [MyCustomUploadAdapterPlugin],
+                })
+                .catch( error => {
+                    console.error( error );
+                });
+
+            function MyCustomUploadAdapterPlugin(editor) {
+                editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
+                    return new UploadAdapter(loader);
+                };
+            }
+        </script>
+
+        <input type="hidden" name="UID" VALUE="asdads">
+
+        <div class="btns">
+            <a id="canclebtn" href="javascript:history.back()">취소</a>
+            <input type="submit" id="confirmbtn" value="등록">
+        </div>
+
+        <script>
+            function validate() {
+                var catnumValue = document.getElementById('Catnum').value;
+
+                if (catnumValue == 0) {
+                    alert('카테고리를 지정해 주세요.');
+                    return false;
+                }
+                return true;
+            }
+        </script>
     </form>
-
-    <script>
-        ClassicEditor
-            .create( document.querySelector( '#editor' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-
-        document.getElementById('confirmbtn').addEventListener('click', function() {
-            // 여기에 필요한 폼 검증 로직을 추가할 수 있습니다.
-
-            // 폼 검증이 완료되면 폼을 서버에 제출
-            document.getElementById('posting').submit();
-        });
-
-        // 페이지 로딩 후 자동으로 walls로 리다이렉트
-        window.onload = function() {
-            location.href = '<%=request.getContextPath()%>/community/walls';
-        };
-    </script>
 </main>
 </body>
 </html>

@@ -6,15 +6,14 @@ import com.example.momol.DTO.CommunityVO;
 import com.example.momol.Service.CommentService;
 import com.example.momol.Service.CommunityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class CommentController {
@@ -49,4 +48,18 @@ public class CommentController {
         return mav;
     }
 
+    @PostMapping("/likeComment")
+    public ResponseEntity<Integer> likeComment(@RequestBody Map<String, Integer> params) {
+        int UID = params.get("UID");
+        int updatedLikes = commentService.increaseLikes(UID);
+        return ResponseEntity.ok(updatedLikes);
+    }
+
+    @DeleteMapping("/deleteComment")
+    public ResponseEntity<Void> deleteComment(@RequestBody Map<String, Integer> params) {
+        int UID = params.get("UID");
+        commentService.deleteComment(UID);
+        return ResponseEntity.noContent().build();
+    }
 }
+

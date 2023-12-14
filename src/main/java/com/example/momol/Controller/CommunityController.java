@@ -156,26 +156,34 @@ public class CommunityController {
     }
 
 
-    private String saveUploadedFile(MultipartFile file) throws IOException {
-        // 업로드할 디렉토리 경로를 설정 (프로젝트 내의 원하는 위치로 설정 가능)
-        String uploadDir = "path/to/upload/directory";
+    @PostMapping("/imgs/upload")
+    @ResponseBody
+    public ResponseEntity<String> handleFileUpload(@RequestParam("upload") MultipartFile file) {
+        try {
+            // 업로드할 디렉토리 설정
+            String uploadDir = "src/main/resources/static/community/imgs/upload";
+            Path uploadPath = Path.of(uploadDir).toAbsolutePath().normalize();
 
-        // 업로드할 디렉토리가 없으면 생성
-        File uploadDirFile = new File(uploadDir);
-        if (!uploadDirFile.exists()) {
-            uploadDirFile.mkdirs();
+            // 디렉토리가 없으면 생성
+            Files.createDirectories(uploadPath);
+
+            // 파일명 생성 (여기서는 간단히 현재 시간을 사용)
+            String fileName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+
+            // 파일 저장 경로 설정
+            Path targetPath = uploadPath.resolve(fileName);
+
+            // 파일 복사
+            Files.copy(file.getInputStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
+
+            // 파일 업로드 성공 시 파일 URL 반환
+            String fileUrl = "/community/imgs/upload/" + fileName;
+            return ResponseEntity.ok(fileUrl);
+        } catch (IOException e) {
+            e.printStackTrace();
+            // 파일 업로드 실패 시 오류 메시지 반환
+            return ResponseEntity.status(500).body("파일 업로드 실패");
         }
-
-        // 파일명 중복을 피하기 위해 UUID를 사용하여 파일명 생성
-        String fileName = UUID.randomUUID().toString() + "_" + StringUtils.cleanPath(file.getOriginalFilename());
-
-        // 파일을 업로드할 경로 설정
-        Path uploadPath = Path.of(uploadDir, fileName);
-
-        // 파일 복사
-        Files.copy(file.getInputStream(), uploadPath, StandardCopyOption.REPLACE_EXISTING);
-
-        return fileName;
     }
 
     @PostMapping("/posting")

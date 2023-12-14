@@ -19,10 +19,20 @@ public class CommunityVO {
     private int views;
     private int likes;
 
+    private String fileName;
+
     private boolean deleted;
 
     public int getNum() {
         return num;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 
     public void setNum(int num) {
