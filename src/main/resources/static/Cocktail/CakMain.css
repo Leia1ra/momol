@@ -81,11 +81,13 @@ main {
 }
 /*검색*/
 .search{
-    background-color: #ddd;
+    background-color: palegreen;
+    color: #333333;
     border: 1px solid #ddd;
+    border-radius: 9px;
     width: 250px;
     height: 30px;
-    font-size: 0.9em;
+    font-size: 0.8em;
     text-align: center;
 }
 .material-icons{
@@ -147,24 +149,27 @@ main {
     object-fit: cover;
 }
 .tags{
+    justify-content: space-around;
     display: flex;
     gap: 20px;
-    padding: 10px;
     margin: 10px 0 0 0px;
 }
 .tag1,.tag2,.tag3{
+    flex-basis: 60px;
+    color: beige;
+    border-radius: 10px;
     width: 50px;
-    font-size: 0.7em;
-    height: 20px;
-    line-height: 22px;
+    font-size: 0.8em;
+    height: 23px;
+    line-height: 23px;
     font-weight: bold;
 }
 .tag1 {
-    background-color:#ddd;
+    background-color:lightseagreen;
 }
 .tag2{
-    background-color:#ddd;
+    background-color:cornflowerblue;
 }
 .tag3{
-    background-color:#ddd;
+    background-color:orchid;
 }

@@ -110,6 +110,12 @@ public class CocktailController {
         if(vo.getBasetag() == null){
             vo.setBasetag("");
         }
+        if(vo.getTastetag() == null){
+            vo.setTastetag("");
+        }
+        //if(vo.getABV() == null){
+        //    vo.setABV(0.0F);
+        //}
 
 
         return service.getCategoryData2(vo);
