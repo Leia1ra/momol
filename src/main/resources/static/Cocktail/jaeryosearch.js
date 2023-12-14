@@ -1,16 +1,6 @@
 window.onload = function () {
     setDefaultActive();
     changeColor('labelOne');
-    let type = document.getElementsByName("drinkType");
-
-    type.forEach((value, key)=> {
-        let arr = ['One','Two','Three','Four','Five'];
-        value.addEventListener("",function () {
-            if(value.checked === true){
-                changeColor('label'+arr[key])
-            }
-        })
-    });
 };
 
 function setDefaultActive() {
