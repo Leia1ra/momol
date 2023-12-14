@@ -33,7 +33,7 @@ public class CommunityServiceImpl implements CommunityService {
     }
     @Override
     public int likePost(int num) {
-        dao.incrementLikes(num);
+        return dao.incrementLikes(num);
     }
 
     @Override

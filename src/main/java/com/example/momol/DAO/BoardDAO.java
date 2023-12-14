@@ -133,10 +133,10 @@ public class BoardDAO {
         return commentCount;
     }
 
-    public void incrementLikes(int num) {
+    public int incrementLikes(int num) {
         // 게시글 번호를 이용하여 데이터베이스에서 좋아요 수를 증가시키는 로직
         String sql = "UPDATE board SET likes = likes + 1 WHERE num = ?";
-        jdbcTemplate.update(sql, num);
+        return jdbcTemplate.update(sql, num);
     }
 
     public int getLikes(int num) {
