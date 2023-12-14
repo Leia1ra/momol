@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
@@ -9,7 +8,7 @@
 <body>
 <main>
   <h2>글쓰기</h2>
-  <form method="post" action="<%=request.getContextPath()%>/community/posting" id="posting" onsubmit="return validate();">
+  <form method="post" action="<%=request.getContextPath()%>/community/posting" id="posting" onsubmit="return validate();" enctype="multipart/form-data">
 
     <div class="boardselect">
       <select name="Catnum" id="Catnum">
@@ -24,21 +23,21 @@
 
     <div class="title"><input type="text" name="title" placeholder="제목을 입력해 주세요"></div>
 
-    <textarea name="Content" id="editor">
-
-    </textarea>
+    <!-- CKEditor -->
+    <textarea name="Content" id="editor"></textarea>
 
     <script>
       ClassicEditor
               .create( document.querySelector( '#editor' ) )
               .catch( error => {
                 console.error( error );
-              } );
+              });
     </script>
 
     <input type="hidden" name="UID" VALUE="asdads">
+
     <div class="btns">
-      <a id="canclebtn" href="javascript:history.back()"> 취소</a>
+      <a id="canclebtn" href="javascript:history.back()">취소</a>
       <input type="submit" id="confirmbtn" value="등록">
     </div>
 

@@ -1,10 +1,11 @@
 package com.example.momol.DTO;
 
+import lombok.Data;
 import lombok.ToString;
 
 import java.util.Date;
 
-@ToString
+@ToString @Data
 public class CommunityVO {
     private int num;
 
@@ -77,8 +78,8 @@ public class CommunityVO {
         this.author = author;
     }
 
-    public Date getWritetime() {
-        return writetime;
+    public java.sql.Date getWritetime() {
+        return (java.sql.Date) writetime;
     }
 
     public void setWritetime(Date writetime) {

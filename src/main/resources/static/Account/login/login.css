@@ -83,3 +83,30 @@ main{
     height: 20px;
     line-height: 20px;
 }
+
+#captcha{
+    width: 100%;
+    height: 90px;
+    /*display: flex;*/
+    align-items: flex-end;
+    display: none;
+}
+#captcha>#captchaInput{
+    margin-left: 10px;
+    height: 100%;
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#captchaInput *{
+    margin: 0 !important;
+
+}
+#captcha>#captchaInput>#captchaBtn{
+    padding: 0 !important;
+    height: 30px !important;
+    width: 50px !important;
+    font-size: 10px !important;
+}

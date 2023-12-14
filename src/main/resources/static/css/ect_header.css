@@ -9,7 +9,9 @@
 
 #ect_header_wrap {
     position: relative;
-    width: 800px;
+    width: var(--default-width);
+    min-width: var(--min-width);
+    max-width: var(--max-width);
     height: 100%;
     display: flex;
     flex-direction: row;

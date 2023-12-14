@@ -8,17 +8,16 @@
 </head>
 <body onload="setDefaultActive()">
 <main>
-
     <div class="container">
-        <a href="<%=request.getContextPath()%>/Cocktail/cakmain"><div class="section" onclick="changeActive(this)">
+        <a href="<%=request.getContextPath()%>/Cocktail/cakmain"><div class="section">
             <h2>칵테일 정보</h2>
         </div></a>
 
-        <a href="<%=request.getContextPath()%>/Cocktail/jaeryomain"><div class="section" onclick="changeActive(this)">
+        <a href="<%=request.getContextPath()%>/Cocktail/jaeryomain"><div class="section" >
             <h2>재료 정보</h2>
         </div></a>
 
-        <a href="<%=request.getContextPath()%>/Cocktail/wordbook"><div class="section" onclick="changeActive(this)">
+        <a href="<%=request.getContextPath()%>/Cocktail/wordbook"><div class="section" >
             <h2>용어 사전</h2>
         </div></a>
     </div>
@@ -64,16 +63,17 @@
         </div>
         <!--검색바-->
         <div class="search-container">
+            <span class="material-icons no-drag">search</span>
             <input class="search" type="search" placeholder="검색내용을 입력해주세요" oninput="searchCocktails(this.value,'<%=request.getContextPath()%>')">
         </div>
     </div>
 
 
     <div class="grid-container">
-        <c:forEach var="data" items="${li}">
+    <c:forEach var="data" items="${li}">
         <div class="grid-item">
             <a href="<%=request.getContextPath()%>/Cocktail/cakinfo?name=${data.name}">
-                <img src="${data.cocktail_img}" alt="게시물1썸네일" class="thumbnail">
+                <img src="${data.cocktail_img}" alt="" class="thumbnail">
                 <div>${data.name}</div>
                 <div class="dz">${data.cocktail_detail}</div>
             </a>
@@ -83,14 +83,9 @@
                 <div class="tag3">${data.smelltag}</div>
             </div>
         </div>
-        </c:forEach>
+    </c:forEach>
     </div>
 
 </main>
 </body>
-
-<script>
-
-</script>
-
 <script src="/resources/Cocktail/pagechange.js"></script>

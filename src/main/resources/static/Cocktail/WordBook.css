@@ -40,13 +40,14 @@
     margin-top : 15px;
 }
 main {
-    max-width: 1200px;
-    min-width: 600px;
+    max-width: var(--max-width);
+    min-width: var(--min-width);
+    width: var(--default-width);
     margin: 0 auto;
+    padding: 25px 0 10px 0;
 }
 body {
     font-family: NEXON Lv2 Gothic, sans-serif;
-    margin: 90px;
 }
 table {
     width: 100%;
