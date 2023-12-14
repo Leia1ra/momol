@@ -3,8 +3,6 @@
 .main_wrap {
     display: flex;
     flex-direction: column;
-
-    width: 800px;
     margin : 0 auto;
 }
 
@@ -255,6 +253,7 @@
     margin : 10px;
 
     border-bottom: 1px solid gray;
+    padding-bottom: 20px;
 }
 
 .page_title__main {

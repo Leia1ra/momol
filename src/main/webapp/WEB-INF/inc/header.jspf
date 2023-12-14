@@ -51,7 +51,7 @@
 							</li>
 
 							<li class="ect_header__ul_text" id="ect_header__2">
-								<a href="/community" class="gnb_text">커뮤니티</a>
+								<a href="/community/walls" class="gnb_text">커뮤니티</a>
 								<div class="gnb_active"></div>
 								<div class="ect_header__ul__deep1">
 									<ul class="gnb_deep1">

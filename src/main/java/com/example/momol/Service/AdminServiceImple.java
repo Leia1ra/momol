@@ -76,4 +76,26 @@ public class AdminServiceImple implements AdminService{
     public int cocktail_del(String num) {
         return mapper.cocktail_del(num);
     }
+
+    @Override
+    public int count_user_all(String name) {
+        return mapper.count_user_all(name);
+    }
+
+    @Override
+    public int count_user_else(String name) {
+        return mapper.count_user_else(name);
+    }
+
+    @Override
+    public int count_news(String name, int y, int m, int d) {
+        return mapper.count_news(name, y, m, d);
+    }
+
+    @Override
+    public int count_board_new(int y, int m, int d) {
+        return mapper.count_board_new(y, m, d);
+    }
+
+
 }

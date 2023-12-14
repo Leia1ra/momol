@@ -3,6 +3,8 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
 <main id="admin_user">
+    <p class="fs-2">유저 관리</p>
+
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">MOMOL_ADMIN</a>
@@ -70,15 +72,19 @@
                                 <th scope="row">${user.gender}</th>
                                 <th scope="row">${user.email}</th>
                                 <th scope="row">${user.birth}</th>
-                                <th scope="row">joindate 왜 안나옴</th>
-                                <%--<th scope="row">${use.JoinDate}</th>--%>
+                                <th scope="row">${user.joinDate}</th>
                                 <th scope="row">
                                     <c:choose>
                                         <c:when test="${user.UID.startsWith('ADMIN') || user.UID.startsWith('admin')}">
                                             <span class="badge bg-primary">관리자</span>
                                         </c:when>
+                                        <c:when test="${user.UID.startsWith('BUSI') || user.UID.startsWith('busi')}">
+                                            <span class="badge bg-success">사업자</span>
+                                        </c:when>
                                         <c:otherwise>
                                             <span class="badge bg-secondary">일반유저</span>
+                                            <hr>
+                                            <button class="badge btn btn-primary">관리자 임명</button>
                                         </c:otherwise>
                                     </c:choose>
                                 </th>

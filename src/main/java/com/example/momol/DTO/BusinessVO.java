@@ -17,5 +17,5 @@ public class BusinessVO {
     private String date;
     private String time;
     private String lasttouch;
-
+    private boolean approved;
 }

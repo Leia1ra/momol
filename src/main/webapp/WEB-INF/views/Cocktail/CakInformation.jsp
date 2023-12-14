@@ -42,10 +42,9 @@
             <div class="title">재료 정보</div>
             <div class="jaeryos">
                 <c:forEach var="data" items="${li}">
-                <div>
-                    <img src="/resources/img/나.jpg" class="jaeryoimg">
-                    <div class="jaeryoname_wrap">
-                        <p class="jaeryoname">${data.name}</p>
+                <div><img src="${data.ing_photo}" class="jaeryoimg">
+                    <div class="jaeryoname">
+                        <div>${data.ing_name} </div>
                         <div class="yang">${data.ing_amount}</div>
                     </div>
                 </div>
