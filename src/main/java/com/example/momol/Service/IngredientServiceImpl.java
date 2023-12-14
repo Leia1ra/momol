@@ -1,5 +1,6 @@
 package com.example.momol.Service;
 
+import com.example.momol.DTO.CocktailVO;
 import com.example.momol.DTO.IngredientVO;
 import com.example.momol.Mapper.IngredientMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,20 @@ public class IngredientServiceImpl implements IngredientService{
     @Override
     public List<IngredientVO> jaeryoList(int ing_num) {
         return mapper.jaeryoList(ing_num);
+    }
+
+    @Override
+    public List<IngredientVO> searchCocktails2(String searchText) {
+        return mapper.searchCocktails2(searchText);
+    }
+
+    @Override
+    public List<IngredientVO> getCategoryData(String category) {
+        return mapper.getCategoryData(category);
+    }
+
+    @Override
+    public List<CocktailVO> make_list(String name) {
+        return mapper.make_list(name);
     }
 }

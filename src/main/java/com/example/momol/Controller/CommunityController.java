@@ -155,7 +155,6 @@ public class CommunityController {
         return "Community/posting";
     }
 
-
     private String saveUploadedFile(MultipartFile file) throws IOException {
         // 업로드할 디렉토리 경로를 설정 (프로젝트 내의 원하는 위치로 설정 가능)
         String uploadDir = "path/to/upload/directory";
@@ -188,7 +187,8 @@ public class CommunityController {
         int result = service.communityInsert(vo);
         redirectAttributes.addFlashAttribute("result", result);
 
-        return "redirect:/";
+        // 리다이렉트할 경로를 반환
+        return "redirect:/community/wishlist"; // 리다이렉트할 경로를 적절하게 수정
     }
 
     @GetMapping("/delete/{num}")

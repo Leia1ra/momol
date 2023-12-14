@@ -155,9 +155,19 @@
 
 .suljanggo_sel__btn {
     padding : 2px 10px;
-    border-radius: 10px;
-    border : 1px solid black;
+    border-radius: 0.5rem;
+    border : 1px solid rgba(0,0,0,0);
     margin-left : 5px;
+    font-weight: bold;
+    color : white;
+
+    background-color: #6c757d;
+
+}
+
+.suljanggo_sel__btn + .disabled {
+    background-color: #6c757d;
+    opacity: 0.5;
 }
 
 
@@ -236,4 +246,23 @@
 
 .suljanggo__select_bubble_del_btn {
     cursor: pointer;
+}
+
+.page_title {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    margin : 10px;
+
+    border-bottom: 1px solid gray;
+}
+
+.page_title__main {
+    font-size : 30px;
+    font-weight: bold;
+}
+
+.page_title__sub {
+    font-size : 1rem;
+    margin-left: 10px;
 }

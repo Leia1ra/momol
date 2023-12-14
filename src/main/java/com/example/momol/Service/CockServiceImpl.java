@@ -27,6 +27,17 @@ public class CockServiceImpl implements CockService{
     public List<CockIngredientVO> cock_ingreList(String name) {
         return mapper.cock_ingreList(name);
     }
+
+    @Override
+    public List<CocktailVO> searchCocktails(String searchText) {
+        return mapper.searchCocktails(searchText);
+    }
+
+    @Override
+    public List<CockIngredientVO> cock_ingre(String name) {
+        return mapper.cock_ingre(name);
+    }
+
 }
 
 

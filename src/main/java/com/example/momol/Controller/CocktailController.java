@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -27,6 +28,8 @@ public class CocktailController {
         ModelAndView mav = new ModelAndView();
         List<CocktailVO> list = service.cocktailList();
 
+        System.out.println( list.toString() );
+
         mav.addObject("li", list);
         mav.setViewName("Cocktail/CakMain");
         return mav;
@@ -36,8 +39,9 @@ public class CocktailController {
     public ModelAndView CocktailInfo(String name){
         ModelAndView mav = new ModelAndView();
         CocktailVO vo = service.cocktailInfo(name);
-        List<CockIngredientVO> list = service.cock_ingreList(name);
+        List<CockIngredientVO> list = service.cock_ingre(name);
 
+        System.out.println(vo.toString());
         mav.addObject("vo",vo);
         mav.addObject("li", list);
         mav.setViewName("Cocktail/CakInformation");
@@ -61,14 +65,40 @@ public class CocktailController {
         ModelAndView mav = new ModelAndView();
 
         IngredientVO vo = service2.jaeryoinfo(ing_num);
-        System.out.println(vo.toString());
+//        System.out.println(vo.toString());
 
-        //List<IngredientVO> list = service2.jaeryoinfo(ing_num);
+        List<CocktailVO> list = service2.make_list(String.valueOf(ing_num));
+        System.out.println(list.toString());
 
         mav.addObject("vo",vo);
-        //mav.addObject("li", list);
+        mav.addObject("li", list);
         mav.setViewName("Cocktail/JaeryoInformation");
         return mav;
+    }
+
+    @GetMapping("/search") @ResponseBody
+    public List searchCocktails(String searchText) {
+        List<CocktailVO> list = service.searchCocktails(searchText);
+        System.out.println(list.toString());
+        return list;
+    }
+
+    @GetMapping("/search2") @ResponseBody
+    public List searchCocktails2(String searchText) {
+        List<IngredientVO> list = service2.searchCocktails2(searchText);
+        return list;
+    }
+
+    @GetMapping("/wordbook")
+    public String wordbook() {
+        return "Cocktail/WordBook";
+    }
+
+    @GetMapping("/getCategoryData")
+    @ResponseBody
+    public List<IngredientVO> getCategoryData(String category) {
+        List<IngredientVO> categoryData = service2.getCategoryData(category);
+        return categoryData;
     }
 
 

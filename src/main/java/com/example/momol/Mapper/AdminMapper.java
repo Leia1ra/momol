@@ -1,8 +1,6 @@
 package com.example.momol.Mapper;
 
-import com.example.momol.DTO.CocktailVO;
-import com.example.momol.DTO.IngrVO;
-import com.example.momol.DTO.UserVO;
+import com.example.momol.DTO.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

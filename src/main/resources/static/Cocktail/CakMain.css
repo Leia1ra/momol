@@ -1,4 +1,5 @@
 @import url('https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css');
+@import url('../css/root.css');
 
 @font-face {
     font-family: 'NEXON Lv2 Gothic';
@@ -8,23 +9,26 @@
 }
 
 body {
-    font-family: NEXON Lv2 Gothic, sans-serif;
-    margin: 90px;
+    font-family: 'NEXON Lv2 Gothic', sans-serif;
 }
 
 main {
-    max-width: 1200px;
-    min-width: 600px;
-    margin: 0 auto;
+    margin : 0 auto;
+    padding : 25px 0 10px 0;
 }
+
 
 .container {
     display: flex;
     border-bottom: 2px solid #808080;
     padding-bottom: 15px;
+    align-items: center;
+    height: 30px;
 }
 .container a{
     text-decoration: none;
+    display: flex;
+    align-items: center;
 }
 /*=================================================*/
 .section {
@@ -51,13 +55,13 @@ main {
     border: 1px solid #ddd;
     border-radius: 20px;
     font-size: 0.9em;
-    padding: 8px;
+    padding: 5px 15px;
     color: dimgray;
 }
 .info_top_wrap {
     display: flex;
     justify-content:space-between;
-    width: 1200px;
+    width: 100%;
     margin-top : 15px;
 }
 
@@ -72,6 +76,8 @@ main {
 }
 .search-container {
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
 /*검색*/
 .search{
@@ -79,7 +85,7 @@ main {
     border: 1px solid #ddd;
     width: 250px;
     height: 30px;
-    font-size: 0.7em;
+    font-size: 0.9em;
     text-align: center;
 }
 .material-icons{
@@ -91,14 +97,15 @@ main {
     margin: 30px auto;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);  /* 3개의 열 */
-    gap: 20px;
+    grid-template-columns: repeat(5, 20%);  /* 3개의 열 */
+    /*gap: 20px;*/
 }
 .grid-item {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     text-align: center;
+    margin : 10px;
 }
 .grid-item a {
     color: black;
@@ -108,7 +115,7 @@ main {
 .grid-item a div:nth-child(2) {
     font-size: 23px;
     font-weight: bold;
-    margin: 15px 0  10px 5px;
+    margin: 15px 0  10px 15px;
     color: black;
 }
 /*게시물 설명*/
@@ -117,41 +124,49 @@ main {
     font-weight: bold;
     line-height: 20px;
     text-align: left;
-    margin-left: 5px;
+    margin-left: 15px;
     color: dimgray;
 }
 .dz{
+    height: auto;
+    overflow: hidden;
 
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
 }
 .thumbnail {
     width: 100%;
     height: 200px;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
     border:1px solid #ddd;
     border-radius: 15px;
-    max-width: 220px;
+    object-fit: cover;
 }
 .tags{
+    justify-content: space-around;
     display: flex;
     gap: 20px;
     padding: 10px;
     margin: 10px 0 0 0px;
 }
 .tag1,.tag2,.tag3{
-    width: 50px;
-    font-size: 0.7em;
-    height: 20px;
-    line-height: 22px;
+    flex-basis: 60px;
+    border-radius: 11px;
+    font-size: 0.8em;
+    height: 25px;
+    line-height: 25px;
     font-weight: bold;
+    color: beige;
 }
 .tag1 {
-    background-color:#ddd;
+    background-color: darksalmon;
 }
 .tag2{
-    background-color:#ddd;
+    background-color: darkorange;
 }
 .tag3{
-    background-color:#ddd;
+    background-color: darkturquoise;
 }

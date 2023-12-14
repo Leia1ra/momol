@@ -11,8 +11,12 @@
     <!-- 추가: 사용자 정보 업데이트 -->
     <update id="updateUser" parameterType="com.example.momol.DTO.UserVO">
         UPDATE User
-        SET Id = #{id}, Pw = #{pw}, Name = #{name}, Nick = #{nick},
-        gender = #{gender}, Birth = #{birth}, Phone = #{phone}, email = #{email}
+        SET Nick = #{nick}, Phone = #{phone}
         WHERE UID = #{UID}
     </update>
+
+    <!-- 마이페이지 : 내 글 불러오기 -->
+    <select id="my_post" resultType="com.example.momol.DTO.CommunityVO">
+        SELECT * FROM board WHERE UID = #{UID}
+    </select>
 </mapper>
