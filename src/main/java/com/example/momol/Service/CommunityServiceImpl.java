@@ -34,7 +34,7 @@ public class CommunityServiceImpl implements CommunityService {
     @Override
     public int likePost(int num) {
         dao.incrementLikes(num);
-
+    }
 
     @Override
     public int updatePost(CommunityVO vo) {
