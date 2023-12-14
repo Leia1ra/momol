@@ -8,6 +8,7 @@
 </head>
 <body onload="setDefaultActive()">
 <main>
+
     <div class="container">
         <a href="<%=request.getContextPath()%>/Cocktail/cakmain"><div class="section">
             <h2>칵테일 정보</h2>
@@ -82,8 +83,7 @@
                 <div class="tag2">${data.tastetag}</div>
                 <div class="tag3">${data.smelltag}</div>
             </div>
-        </div>
-    </c:forEach>
+        </c:forEach>
     </div>
 
 </main>

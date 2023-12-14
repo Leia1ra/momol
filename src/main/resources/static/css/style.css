@@ -564,3 +564,11 @@ body > header > nav > a > div {
     font-size: 1.3rem;
     font-weight: bold;
 }
+
+
+/*다른집 수정하기*/
+/* 로그인 */
+#login_section > header > h1 {
+    font-size : 30px;
+    font-weight: bold;
+}

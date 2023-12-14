@@ -113,24 +113,25 @@ main {
     font-weight: bold;
     display: flex;
 }
-.tag1,.tag2,.tag3{
-    border-radius: 11px;
+.tag1,.tag2,.tag3, .tag4{
+    border: 1px solid #ddd;
+    border-radius: 7px;
     margin-right: 20px;
-    height: 30px;
-    line-height: 30px;
-    font-size: 0.9em;
-    width: 80px;
-    text-align: center;
-    color: beige;
+    line-height: 15px;
+    padding: 5px;
+    font-size: 0.8em;
 }
-.tag1 {
-    background-color: darksalmon;
+.tag1{
+    background-color: greenyellow;
 }
 .tag2{
-    background-color: darkorange;
+    background-color: orange;
 }
 .tag3{
-    background-color: darkturquoise;
+    background-color: deepskyblue;
+}
+.tag4{
+    background-color: palevioletred;
 }
 /*=====================================================*/
 .second{
@@ -158,6 +159,7 @@ main {
 }
 /*재료 사진*/
 .jaeryoimg{
+<<<<<<<<< Temporary merge branch 1
     width: 70px;
     height: 70px;
     border-radius: 50%;
@@ -179,6 +181,12 @@ main {
     padding : 0 15px;
 }
 .jaeryoname{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left : 15px;
+
     font-weight: bold;
     font-size: 1rem;
 }
@@ -277,6 +285,7 @@ main {
 /*연주 추가 코드*/
 .jaeryos > div {
     display: flex;
+    justify-content: space-between;
     flex-direction: row;
     align-items: center;
     margin : 10px 0;

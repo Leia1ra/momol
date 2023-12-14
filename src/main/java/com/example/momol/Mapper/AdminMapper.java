@@ -2,6 +2,7 @@ package com.example.momol.Mapper;
 
 import com.example.momol.DTO.*;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -22,5 +23,11 @@ public interface AdminMapper {
     CocktailVO cocktail_edit_load(String num);
     int cocktail_edit_submit(CocktailVO in);
     int cocktail_del(String num);
+
+//     통계
+    int count_user_all(String name);
+    int count_user_else(String name);
+    int count_news(String name, int y, int m, int d);
+    int count_board_new(int y, int m, int d);
 
 }
