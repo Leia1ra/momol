@@ -16,6 +16,7 @@ public class AuthSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         HttpSession session = request.getSession();
         UserVO vo = (UserVO) authentication.getPrincipal();
+        session.removeAttribute("Locked");
         session.setAttribute("logIn", "Y");
         session.setAttribute("logUID", vo.getUID());
         session.setAttribute("logNick", vo.getNick());

@@ -1,5 +1,6 @@
 package com.example.momol.Service;
 
+import com.example.momol.DTO.LoginFailureVO;
 import com.example.momol.DTO.UserVO;
 import com.example.momol.Mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,4 +50,19 @@ public class UserServiceImpl implements UserService {
     public int pwUpdate(String UID, String newPw) {
         return mapper.pwUpdate(UID, newPw);
     }
+    @Override
+    public int loginFailureData(LoginFailureVO fvo) {
+        return mapper.loginFailureData(fvo);
+    }
+
+    @Override
+    public int loginFailureCount(String Id) {
+        return mapper.loginFailureCount(Id);
+    }
+
+    @Override
+    public int loginFailureDelete(String UID) {
+        return mapper.loginFailureDelete(UID);
+    }
+
 }

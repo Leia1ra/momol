@@ -8,6 +8,7 @@ import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -20,9 +21,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -33,8 +34,10 @@ import java.util.Base64.Decoder;
 @Controller
 @RequestMapping("/account")
 public class UserController {
+    /* 네이버 Captcha API */
     private final static String clientId = "lm5g3zx9ad";//애플리케이션 클라이언트 아이디값";
     private final static String clientSecret = "mtO7Cz9bk12SX2LRxcXYxVTYOWkwVVIPu1LrjrOd";//애플리케이션 클라이언트 시크릿값";
+    String key=null;
 
     @Autowired
     UserService service;
@@ -63,6 +66,111 @@ public class UserController {
         return mav;
     }
 
+    public void getCaptchaKey(){// 네이버 캡차 API 예제 - 키발급
+        try {
+            String code = "0"; // 키 발급시 0,  캡차 이미지 비교시 1로 세팅
+            String apiURL = "https://naveropenapi.apigw.ntruss.com/captcha/v1/nkey?code=" + code;
+            URL url = new URL(apiURL);
+            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+            con.setRequestMethod("GET");
+            con.setRequestProperty("X-NCP-APIGW-API-KEY-ID", clientId);
+            con.setRequestProperty("X-NCP-APIGW-API-KEY", clientSecret);
+
+            int responseCode = con.getResponseCode();
+            BufferedReader br;
+            if(responseCode==200) { // 정상 호출
+                br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            } else {  // 오류 발생
+                br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+            }
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = br.readLine()) != null) {
+                response.append(inputLine);
+            }
+            br.close();
+            System.out.println(response.toString());
+
+            JSONObject jsonObject = new JSONObject(response.toString());
+            key = jsonObject.getString("key");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    @PostMapping("captchaImage")
+    public void captchaImageReceive(HttpServletResponse res){
+        //키발급
+        getCaptchaKey();
+
+        //이미지
+        try {
+            String apiURL = "https://naveropenapi.apigw.ntruss.com/captcha-bin/v1/ncaptcha?key=" + key + "&X-NCP-APIGW-API-KEY-ID" + clientId;
+            URL url = new URL(apiURL);
+            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+            con.setRequestMethod("GET");
+            int responseCode = con.getResponseCode();
+            BufferedReader br;
+            if(responseCode==200) { // 정상 호출
+                InputStream is = con.getInputStream();
+                int read = 0;
+                byte[] bytes = new byte[1024];
+
+                OutputStream outputStream = res.getOutputStream();
+                while ((read =is.read(bytes)) != -1) {
+                    outputStream.write(bytes, 0, read);
+                }
+
+                is.close();
+            } else {  // 오류 발생
+                br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
+                while ((inputLine = br.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                br.close();
+                System.out.println(response.toString());
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
+
+    // 네이버 API 예제 - 입력 값 비교
+    @PostMapping("/captchaImageCheck")
+    @ResponseBody
+    public String captchaImageCheck(@RequestParam("userIn") String userIn){
+        System.out.println(userIn);
+        StringBuffer response = new StringBuffer();
+        try {
+            String code = "1"; // 키 발급시 0,  캡차 이미지 비교시 1로 세팅
+            String value = userIn;//"USER_VALUE"; // 사용자가 입력한 캡차 이미지 글자값
+            String apiURL = "https://naveropenapi.apigw.ntruss.com/captcha/v1/nkey?code=" + code +"&key="+ key + "&value="+ value;
+
+            URL url = new URL(apiURL);
+            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+            con.setRequestMethod("GET");
+            con.setRequestProperty("X-NCP-APIGW-API-KEY-ID", clientId);
+            con.setRequestProperty("X-NCP-APIGW-API-KEY", clientSecret);
+            int responseCode = con.getResponseCode();
+            BufferedReader br;
+            if(responseCode==200) { // 정상 호출
+                br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            } else {  // 오류 발생
+                br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+            }
+            String inputLine;
+            while ((inputLine = br.readLine()) != null) {
+                response.append(inputLine);
+            }
+            br.close();
+            System.out.println(response.toString());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return response.toString();
+    }
 
     @GetMapping("/signIn") /* 회원가입 뷰 페이지 */
     public ModelAndView signIn(){

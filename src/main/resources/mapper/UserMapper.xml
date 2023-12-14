@@ -45,4 +45,15 @@
     <update id="pwUpdate">
         UPDATE User SET Pw=#{newPw} WHERE UID=#{UID}
     </update>
+
+    <!-- 로그인 실패 -->
+    <insert id="loginFailureData">
+        INSERT INTO LoginFailure(UID, Id, Ip) VALUES(#{UID},#{Id},#{Ip})
+    </insert>
+    <select id="loginFailureCount">
+        SELECT count(Id) FROM LoginFailure WHERE Id=#{Id}
+    </select>
+    <delete id="loginFailureDelete">
+        DELETE FROM LoginFailure WHERE UID=#{UID}
+    </delete>
 </mapper>
