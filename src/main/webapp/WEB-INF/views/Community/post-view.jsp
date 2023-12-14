@@ -16,6 +16,11 @@
 <head>
     <link rel="stylesheet" href="/resources/Community/style.css" type="text/css">
     <script>
+
+
+
+
+
         function deletePost(num) {
             if (confirm("정말로 삭제하시겠습니까?")) {
                 // 확인을 누르면 서버로 삭제 요청을 보냄
@@ -28,6 +33,32 @@
                             window.location.href = '/community/walls'; // 삭제 후 목록 페이지로 이동
                         } else {
                             alert("게시글 삭제에 실패했습니다.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+        }
+
+        function deleteComment(UID) {
+            if (confirm("정말로 삭제하시겠습니까?")) {
+                fetch(`/deleteComment`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ UID: UID })
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            // 삭제 성공 시 댓글을 동적으로 제거
+                            const commentElement = document.getElementById(`comment_${UID}`);
+                            if (commentElement) {
+                                commentElement.remove();
+                            }
+                        } else {
+                            alert("댓글 삭제에 실패했습니다.");
                         }
                     })
                     .catch(error => {
@@ -59,12 +90,40 @@
                     console.error('에러', error);
                 });
         }
+
+        function likeComment(UID) {
+            fetch(`/likeComment`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ UID: UID })
+            })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    } else {
+                        throw new Error('좋아요 실패');
+                    }
+                })
+                .then(data => {
+                    // 좋아요 수를 동적으로 화면에 업데이트
+                    document.getElementById('likesCount_').innerText = data;
+
+                })
+                .catch(error => {
+                    console.error('에러', error);
+                });
+        }
+
+
+
     </script>
 </head>
 <body>
 <main>
     <section id="board">
-        <h2>담벼락</h2>
+        <h2>게시글 작성하기</h2>
         <div class="post1">
             <div class="post-header">
                 <div class="title"><%= board.getTitle() %>
@@ -93,7 +152,7 @@
                 <div><h3>댓글(<%= commentCount %>)</h3></div>
                 <c:forEach var="comments" items="${comments}">
                     <!-- 코멘트 데이터베이스 확인하고 수정 요함 -->
-                    <div class="comment">
+                    <div id="comment_${comments.getUID()}" class="comment">
                         <div class="c-author">${comments.getUID2()}</div>
                         <div class="c-comment">${comments.getContent()}</div>
                         <div class="comment-info">
@@ -101,9 +160,9 @@
                                     ${comments.getWritetime()}
                             </div>
                             <div class="c-likes">
-                                좋아요 (${comments.getLikes()})
+                                <button onclick="likeComment(${comments.getUID()})">좋아요</button> (<span id="likesCount_">${comments.getLikes()}</span>)
                             </div>
-                            <div class="report"> 신고</div>
+                            <button onclick="deleteComment(${comments.getUID()})">삭제</button>
                         </div>
                     </div>
                 </c:forEach>
@@ -125,17 +184,15 @@
             history.back();
             /*location.reload();*/
         }
+
     </script>
     <section id="bottom">
         <div class="btns_p">
-            <a href="writing">
-                <button>글쓰기</button>
-            </a>
             <a href="/community/edit/<%= board.getNum() %>">
                 <button>수정</button>
             </a>
             <button onclick="toList()">목록</button>
-            <button>TOP</button>
+
         </div>
     </section>
 </main>

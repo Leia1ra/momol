@@ -1,6 +1,7 @@
 package com.example.momol.DAO;
 
 import com.example.momol.DTO.CommentsVO;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -9,11 +10,10 @@ import java.util.List;
 
 @Repository
 public class CommentsDAO {
-    private Connection conn;
-    private ResultSet rs;
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/momol";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "tiger1234";
+
 
     public List<CommentsVO> getCommentsbyBoardNum(int num) {
         List<CommentsVO> comments = new ArrayList<>();
@@ -65,4 +65,20 @@ public class CommentsDAO {
         return -1;
     }
 
+    public int increaseLikes(int UID) {
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+             PreparedStatement pstmt = connection.prepareStatement("UPDATE comments SET likes = likes + 1 WHERE UID = ?")) {
+
+            pstmt.setInt(1, UID);
+
+            return pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return -1;
+    }
 }
+
+

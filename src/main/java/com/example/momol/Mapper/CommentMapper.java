@@ -7,6 +7,10 @@ import java.util.List;
 
 @Mapper
 public interface CommentMapper {
-    List<CommentsVO> getCommentsbyBoardNum(int num);
     void addComment(CommentsVO comment);
+
+    void deleteComment(int UID);
+    List<CommentsVO> getCommentsbyBoardNum(int num);
+    List<Integer> getComLikeNum(int num);
+
 }

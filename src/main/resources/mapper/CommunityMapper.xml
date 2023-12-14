@@ -12,4 +12,11 @@
         SELECT * FROM board WHERE num = #{num}
     </select>
 
+    <select id="getPostsSortedByLately" resultType="CommunityVO">
+        SELECT * FROM board ORDER BY writetime DESC
+    </select>
+
+    <select id="getPostsSortedByLikes" resultType="CommunityVO">
+        SELECT * FROM board ORDER BY likes DESC
+    </select>
 </mapper>
