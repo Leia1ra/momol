@@ -116,14 +116,58 @@ public class BoardDAO {
         return -1;
     }
 
-    public int getLikes(int num) {
-        String SQL = "SELECT likes FROM board WHERE num = ?";
-        return jdbcTemplate.queryForObject(SQL, Integer.class, num);
+    public int getCommentCount(int num) throws SQLException {
+        int commentCount = 0;
+
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+             PreparedStatement pstmt = connection.prepareStatement("SELECT COUNT(*) AS commentCount FROM comments WHERE num = ?")) {
+            pstmt.setInt(1, num);
+
+            try (ResultSet resultSet = pstmt.executeQuery()) {
+                if (resultSet.next()) {
+                    commentCount = resultSet.getInt("commentCount");
+                }
+            }
+        }
+
+        return commentCount;
     }
 
-    public int updateLikes(int num) {
-        String SQL = "UPDATE board SET likes = ? WHERE num = ?";
-        return jdbcTemplate.update(SQL, num);
+    public int incrementLikes(int num) {
+        // 게시글 번호를 이용하여 데이터베이스에서 좋아요 수를 증가시키는 로직
+        String sql = "UPDATE board SET likes = likes + 1 WHERE num = ?";
+        return jdbcTemplate.update(sql, num);
+    }
+
+    public int getLikes(int num) {
+        // 게시글 번호를 이용하여 데이터베이스에서 현재 좋아요 수를 가져오는 로직
+        String sql = "SELECT likes FROM board WHERE num = ?";
+        return jdbcTemplate.queryForObject(sql, Integer.class, num);
+    }
+
+    public int updatePost(CommunityVO vo) {
+        String SQL = "UPDATE board SET catnum=?, UID=?, title=?, writetime=?, content=?, likes=?, views=?, deleted=? WHERE num=?";
+
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+             PreparedStatement pstmt = connection.prepareStatement(SQL)) {
+
+            pstmt.setInt(1, vo.getCatnum());
+            pstmt.setString(2, vo.getUID());
+            pstmt.setString(3, vo.getTitle());
+            pstmt.setDate(4, (Date) vo.getWritetime());
+            pstmt.setString(5, vo.getContent());
+            pstmt.setInt(6, vo.getLikes());
+            pstmt.setInt(7, vo.getViews());
+            pstmt.setBoolean(8, vo.isDeleted());
+            pstmt.setInt(9, vo.getNum());
+
+            return pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return -1;
     }
 }
 

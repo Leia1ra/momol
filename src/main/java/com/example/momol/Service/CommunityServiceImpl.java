@@ -6,6 +6,8 @@ import com.example.momol.Mapper.CommunityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CommunityServiceImpl implements CommunityService {
     @Autowired
@@ -29,14 +31,14 @@ public class CommunityServiceImpl implements CommunityService {
         // 게시글 삭제 로직
         return dao.deletePost(num);
     }
-
     @Override
-    public int getLikes(int num) {
-        return dao.getLikes(num);
+    public int likePost(int num) {
+        return dao.incrementLikes(num);
     }
 
     @Override
-    public int updateLikes(int num) {
-        return dao.updateLikes(num);
+    public int updatePost(CommunityVO vo) {
+        return dao.updatePost(vo);
     }
+
 }

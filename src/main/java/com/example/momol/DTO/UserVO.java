@@ -22,6 +22,7 @@ public class UserVO implements UserDetails {
     private String Phone;
     private String gender;
     private String JoinDate;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if(this.UID != null){
@@ -71,6 +72,10 @@ public class UserVO implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        if(this.UID.substring(0, this.UID.indexOf("_")).equals("Tmp")){
+            return false;
+        } else {
+            return true;
+        }
     }
 }

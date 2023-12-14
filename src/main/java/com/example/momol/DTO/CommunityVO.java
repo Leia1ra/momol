@@ -78,8 +78,8 @@ public class CommunityVO {
         this.author = author;
     }
 
-    public Date getWritetime() {
-        return writetime;
+    public java.sql.Date getWritetime() {
+        return (java.sql.Date) writetime;
     }
 
     public void setWritetime(Date writetime) {

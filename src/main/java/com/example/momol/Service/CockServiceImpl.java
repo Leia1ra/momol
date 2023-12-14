@@ -38,6 +38,12 @@ public class CockServiceImpl implements CockService{
         return mapper.cock_ingre(name);
     }
 
+    @Override
+    public List<CocktailVO> getCategoryData2(CocktailVO vo) {
+        return mapper.getCategoryData2(vo);
+
+    }
+
 }
 
 
