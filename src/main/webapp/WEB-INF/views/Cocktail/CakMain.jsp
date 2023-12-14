@@ -83,7 +83,9 @@
                 <div class="tag2">${data.tastetag}</div>
                 <div class="tag3">${data.smelltag}</div>
             </div>
+        </div>
         </c:forEach>
+
     </div>
 
 </main>
