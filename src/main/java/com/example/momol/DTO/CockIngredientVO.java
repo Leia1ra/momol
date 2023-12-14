@@ -12,4 +12,10 @@ public class CockIngredientVO {
     private String name;
     private int ing_num;
     private String ing_amount;
+    private String ing_name;
+    private String ing_photo;
+
+    private String basetag;
+    private String tastetag;
+    private String smelltag;
 }

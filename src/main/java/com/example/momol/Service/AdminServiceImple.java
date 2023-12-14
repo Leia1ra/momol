@@ -1,8 +1,6 @@
 package com.example.momol.Service;
 
-import com.example.momol.DTO.CocktailVO;
-import com.example.momol.DTO.IngrVO;
-import com.example.momol.DTO.UserVO;
+import com.example.momol.DTO.*;
 import com.example.momol.Mapper.AdminMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

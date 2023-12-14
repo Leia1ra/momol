@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
-
 	<head>
 		<title>Title</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,30 +9,32 @@
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	</head>
-
-
 	<body>
 		<div id="wrap">
 			<header id="ect_header">
 				<div id="ect_header_wrap">
 					<div class="ect_header__logo">
 
+						<%--헤더의 로고부분ㄴ--%>
 						<a href="/">
-							<img src="<%=request.getContextPath()%>/resources/main/momol_logo_vir.png" alt="logo" class="ect_header__logo_img">
+							<div class="no-drag">
+								<img src="<%=request.getContextPath()%>/resources/main/momol_logo_2.svg" alt="logo" class="ect_header__logo_img">
+								<p style="font-family: YanoljaYacheR; font-size:3rem"  >모몰</p>
+							</div>
 						</a>
 					</div>
 
 					<nav id="ect_header__nav">
 						<ul class="ect_header__ul">
 							<li class="ect_header__ul_text" id="ect_header__1">
-								<a href="#" class="gnb_text">칵테일 정보</a>
+								<a href="/Cocktail/cakmain" class="gnb_text">칵테일 정보</a>
 								<div class="gnb_active"></div>
 								<div class="ect_header__ul__deep1">
 									<ul class="gnb_deep1">
 										<li class="gnb_deep1__con">
 											<a href="/Cocktail/cakmain">칵테일 정보</a>
 											<a href="/Cocktail/jaeryomain">재료 정보</a>
-											<a href="#">용어사전</a>
+											<a href="/Cocktail/wordbook">용어사전</a>
 										</li>
 									</ul>
 								</div>
@@ -50,16 +51,16 @@
 							</li>
 
 							<li class="ect_header__ul_text" id="ect_header__2">
-								<a href="#" class="gnb_text">커뮤니티</a>
+								<a href="/community" class="gnb_text">커뮤니티</a>
 								<div class="gnb_active"></div>
 								<div class="ect_header__ul__deep1">
 									<ul class="gnb_deep1">
 										<li class="gnb_deep1__con">
-											<a href="#">담벼락 (자유게시판)</a>
-											<a href="#">뭐였더라</a>
-											<a href="#">다녀왔어요</a>
-											<a href="#">어쩌구저쩌구</a>
-											<a href="#">기억안나</a>
+											<a href="/community/walls">담벼락 (자유게시판)</a>
+											<a href="/community/wishlist">위시리스트</a>
+											<a href="/community/dadaima">다녀왔어요</a>
+											<a href="/community/myrecipe">나의 레시피</a>
+											<a href="/community/recommendme">추천해주세요</a>
 										</li>
 									</ul>
 								</div>
@@ -75,12 +76,25 @@
 
 					<div id="ect_header__user">
 
-						<a href="<%=request.getContextPath()%>/account/login" class="ect_header__user__text">
-							로그인
-						</a>
-						<a href="<%=request.getContextPath()%>/account/signIn" class="ect_header__user__text">
-							회원가입
-						</a>
+						<c:if test="${empty sessionScope.logUID}" >
+							<a href="<%=request.getContextPath()%>/account/login" class="ect_header__user__text">
+								로그인
+							</a>
+							<a href="<%=request.getContextPath()%>/account/signIn" class="ect_header__user__text">
+								회원가입
+							</a>
+						</c:if>
+
+						<c:if test="${not empty sessionScope.logUID}" >
+							<a href="<%=request.getContextPath()%>/account/logout" class="ect_header__user__text">
+								로그아웃
+							</a>
+							<a href="<%=request.getContextPath()%>/mmypage/mypage" class="ect_header__user__text">
+								마이페이지
+							</a>
+						</c:if>
+
+
 					</div>
 				</div>
 				<script src="/resources/main/header_gnb.js"></script>

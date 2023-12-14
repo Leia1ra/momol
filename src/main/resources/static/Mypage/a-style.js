@@ -10,20 +10,20 @@ $(function () {
         $("#v2").css("display", "flex");
     });
 
-    //정보 수정 버튼 클릭 시 정보수정은 안보이게 되고 정보 저장버튼만 나타나게 된다.
-    $("#activity-button").click(function () {
-        $(".activity-text").attr("readonly", false);
-        $("#activity-button").css("display", "none")
-        $("#activity-button-submit").css("display", "flex");
-    })
-
-
-    //반대로 정보저장 버튼 클릭스 정보수정 버튼이 나타나고 정보 저장 버튼은 사라진다.
-    $("#activity-button-submit").click(function () {
-        $(".activity-text").attr("readonly", true);
-        $("#activity-button").css("display", "flex")
-        $("#activity-button-submit").css("display", "none");
-    });
+    // //정보 수정 버튼 클릭 시 정보수정은 안보이게 되고 정보 저장버튼만 나타나게 된다.
+    // $("#activity-button").click(function () {
+    //     $(".activity-text").attr("readonly", false);
+    //     $("#activity-button").css("display", "none")
+    //     $("#activity-button-submit").css("display", "flex");
+    // })
+    //
+    //
+    // //반대로 정보저장 버튼 클릭스 정보수정 버튼이 나타나고 정보 저장 버튼은 사라진다.
+    // $("#activity-button-submit").click(function () {
+    //     $(".activity-text").attr("readonly", true);
+    //     $("#activity-button").css("display", "flex")
+    //     $("#activity-button-submit").css("display", "none");
+    // });
 
     // '더 보기' 버튼 클릭 시
     $("#show-more-btn").click(function () {
@@ -63,7 +63,6 @@ $(function () {
     });
 });
 
-// 페이지 번호를 동적으로 생성하는 함수
 // 페이지 번호를 동적으로 생성하는 함수
 function generatePageButtons(currentPage, totalPages) {
     var pageButtonsHTML = '';

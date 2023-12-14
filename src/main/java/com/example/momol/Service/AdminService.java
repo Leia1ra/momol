@@ -1,8 +1,6 @@
 package com.example.momol.Service;
 
-import com.example.momol.DTO.CocktailVO;
-import com.example.momol.DTO.IngrVO;
-import com.example.momol.DTO.UserVO;
+import com.example.momol.DTO.*;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

@@ -62,8 +62,7 @@
 
                     <!-- 검색창 -->
                     <div class="s__zairyo__top__search">
-                        <input type="search" placeholder="검색어를 입력하세요" class="search_input"
-                        onkeyup="if (Evnet.ketCode===13) { console.log("press enter"); )}">
+                        <input type="search" placeholder="검색어를 입력하세요" class="search_input">
                         <span class="material-icons search_icon search_btn" id="combain__search_btn">search</span>
                     </div>
                 </div>
@@ -94,9 +93,22 @@
                 <div class="suljanggo_sel__top">
                     <p class="suljanggo_top_text">선택된 재료</p>
                     <div class="suljanggo_sel__btns">
-                        <button class="suljanggo_sel__btn" id="sel__reset">초기화</button>
-                        <button class="suljanggo_sel__btn" id="sel__load">불러오기</button>
-                        <button class="suljanggo_sel__btn" id="sul__save">저장</button>
+                        <button class="suljanggo_sel__btn btn btn-secondary btn-sm" id="sel__reset">초기화</button>
+
+                        <c:choose>
+                            <c:when test="${sessionScope.logIn == 'Y'}">
+                                <button class="suljanggo_sel__btn" id="sel__load">불러오기</button>
+                                <button class="suljanggo_sel__btn" id="sul__save">저장</button>
+                            </c:when>
+
+                            <c:otherwise>
+                                <button class="suljanggo_sel__btn disabled" id="sel__load">불러오기</button>
+                                <button class="suljanggo_sel__btn disabled" id="sul__save">저장</button>
+                            </c:otherwise>
+
+                        </c:choose>
+
+
                     </div>
                 </div>
                 <div class="suljanggo_sel__bottom" id="selectedList">
@@ -130,6 +142,10 @@
 
         </section>
     </div>
+
+    <script>
+
+    </script>
 
     <script src="/resources/combain/combain.js"></script>
     <script src="/resources/combain/combain_cate.js"></script>

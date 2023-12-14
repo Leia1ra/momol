@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/Account/login/login.css" type="text/css">
     <script src="/resources/Account/login/login.js"></script>
 </head>
-<body>
+<body onload="capthaImageChage(${Locked})">
 <main>
     <!-- Login Section -->
     <section id="login_section">
@@ -13,12 +13,21 @@
             <h1>로그인</h1>
         </header>
         <article>
-            <form id="login" method="post" action="<%=request.getContextPath()%>/account/loginOk">
+            <form id="login" method="post" action="<%=request.getContextPath()%>/account/loginOk"
+                  onsubmit="return loginSubmit(${Locked})">
                 <input type="text" name="Id" id="id" placeholder="아이디를 입력해주세요">
                 <input type="password" name="Pw" id="pw" placeholder="비밀번호를 입력해주세요">
                 <div id="err">${exception}</div>
                 <div>
-                    <a href="">아이디</a> / <a href="">비밀번호</a> 찾기
+                    <a href="<%=request.getContextPath()%>/account/findAccount?type=ID">아이디</a> /
+                    <a href="<%=request.getContextPath()%>/account/findAccount?type=PW">비밀번호</a> 찾기
+                </div>
+                <div id="captcha">
+                    <img src="" id="imageCaptcha">
+                    <div id="captchaInput">
+                        <input type="text" name="userIn" id="userIn">
+                        <input type="button" id="captchaBtn" onclick="capthaImageChage(${Locked})" value="새로고침">
+                    </div>
                 </div>
                 <input type="submit" id="submit" value="LogIn">
             </form>

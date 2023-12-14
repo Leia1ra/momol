@@ -3,29 +3,27 @@ package com.example.momol.Controller;
 import com.example.momol.DTO.UserVO;
 import com.example.momol.Service.MailService;
 import com.example.momol.Service.UserService;
-import jakarta.annotation.Nullable;
 import jakarta.annotation.Resource;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -36,9 +34,13 @@ import java.util.Base64.Decoder;
 @Controller
 @RequestMapping("/account")
 public class UserController {
+    /* 네이버 Captcha API */
+    private final static String clientId = "lm5g3zx9ad";//애플리케이션 클라이언트 아이디값";
+    private final static String clientSecret = "mtO7Cz9bk12SX2LRxcXYxVTYOWkwVVIPu1LrjrOd";//애플리케이션 클라이언트 시크릿값";
+    String key=null;
+
     @Autowired
     UserService service;
-
     @Resource(name = "mailService")
     private MailService mail;
 
@@ -48,6 +50,7 @@ public class UserController {
     TransactionDefinition definition;
     @Autowired /* 암호 해싱(Bcrypt) */
     PasswordEncoder passwordEncoder;
+    Decoder decode = Base64.getDecoder();
 
     /* 로그인 뷰 페이지 */
     @GetMapping("/login")
@@ -63,6 +66,111 @@ public class UserController {
         return mav;
     }
 
+    public void getCaptchaKey(){// 네이버 캡차 API 예제 - 키발급
+        try {
+            String code = "0"; // 키 발급시 0,  캡차 이미지 비교시 1로 세팅
+            String apiURL = "https://naveropenapi.apigw.ntruss.com/captcha/v1/nkey?code=" + code;
+            URL url = new URL(apiURL);
+            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+            con.setRequestMethod("GET");
+            con.setRequestProperty("X-NCP-APIGW-API-KEY-ID", clientId);
+            con.setRequestProperty("X-NCP-APIGW-API-KEY", clientSecret);
+
+            int responseCode = con.getResponseCode();
+            BufferedReader br;
+            if(responseCode==200) { // 정상 호출
+                br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            } else {  // 오류 발생
+                br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+            }
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = br.readLine()) != null) {
+                response.append(inputLine);
+            }
+            br.close();
+            System.out.println(response.toString());
+
+            JSONObject jsonObject = new JSONObject(response.toString());
+            key = jsonObject.getString("key");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    @PostMapping("captchaImage")
+    public void captchaImageReceive(HttpServletResponse res){
+        //키발급
+        getCaptchaKey();
+
+        //이미지
+        try {
+            String apiURL = "https://naveropenapi.apigw.ntruss.com/captcha-bin/v1/ncaptcha?key=" + key + "&X-NCP-APIGW-API-KEY-ID" + clientId;
+            URL url = new URL(apiURL);
+            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+            con.setRequestMethod("GET");
+            int responseCode = con.getResponseCode();
+            BufferedReader br;
+            if(responseCode==200) { // 정상 호출
+                InputStream is = con.getInputStream();
+                int read = 0;
+                byte[] bytes = new byte[1024];
+
+                OutputStream outputStream = res.getOutputStream();
+                while ((read =is.read(bytes)) != -1) {
+                    outputStream.write(bytes, 0, read);
+                }
+
+                is.close();
+            } else {  // 오류 발생
+                br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
+                while ((inputLine = br.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                br.close();
+                System.out.println(response.toString());
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
+
+    // 네이버 API 예제 - 입력 값 비교
+    @PostMapping("/captchaImageCheck")
+    @ResponseBody
+    public String captchaImageCheck(@RequestParam("userIn") String userIn){
+        System.out.println(userIn);
+        StringBuffer response = new StringBuffer();
+        try {
+            String code = "1"; // 키 발급시 0,  캡차 이미지 비교시 1로 세팅
+            String value = userIn;//"USER_VALUE"; // 사용자가 입력한 캡차 이미지 글자값
+            String apiURL = "https://naveropenapi.apigw.ntruss.com/captcha/v1/nkey?code=" + code +"&key="+ key + "&value="+ value;
+
+            URL url = new URL(apiURL);
+            HttpURLConnection con = (HttpURLConnection)url.openConnection();
+            con.setRequestMethod("GET");
+            con.setRequestProperty("X-NCP-APIGW-API-KEY-ID", clientId);
+            con.setRequestProperty("X-NCP-APIGW-API-KEY", clientSecret);
+            int responseCode = con.getResponseCode();
+            BufferedReader br;
+            if(responseCode==200) { // 정상 호출
+                br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            } else {  // 오류 발생
+                br = new BufferedReader(new InputStreamReader(con.getErrorStream()));
+            }
+            String inputLine;
+            while ((inputLine = br.readLine()) != null) {
+                response.append(inputLine);
+            }
+            br.close();
+            System.out.println(response.toString());
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return response.toString();
+    }
 
     @GetMapping("/signIn") /* 회원가입 뷰 페이지 */
     public ModelAndView signIn(){
@@ -105,7 +213,6 @@ public class UserController {
                 temp += "B";
                 temp += now.format(formatter);
                 String path = session.getServletContext().getRealPath("/img/Certificate");
-
                 fileUpload(req, temp, path); /* 오류 생성기1 */
             } else {
                 temp += "G";
@@ -130,17 +237,14 @@ public class UserController {
             System.out.println(e.getMessage());
             throw new RuntimeException(e);
         }
-
         return mav;
     }
 
-    public void fileUpload(HttpServletRequest req, String fileName, String path) throws IOException {
+    private void fileUpload(HttpServletRequest req, String fileName, String path) throws IOException {
         MultipartHttpServletRequest mr = (MultipartHttpServletRequest) req;
         MultipartFile multipartFile = mr.getFile("Business_certificate");
-
         if(multipartFile != null && !multipartFile.isEmpty()){
             String orgFileName = multipartFile.getOriginalFilename();
-
             if(orgFileName != null && !orgFileName.equals("")){
                 String ext = orgFileName.substring(orgFileName.indexOf("."));
                 String newFileName = fileName + ext;
@@ -154,7 +258,6 @@ public class UserController {
     @GetMapping("/mailCheck")
     public ModelAndView mailCheck(String tmp, HttpSession session){
         ModelAndView mav = new ModelAndView();
-        Decoder decode = Base64.getDecoder();
 
         byte[] decodeUID = decode.decode(tmp);
         String tmpData = new String(decodeUID);
@@ -204,4 +307,114 @@ public class UserController {
         return newUID;
     }
 
+    @GetMapping("/findAccount")
+    public String findAccount(String type, Model model){
+        model.addAttribute("type", type);
+        return "Account/findAccount";
+    }
+    /*@PostMapping("/findAction")
+    public ModelAndView findAction(UserVO vo, String search){
+        ModelAndView mav = new ModelAndView();
+
+        return mav;
+    }*/
+
+    @PostMapping("/findCheck") @ResponseBody
+    public String findCheck(UserVO vo, String type){
+        UserVO result = service.findCheck(vo);
+        if(result != null){
+            if(type.equals("ID")) {
+                return "귀하의 ID는 [" + result.getId() + "] 입니다";
+            } else if (type.equals("PW")) {
+                try {
+                    String tmpPw = "TemporaryPassword_" + randomStr(22);
+                    service.passwordUpdate(result.getUID(), tmpPw);
+                    result.setPw(tmpPw);
+                    mail.pwChangeMail(result);
+                    return "메일의 링크를 통하여 비밀번호의 변경을 진행해주시길 바랍니다";
+                } catch (MessagingException e) {
+                    return "메일 전송이 실패하였습니다.";
+                }
+            }
+        } else {
+            return "일치하는 정보가 없습니다.";
+        }
+        return "";
+    }
+    private String randomStr(int max){
+        char[] charArr = new char[max];
+        Random rand = new Random();
+
+        for(int i=0; i<max; i++){
+            char randChar = (char) (rand.nextInt(122-48+1)+48);
+            switch (randChar){
+                case ':', ';', '<', '=', '>', '?', '@', '[', '₩', ']', '^', '_', '`':
+                    --i; break;
+                default:
+                    charArr[i] = randChar;
+                    break;
+            }
+        }
+        return new String(charArr);
+    }
+
+
+    @GetMapping("/pwChange")
+    public ModelAndView pwChange(String UID, @RequestParam(required = false) String tmp){
+        ModelAndView mav = new ModelAndView();
+        if(tmp != null){
+            mav.addObject("type", "temporary");
+            mav.addObject("tmp", tmp);
+        } else {
+            mav.addObject("type", "logUser");
+        }
+        mav.addObject("UID", UID);
+        mav.setViewName("Account/pwChange");
+        return mav;
+    }
+
+    @PostMapping("/pwChangeOk")
+    public void pwChangeAction(String newPw, String UID, HttpServletResponse res){
+        System.out.println(UID + " : " + newPw);
+        String encodePw = passwordEncoder.encode(newPw);
+
+        int result = service.pwUpdate(new String(decode.decode(UID)), encodePw);
+        try {
+            if(result != 0){
+                res.sendRedirect("/account/login");
+            } else {
+                res.setContentType("text/html; charset=UTF-8");
+                PrintWriter out = res.getWriter();
+                out.println("<script>");
+                out.println("alert('비밀번호 변경에 실패하였습니다.')");
+                out.println("history.back()");
+                out.println("</script>");
+                out.flush();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @PostMapping("/pwChangeAsync") @ResponseBody
+    public Map pwChangeAsync(String Pw, String UID){
+        Map result = new HashMap();
+        UserVO vo = service.pwMatchByUID(new String(decode.decode(UID)));
+        String decodePw = new String(decode.decode(Pw));
+        if(decodePw.substring(0, decodePw.indexOf("_")).equals("TemporaryPassword")){
+            if(vo.getPw().equals(decodePw)){
+                result.put("result", true);
+            } else {
+                result.put("result", false);
+                result.put("message", "잘못된 경로입니다.");
+            }
+        } else {
+            if(passwordEncoder.matches(decodePw, vo.getPw())){
+                result.put("result", true);
+            } else {
+                result.put("result", false);
+                result.put("message", "기존 비밀번호가 잘못 입력되었습니다.");
+            }
+        }
+        return result;
+    }
 }

@@ -16,13 +16,12 @@
             <h2>재료 정보</h2>
         </div></a>
 
-        <div class="section" onclick="changeActive(this)">
+        <a href="<%=request.getContextPath()%>/Cocktail/wordbook"><div class="section" onclick="changeActive(this)">
             <h2>용어 사전</h2>
-        </div>
+        </div></a>
     </div>
 
     <div class="first">
-
         <div class="imgsize"><img src="${vo.ing_photo}"></div>
         <div class="explain">
             <div class="cakname">
@@ -30,14 +29,8 @@
                 <div class="engname">${vo.ing_name_eng}</div>
             </div>
             <div class="cakexplain">${vo.ing_detail}</div>
-            <div class="tags">
-                <div class="tag1">#시럽</div>
-                <div class="tag2">#시럽시러</div>
-                <div class="tag3">#시럽조아</div>
-                <div class="tag4">#ㅗ</div>
-            </div>
-        </div>
 
+        </div>
     </div>
 
 
@@ -45,15 +38,12 @@
         <div class="title">해당 재료로 만들 수 있는 칵테일</div>
         <div class="ang">
             <div class="rhksfus">
+                <c:forEach var="vo" items="${li}">
                 <a href="<%=request.getContextPath()%>/Cocktail/jaeryoinfo?ing_num=${data.ing_num}">
-                    <img src="${vo.ing_photo}" class="imgimg"></a>
-                <div class="title2">${vo.ing_name}</div>
-                <div class="explain2">${vo.ing_detail}</div>
-                <div class="tagss">
-                    <div class="tag10">#데낄라</div>
-                    <div class="tag20">#달아요</div>
-                    <div class="tag30">#과일향</div>
-                </div>
+                    <img src="${vo.cocktail_img}" class="imgimg"></a>
+                <div class="title2">${vo.name}</div>
+                <div class="explain2">${vo.cocktail_detail}</div>
+                </c:forEach>
             </div>
         </div>
     </div>

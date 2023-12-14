@@ -25,4 +25,35 @@
     <update id="updateUID">
         UPDATE User SET UID=#{newUID} WHERE UID=#{currentUID};
     </update>
+
+    <select id="findCheck" resultType="com.example.momol.DTO.UserVO">
+        SELECT UID, Id, email, Name FROM User WHERE email = #{email}
+        <if test="Id != null">
+            AND Id=#{Id}
+        </if>
+        <if test="Name != null">
+            AND Name=#{Name}
+        </if>
+    </select>
+
+    <update id="passwordUpdate">
+        UPDATE User SET Pw=#{tmpPw} WHERE UID=#{UID}
+    </update>
+    <select id="pwMatchByUID" resultType="com.example.momol.DTO.UserVO">
+        SELECT * FROM User WHERE UID=#{UID}
+    </select>
+    <update id="pwUpdate">
+        UPDATE User SET Pw=#{newPw} WHERE UID=#{UID}
+    </update>
+
+    <!-- 로그인 실패 -->
+    <insert id="loginFailureData">
+        INSERT INTO LoginFailure(UID, Id, Ip) VALUES(#{UID},#{Id},#{Ip})
+    </insert>
+    <select id="loginFailureCount">
+        SELECT count(Id) FROM LoginFailure WHERE Id=#{Id}
+    </select>
+    <delete id="loginFailureDelete">
+        DELETE FROM LoginFailure WHERE UID=#{UID}
+    </delete>
 </mapper>

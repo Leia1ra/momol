@@ -70,6 +70,12 @@
         delete from cocktail where name = #{param1}
     </delete>
 
+<!--    === cock-ingre === -->
+
+    <select id="cocktail_ingre_list" resultType="com.example.momol.DTO.AdminCockIngreVO">
+        SELECT name as "name", i.ing_num as "ing_num", ing_name as "ing_name", ing_amount
+        FROM cock_ingre A CROSS JOIN ingredient i on A.ing_num = i.ing_num;
+    </select>
 
 
 </mapper>

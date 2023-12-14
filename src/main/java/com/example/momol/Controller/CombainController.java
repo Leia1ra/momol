@@ -22,6 +22,10 @@ public class CombainController {
     public ModelAndView combain(HttpSession session) {
         ModelAndView mv = new ModelAndView();
 
+        //로그인 정보 가져오기
+        String UID = "";
+        boolean loginCheck = session.getAttribute("logUID") != null;
+
         //재료 정보 가져오기
         List<String> strong_list = service.load_strong();
         List<String> weak_list = service.load_weak();
@@ -73,43 +77,44 @@ public class CombainController {
 
         String UID = "";
 
-        //로그인 여부 확인하기
-        boolean loginCheck = session.getAttribute("logUID") != null;
-        if (loginCheck) {
-            UID = session.getAttribute("logUID").toString();
-            System.out.println("확인된 UID : " + UID);
-        } else {
-            System.out.println("로그인이 필요합니다.");
-            return;
-        }
-
-        String inputList = request.getParameter("outputData");
-        System.out.println("inputList : " + inputList);
-
-        // == outputData를 "," 를 기준으로 나눠 배열에 저장
-        // String[] inputListArr = inputList.split(",");
-        // for (int i = 0; i < inputListArr.length; i++) {
-        //     System.out.println("inputListArr[" + i + "] : " + inputListArr[i]);
-        //     service.save_user_ing(UID, inputListArr[i]);
-        // }
-
-        // == outData를 toString된 상태로 저장
-        service.save_user_ing(UID, inputList);
-
-        ObjectMapper mapper = new ObjectMapper();
-        String json = "";
-
-        //술장고에 저장할 재료들 가져오기
         try {
-            json = mapper.writeValueAsString(inputList);
+            //로그인 여부 확인하기
+            boolean loginCheck = session.getAttribute("logUID") != null;
+            if (loginCheck) {
+                UID = session.getAttribute("logUID").toString();
+                System.out.println("확인된 UID : " + UID);
+            } else {
+                System.out.println("로그인이 필요합니다.");
+                return;
+            }
 
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            response.getWriter().print(json);
+            String inputList = request.getParameter("outputData");
+            System.out.println("inputList : " + inputList);
+
+            // outData를 toString된 상태로 저장
+            int result = service.save_user_ing(UID, inputList);
+            System.out.println("저장 결과 : " + result);
+
+            ObjectMapper mapper = new ObjectMapper();
+            String json = "";
+
+            //술장고에 저장할 재료들 가져오기
+            try {
+                json = mapper.writeValueAsString(result);
+
+                response.setContentType("application/json");
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().print(json);
+
+            } catch (Exception e) {
+                System.out.println("json 변환 실패");
+            }
 
         } catch (Exception e) {
-            System.out.println("json 변환 실패");
+            e.printStackTrace();
         }
+
+
 
     }
 

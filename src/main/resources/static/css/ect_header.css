@@ -9,7 +9,9 @@
 
 #ect_header_wrap {
     position: relative;
-    width: 800px;
+    width: var(--default-width);
+    min-width: var(--min-width);
+    max-width: var(--max-width);
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -124,5 +126,12 @@
     height: 5px;
     background-color: olive;
     position: absolute;
-    transform: translateY(43px) ;
+    transform: translateY(43px);
+}
+
+#ect_header_wrap > div.ect_header__logo > a > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
