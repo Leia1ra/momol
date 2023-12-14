@@ -46,7 +46,8 @@
 
         <%--회원 통계쪽--%>
         <div id="user_statis" class="col">
-
+            <span class="display-6">총 회원 </span>
+            <span>( + 오늘 새로가입한인원)</span>
             <div class = "user_statis__div row"  >
                 <div class="col-sm-5">총 회원</div>
                 <div class="col-sm-4">
@@ -74,15 +75,20 @@
         </div>
 
         <%--유저 통계 원그래프--%>
-        <div id="user_statis_graph" class="col">
+        <div id="user_statis_graph" class="col" style="margin: 15px;">
+            <p class="display-6">계정타입별 비율</p>
             <canvas id="user_graph">
             </canvas>
         </div>
 
-        <div id="statis_2nd_wrap" class="container">
-            <%--게시글 통계 꺽은선 그래프?--%>
-            <canvas id="myChart"></canvas>
-        </div>
+
+    </div>
+
+    <div id="statis_2nd_wrap" class="container">
+        <p class="display-6">작성된 게시글 현황</p>
+        <%--게시글 통계 꺽은선 그래프?--%>
+        <canvas id="myChart"></canvas>
+    </div>
 
 
 
@@ -92,13 +98,7 @@
 
     const user_graph = document.getElementById('user_graph');
     const board_graph = document.getElementById('board_statis_wrap');
-
     const ctx = document.getElementById('myChart');
-
-    <%--title "게시글 작성 현황"--%>
-    <%--x-axis ${dayList}--%>
-    <%--y-axis "(갯수)" ${min} --> ${max+5}--%>
-    <%--line ${count_news}--%>
 
     //오늘부터 10일전까지 날짜
     const dayList = [
