@@ -59,17 +59,25 @@
             LEFT JOIN smelltag s ON c.smellNo = s.TagNo
         WHERE 1=1
         <if test="!basetag.equals('')">
-            AND
-            b.tagName=#{basetag}
+            AND b.tagName=#{basetag}
         </if>
-<!--        <if test="ABV!=null">-->
-<!--            AND-->
-<!--            c.ABV = ${ABV}-->
-<!--        </if>-->
-        <if test="tastetag!=null">
-            AND
-            t.tagName=#{tastetag}
+        <if test="!tastetag.equals('')">
+            AND t.tagName=#{tastetag}
         </if>
-
+        <choose>
+            <when test="ABV == null">
+                AND 2=2
+            </when>
+            <when test="ABV !=null and ABV == 0.0">
+                AND c.ABV IS NULL
+            </when>
+            <when test="ABV !=null and ABV == 20.0">
+                AND <![CDATA[c.ABV <= 20]]>
+                AND <![CDATA[c.ABV > 0]]>
+            </when>
+            <when test="ABV !=null and ABV == 40.0">
+                AND <![CDATA[c.ABV > 20]]>
+            </when>
+        </choose>
     </select>
 </mapper>

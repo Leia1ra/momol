@@ -60,14 +60,6 @@
         </div>
     </div>
 
-    <div class="third">
-        <div class="title">어울리는 안주</div>
-        <div class="anju">
-            <div class="d"><img src="/resources/img/나.jpg" class="anjuimg"><div class="anjuname">#감스트안주</div></div>
-            <div class="d"><img src="/resources/img/나.jpg" class="anjuimg"><div class="anjuname">#감스트안주</div></div>
-        </div>
-    </div>
-
     <div class="fourth">
         <div class="fourthtitle">관련 칵테일</div>
         <div class="ang">

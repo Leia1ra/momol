@@ -64,8 +64,8 @@
         </div>
         <!--검색바-->
         <div class="search-container">
-            <span class="material-icons no-drag">search</span>
-            <input class="search" type="search" placeholder="검색내용을 입력해주세요" oninput="searchCocktails(this.value,'<%=request.getContextPath()%>')">
+<%--            <span class="material-icons no-drag">search</span>--%>
+            <input class="search" type="search" placeholder="검색내용을 입력해주세요~" oninput="searchCocktails(this.value,'<%=request.getContextPath()%>')">
         </div>
     </div>
 
