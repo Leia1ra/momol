@@ -15,5 +15,4 @@ public interface IngredientMapper {
     List<IngredientVO> searchCocktails2(String searchText);
     List<IngredientVO> getCategoryData(String category);
     List<CocktailVO> make_list (String name);
-    
 }

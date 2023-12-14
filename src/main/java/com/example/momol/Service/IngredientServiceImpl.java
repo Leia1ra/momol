@@ -40,5 +40,4 @@ public class IngredientServiceImpl implements IngredientService{
     public List<CocktailVO> make_list(String name) {
         return mapper.make_list(name);
     }
-
 }
