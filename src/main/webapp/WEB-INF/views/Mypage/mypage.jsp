@@ -223,7 +223,7 @@
                 <%--<input type="text" class="activity-text" id="activity-pw" name= "pw" value="${user.getPw()}" placeholder="PW" readonly>--%>
 
                 <label fo="activity-pw">비밀번호</label>
-                <a href="/account/pwChange" >
+                <a href="/account/pwChange?UID=${logUID}" >
                     <input type="button" id="activity-pw" value="비밀번호 변경" />
                 </a>
 
