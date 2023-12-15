@@ -17,6 +17,8 @@
 
     <!-- 마이페이지 : 내 글 불러오기 -->
     <select id="my_post" resultType="com.example.momol.DTO.CommunityVO">
-        SELECT * FROM board WHERE UID = #{UID}
+        SELECT num, Category, title, writetime, views, likes
+        from board join `board_ category` bc on board.catnum = bc.KeyNo
+        where UID= #{UID}
     </select>
 </mapper>
