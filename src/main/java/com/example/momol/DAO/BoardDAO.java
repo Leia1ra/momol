@@ -32,7 +32,7 @@ public class BoardDAO {
                 vo.setCatnum(resultSet.getInt("catnum"));
                 vo.setUID(resultSet.getString("UID"));
                 vo.setTitle(resultSet.getString("title"));
-                vo.setWritetime(resultSet.getDate("writetime"));
+                vo.setWritetime(resultSet.getString("writetime"));
                 vo.setContent(resultSet.getString("content"));
                 vo.setLikes(resultSet.getInt("likes"));
                 vo.setViews(resultSet.getInt("views"));
@@ -65,7 +65,7 @@ public class BoardDAO {
                 vo.setCatnum(rs.getInt("catnum"));
                 vo.setUID(rs.getString("UID"));
                 vo.setTitle(rs.getString("title"));
-                vo.setWritetime(rs.getDate("writetime"));
+                vo.setWritetime(rs.getString("writetime"));
                 vo.setContent(rs.getString("content"));
                 vo.setLikes(rs.getInt("likes"));
                 vo.setViews(rs.getInt("views"));
@@ -154,7 +154,7 @@ public class BoardDAO {
             pstmt.setInt(1, vo.getCatnum());
             pstmt.setString(2, vo.getUID());
             pstmt.setString(3, vo.getTitle());
-            pstmt.setDate(4, (Date) vo.getWritetime());
+            pstmt.setString(4,  vo.getWritetime());
             pstmt.setString(5, vo.getContent());
             pstmt.setInt(6, vo.getLikes());
             pstmt.setInt(7, vo.getViews());

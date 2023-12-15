@@ -30,11 +30,10 @@
 }
 
 #board {
-
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-bottom: 2px solid black;
+    /*border-bottom: 2px solid black;*/
 }
 
 .table-header, .post {
@@ -183,23 +182,26 @@
 /* 게시글보기 */
 .post1 {
     flex-direction: column;
+    width: 100%;
 }
 
 .post-header {
     border-top: 2px solid black;
     border-bottom: 2px solid black;
-    padding: 10px;
+    padding: 15px 10px;
 }
 
 .post-info {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .post-main {
-    padding: 10px;
+    padding: 20px 10px;
+    min-height: 200px;
+
 }
 
 .likes {
@@ -241,15 +243,16 @@
 
 .comment-input {
     width: 100%;
-    height: 60px; 
     padding: 5px;
 }
 
-.comment-input input {
+#board > div > div.viewcomment > div.comment-input > form > input[type=text]:nth-child(3) {
     width: 100%;
-    height: 100%; 
+    height: 80px;
     box-sizing: border-box; 
     padding: 10px;
+
+    position: relative;
 }
 
 .c-writetime,
@@ -324,4 +327,27 @@
     position: absolute;
     right: 0;
     bottom: 0;
+}
+
+.post-info__right_wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap : 20px;
+}
+
+#board > div > div.viewcomment > div:nth-child(1) > h3 {
+    display: flex;
+    padding : 5px 0;
+}
+
+#board > div > div.viewcomment > div.comment-input > form > input[type=submit]:nth-child(4) {
+    position: absolute;
+
+    bottom: 5px;
+    right: 5px;
+    border : none;
+    background-color: rgba(0,0,0,0);
+
 }
