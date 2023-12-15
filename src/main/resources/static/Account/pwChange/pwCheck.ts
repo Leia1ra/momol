@@ -1,5 +1,6 @@
 /*비밀번호 강도 + 유효성 검사*!/
 /* 비밀번호 강도 검사 */
+let typeData:HTMLInputElement;
 let UID:HTMLInputElement;
 // @ts-ignore
 let pw :HTMLInputElement;
@@ -109,6 +110,7 @@ function pwCheck(newPw:HTMLInputElement, meter:HTMLProgressElement, errMsg:HTMLD
 
 document.addEventListener('DOMContentLoaded', () => {
     errCnt = 0
+    typeData = document.getElementById("type") as HTMLInputElement;
     UID = document.getElementById("UID") as HTMLInputElement;
     pw = document.getElementById("pw") as HTMLInputElement;
     newPw = document.getElementById("newPw") as HTMLInputElement;
@@ -119,19 +121,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     pwCheck(newPw, meter, err);/*비밀번호 유효성 검사*/
     submit.addEventListener("submit", function (event) {
+        event.preventDefault();
+        let sameCheck:boolean;
         if(newPw.value !== pwRe.value){
             newPw.value = "";
             pwRe.value = "";
             pwRe.style.border = '2px solid red';
-            errMsg.innerHTML = '입력된 비밀번호와 확인번호가 일치하지 않습니다.';
-            pass = false;
+            err.innerHTML = '입력된 비밀번호와 확인번호가 일치하지 않습니다.';
+            sameCheck = false;
+        } else {
+            sameCheck = true;
         }
-        if(pass){
+
+        if(pass && sameCheck){
             event.preventDefault();
             const data = new FormData();
             data.append(pw.name, pw.value);
             data.append(newPw.name, newPw.value);
             data.append(UID.name, UID.value);
+            data.append(typeData.name, typeData.value);
 
             fetch('/account/pwChangeAsync',{
                 method:'POST',
