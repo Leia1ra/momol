@@ -31,14 +31,15 @@ public class CommunityServiceImpl implements CommunityService {
         // 게시글 삭제 로직
         return dao.deletePost(num);
     }
+
     @Override
     public int likePost(int num) {
         dao.incrementLikes(num);
-
+        return dao.getLikes(num);
+    }
 
     @Override
     public int updatePost(CommunityVO vo) {
         return dao.updatePost(vo);
     }
-
 }
