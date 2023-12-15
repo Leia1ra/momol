@@ -11,7 +11,10 @@
 
     <!--    1. USER      -->
     <select id="user_list" resultType="com.example.momol.DTO.UserVO">
-        SELECT UID, Id, Pw, Nick, Name, email, Birth, Phone, gender, JoinDate FROM user
+        SELECT
+            u.UID, Id, Pw, Nick, Name, email, Birth, Phone, gender, JoinDate, b.approved
+        FROM
+            user u LEFT JOIN business b ON u.UID = b.UID;
     </select>
 
     <delete id="user_delete" parameterType="string" >
@@ -100,4 +103,27 @@
     ]]>
     </select>
 
+    <!-- 사업자 승인 -->
+    <select id="businessSelectbyUID" resultType="com.example.momol.DTO.BusinessVO">
+        SELECT * FROM business WHERE UID=#{UID}
+    </select>
+    <select id="userSelectByUID" resultType="com.example.momol.DTO.UserVO">
+        SELECT * FROM User WHERE UID=#{UID}
+    </select>
+
+    <!-- 사업자 반려 -->
+    <delete id="businessDeletebyUID">
+        DELETE FROM business WHERE UID=#{UID}
+    </delete>
+    <delete id="businessApprove">
+        UPDATE business SET approved=true WHERE UID=#{UID}
+    </delete>
+
+    <!-- 관리자 승격 -->
+    <select id="lastAdminUID" resultType="String">
+        SELECT SUBSTRING(MAX(UID), #{index}) FROM user WHERE UID LIKE #{UID}
+    </select>
+    <update id="toAdmin">
+        UPDATE User SET UID=#{newUID} WHERE UID=#{UID}
+    </update>
 </mapper>
