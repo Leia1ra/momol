@@ -33,7 +33,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /*border-bottom: 2px solid black;*/
+    border-bottom: 2px solid black;
 }
 
 .table-header, .post {
@@ -166,7 +166,7 @@
 
 .author {
     font-weight: bold;
-    margin-bottom: 5px;
+    /*margin-bottom: 5px;*/
 }
 
 .date-views-likes {
@@ -205,7 +205,7 @@
 }
 
 .likes {
-    margin-top: 10px;
+    /*margin-top: 10px;*/
 }
 
 .viewcomment {
@@ -251,8 +251,6 @@
     height: 80px;
     box-sizing: border-box; 
     padding: 10px;
-
-    position: relative;
 }
 
 .c-writetime,
@@ -350,4 +348,9 @@
     border : none;
     background-color: rgba(0,0,0,0);
 
+}
+
+#board > div > div.post-main > p{
+    line-height: 1.5;
+    word-break: break-all;
 }

@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <%@ page import="com.example.momol.DTO.CommunityVO" %>
 
 <%@ page import="java.util.List" %>
@@ -118,19 +120,30 @@
     </head>
     <body>
 
-
         <main>
             <section id="board">
                 <%--<h2>게시글 작성하기</h2>--%>
                 <div class="post1">
                     <div class="post-header">
-                        <div class="title"><%= board.getTitle() %>
+                        <div class="title">${board.title}
                         </div>
                         <div class="post-info">
-                            <div class="author"><%= board.getUID() %>
+                            <div class="author">${board.nick}
                             </div>
                             <div class="post-info__right_wrap">
-                                <div class="writetime"><%= board.getWritetime() %>
+                                <div class="writetime">
+                                    <c:choose>
+                                        <c:when test="${today == postDate}">
+                                            <div class="writetime">
+                                                <fmt:formatDate value="${board.writetime_Ts}" pattern="HH:mm" />
+                                            </div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <div class="writetime">
+                                                <fmt:formatDate value="${board.writetime_Ts}" pattern="MM-dd" />
+                                            </div>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </div>
                                 <div class="views">조회 <%= board.getViews() %>
                                 </div>
@@ -157,7 +170,18 @@
                                 <div class="c-comment">${comments.getContent()}</div>
                                 <div class="comment-info">
                                     <div class="c-writetime">
-                                            ${comments.getWritetime()}
+                                        <c:choose>
+                                            <c:when test="${today == postDate}">
+                                                <div class="c-writetime">
+                                                    <fmt:formatDate value="${comments.getWritetime()}" pattern="HH:mm" />
+                                                </div>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <div class="c-writetime">
+                                                    <fmt:formatDate value="${comments.getWritetime()}" pattern="MM-dd" />
+                                                </div>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </div>
                                     <div class="c-likes">
                                         <button onclick="likeComment(${comments.getUID()})">좋아요</button> (<span id="likesCount_">${comments.getLikes()}</span>)
