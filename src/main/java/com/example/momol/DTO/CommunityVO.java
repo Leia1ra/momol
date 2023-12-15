@@ -8,7 +8,6 @@ import java.util.Date;
 @ToString @Data
 public class CommunityVO {
     private int num;
-
     private int Catnum;
 
     private String UID;
@@ -23,6 +22,8 @@ public class CommunityVO {
     private String fileName;
 
     private boolean deleted;
+
+    private String Category;
 
     public int getNum() {
         return num;
@@ -88,8 +89,8 @@ public class CommunityVO {
         this.author = author;
     }
 
-    public java.sql.Date getWritetime() {
-        return (java.sql.Date) writetime;
+    public Date getWritetime() {
+        return writetime;
     }
 
     public void setWritetime(Date writetime) {
@@ -110,6 +111,14 @@ public class CommunityVO {
 
     public void setLikes(int likes) {
         this.likes = likes;
+    }
+
+    public String getCategory() {
+        return Category;
+    }
+
+    public void setCategory(String category) {
+        this.Category = category;
     }
 }
 

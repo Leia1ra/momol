@@ -19,4 +19,5 @@
     <select id="getPostsSortedByLikes" resultType="CommunityVO">
         SELECT * FROM board ORDER BY likes DESC
     </select>
+
 </mapper>

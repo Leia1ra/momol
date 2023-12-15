@@ -154,7 +154,7 @@ public class BoardDAO {
             pstmt.setInt(1, vo.getCatnum());
             pstmt.setString(2, vo.getUID());
             pstmt.setString(3, vo.getTitle());
-            pstmt.setDate(4, vo.getWritetime());
+            pstmt.setDate(4, (Date) vo.getWritetime());
             pstmt.setString(5, vo.getContent());
             pstmt.setInt(6, vo.getLikes());
             pstmt.setInt(7, vo.getViews());

@@ -103,13 +103,15 @@ input[type=radio]:checked+label>.activity-b3{
     border-top: 1px solid #808080;
     display: flex;
     height: 40px;
+
+    text-align: center;
 }
 .activity-bottom-subject-1{
-    width: 60%;
+    width: 55%;
     line-height: 40px;
 }
 .activity-bottom-subject-2{
-    width: 10%;
+    width: 15%;
     line-height: 40px;
 }
 .activity-bottom-subject-3{
@@ -135,7 +137,7 @@ input[type=radio]:checked+label>.activity-b3{
 }
 #activity-ul2{
     list-style:none;
-    padding-left:0px;
+    padding-left:0;
     display: flex;
     flex-direction:column;
     margin: 0;
@@ -250,4 +252,40 @@ input[type=radio]:checked+label>.activity-b3{
 #activity-form > label {
     margin : 2px 0;
     padding-left : 3px;
+}
+
+#activity-ul2 > li > a {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+#activity-ul2 > li > a :nth-child(1) {
+    width: 15%;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+#activity-ul2 > li > a :nth-child(2) {
+    width: 55%;
+}
+
+#activity-ul2 > li > a :nth-child(3) {
+    width: 15%;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+#activity-ul2 > li > a :nth-child(4) {
+    width: 7.5%;
+    text-align: center;
+}
+
+#activity-ul2 > li > a :nth-child(5) {
+    width: 7.5%;
+    text-align: center;
+}
+
+.activity-li2 :hover {
+    background-color: #f0f0f0;
 }

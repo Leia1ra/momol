@@ -5,6 +5,7 @@ import com.example.momol.DTO.CommentsVO;
 import com.example.momol.DTO.CommunityVO;
 import com.example.momol.Service.CommentService;
 import com.example.momol.Service.CommunityService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -150,9 +151,24 @@ public class CommunityController {
         return "Community/post-view";
     }
 
+    // 글 쓰는 페이지
     @GetMapping("/writing")
-    public String posting() {
-        return "Community/posting";
+    public ModelAndView posting(HttpSession session) {
+
+        ModelAndView mv = new ModelAndView();
+
+        if ( !StringUtils.hasText((String) session.getAttribute("logUID")) ) {
+            mv.setViewName("redirect:/account/login");
+        } else {
+            String userUID = (String) session.getAttribute("logUID");
+            System.out.println("userUID : " + userUID);
+
+            mv.addObject("userUID", userUID);
+
+            mv.setViewName("Community/posting");
+        }
+
+        return mv;
     }
 
 
@@ -186,17 +202,25 @@ public class CommunityController {
         }
     }
 
+    // 포스팅 작성 누르면 실행되는거
     @PostMapping("/posting")
-    public String writePost(
+    public ModelAndView writePost(
             CommunityVO vo,
             @RequestPart(value = "file", required = false) MultipartFile file,
-            RedirectAttributes redirectAttributes) {
+            RedirectAttributes redirectAttributes, HttpSession session) {
+
+        ModelAndView mv = new ModelAndView();
+        String userUID = (String) session.getAttribute("logUID");
+        mv.addObject("userUID", userUID);
+
         System.out.println(">" + vo.toString());
 
         int result = service.communityInsert(vo);
+        System.out.println(result);
         redirectAttributes.addFlashAttribute("result", result);
 
-        return "redirect:/";
+        mv.setViewName("redirect:/community/walls");
+        return mv;
     }
 
     @GetMapping("/delete/{num}")
