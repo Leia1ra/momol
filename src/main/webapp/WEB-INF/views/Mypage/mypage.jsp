@@ -221,11 +221,10 @@
 
                     <%--<input type="text" class="activity-text" id="activity-pw" name= "pw" value="${user.getPw()}" placeholder="PW" readonly>--%>
 
-                    <label fo="activity-pw">비밀번호</label>
-                    <a href="/account/pwChange" >
-                        <input type="button" id="activity-pw" value="비밀번호 변경" />
-                    </a>
-
+                <label fo="activity-pw">비밀번호</label>
+                <a href="/account/pwChange?UID=${logUID}" >
+                    <input type="button" id="activity-pw" value="비밀번호 변경" />
+                </a>
 
                     <label for="activity-name">이름</label>
                     <input type="text" class="activity-text no-drag" id="activity-name" name= "name" value="${user.getName()}" placeholder="이름" readonly>

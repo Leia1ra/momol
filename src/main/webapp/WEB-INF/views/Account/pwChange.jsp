@@ -20,9 +20,13 @@
                 <progress max="4" value="0" id="meter"></progress>
                 <div id="err"></div>
                 <input type="hidden" name="UID" id="UID" value="${UID}">
+                <input type="hidden" name="type" id="type" value="${type}">
                 <input type="submit" id="submit" value="Password Change">
             </form>
         </article>
     </section>
+    <script>
+        console.log(${UID})
+    </script>
 </main>
 </body>

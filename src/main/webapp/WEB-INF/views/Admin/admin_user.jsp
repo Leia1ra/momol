@@ -1,7 +1,11 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
+<style>
+    .tableHr{
+        margin: 5px 0;
+    }
+</style>
 <main id="admin_user">
     <p class="fs-2">유저 관리</p>
 
@@ -14,13 +18,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/admin/board">게시판</a>
+                        <a class="nav-link " aria-current="page" href="/admin/board">게시판</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/admin/comment">댓글</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/admin/user">유저</a>
+                        <a class="nav-link active" href="/admin/user">유저</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/admin/recipe">레시피</a>
@@ -80,11 +84,28 @@
                                         </c:when>
                                         <c:when test="${user.UID.startsWith('BUSI') || user.UID.startsWith('busi')}">
                                             <span class="badge bg-success">사업자</span>
+                                            <c:choose>
+                                                <c:when test="${user.approved == null}">
+                                                    <hr class="tableHr">
+                                                    <span class="badge bg-warning">미입력</span>
+                                                </c:when>
+                                                <c:when test="${user.approved}">
+                                                
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <hr class="tableHr">
+                                                    <a class="badge bg-info" href="/Admin/businessApprove?UID=${user.UID}">
+                                                        사업자 승인
+                                                    </a>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </c:when>
                                         <c:otherwise>
                                             <span class="badge bg-secondary">일반유저</span>
-                                            <hr>
-                                            <button class="badge btn btn-primary">관리자 임명</button>
+                                            <hr class="tableHr">
+                                            <a class="badge btn btn-primary" href="/Admin/toAdmin?UID=${user.UID}">
+                                                관리자 임명
+                                            </a>
                                         </c:otherwise>
                                     </c:choose>
                                 </th>
