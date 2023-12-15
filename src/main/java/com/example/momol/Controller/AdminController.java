@@ -2,6 +2,7 @@ package com.example.momol.Controller;
 
 import com.example.momol.DTO.*;
 import com.example.momol.Service.AdminService;
+import com.example.momol.Service.BusinessService;
 import com.example.momol.Service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
@@ -19,11 +21,8 @@ import java.util.*;
 
 @Controller
 public class AdminController {
-
-
     private UserService userService;
     private final AdminService adminService;
-
     @Autowired
     public AdminController(UserService userService, AdminService adminService) {
         // this.userService = userService;
@@ -52,6 +51,7 @@ public class AdminController {
             // System.out.println(vo.toString());
             // System.out.println("JoinDate from Controller: " + vo.get(0).getJoinDate()); // Check the first UserVO's JoinDate
             mv.addObject("user", vo);
+            System.out.println(vo.get(1).getApproved());
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -599,6 +599,83 @@ public class AdminController {
 
         mv.setViewName("Admin/statistics");
         return mv;
+    }
+
+
+    @GetMapping("/Admin/businessApprove")
+    public ModelAndView businessApprove(String UID, HttpSession session){
+        ModelAndView mav = new ModelAndView();
+        BusinessVO bvo = adminService.businessSelectbyUID(UID);
+        UserVO uvo = adminService.userSelectByUID(UID);
+
+        if(bvo.isApproved()){
+            System.out.println(true);
+        }
+
+        String path = session.getServletContext().getRealPath("/img/Certificate");
+        String[] extArr = {".png", ".jpg", ".jpeg"};
+        String fileExt = null;
+        File file = null;
+        for (String ext : extArr){
+            file = new File(path,UID+ext);
+            if(file.exists()){
+                fileExt = ext;
+                break;
+            }
+        }
+        System.out.println(UID+fileExt);
+        mav.addObject("CertificateImg", UID+fileExt);
+        mav.addObject("business", bvo);
+        mav.addObject("user", uvo);
+        mav.setViewName("Admin/admin_businessApprove");
+        return mav;
+    }
+
+    @PostMapping("/Admin/certifyReject")
+    public ModelAndView businessReject(BusinessVO bvo, String authorization, HttpSession session){
+        ModelAndView mav = new ModelAndView();
+
+        if(!bvo.isApproved() && authorization.equals("reject")){
+            System.out.println("반려");
+            adminService.businessDeletebyUID(bvo.getUID());
+        } else if(!bvo.isApproved() && authorization.equals("approve")){
+            System.out.println("승인");
+            adminService.businessApprove(bvo.getUID());
+
+            String path = session.getServletContext().getRealPath("/img/Certificate");
+            String[] extArr = {".png", ".jpg", ".jpeg"};
+            File file = null;
+            for (String ext : extArr){
+                file = new File(path,bvo.getUID()+ext);
+                if(file.exists()){
+                    file.delete();
+                    break;
+                }
+            }
+        }
+
+        mav.setViewName("redirect:/admin/user");
+        return mav;
+    }
+
+    @GetMapping("/Admin/toAdmin")
+    public ModelAndView toAdmin(String UID){
+        ModelAndView mav = new ModelAndView();
+
+        String newUID = "ADMIN_";
+        String lastAdminNum = adminService.lastAdminUID(newUID.indexOf("_")+2, newUID+"%");
+        if(lastAdminNum == null) newUID += "000000";
+        else {
+            int lastCnt = Integer.parseInt(lastAdminNum);
+            String toStr = String.format("%06d", ++lastCnt);
+            newUID += toStr;
+        }
+        System.out.println(newUID);
+
+        adminService.toAdmin(UID, newUID);
+
+        mav.setViewName("redirect:/admin/user");
+        return mav;
     }
 
 }

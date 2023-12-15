@@ -22,6 +22,7 @@ public class UserVO implements UserDetails {
     private String Phone;
     private String gender;
     private String JoinDate;
+    private Boolean approved;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

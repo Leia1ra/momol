@@ -29,5 +29,11 @@ public interface AdminMapper {
     int count_user_else(String name);
     int count_news(String name, int y, int m, int d);
     int count_board_new(int y, int m, int d);
+    BusinessVO businessSelectbyUID(String UID);
+    UserVO userSelectByUID(String UID);
+    int businessDeletebyUID(String UID);
+    int businessApprove(String UID);
+    String lastAdminUID(int index, String UID);
+    int toAdmin(String UID, String newUID);
 
 }
