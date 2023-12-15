@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.*;
 
 
 @Controller
@@ -521,6 +523,80 @@ public class AdminController {
     @GetMapping ("/admin/statistics")
     public ModelAndView admin_statistics() {
         ModelAndView mv = new ModelAndView();
+
+        LocalDate today = LocalDate.now();
+        List<LocalDate> dayList = new ArrayList<>();
+
+        int[] count_news = new int[10];
+
+        //열흘
+        for ( int i = 9; i >= 0; i-- ) {
+            LocalDate day = today.minusDays(i);
+            dayList.add(day);
+        }
+
+        System.out.println("dayList : " + dayList.toString());
+        mv.addObject("dayList", dayList.toString());
+
+        for ( int i = 0; i < dayList.size(); i++  ) {
+            int y = dayList.get(i).getYear();
+            int m = dayList.get(i).getMonthValue();
+            int d = dayList.get(i).getDayOfMonth();
+
+            try {
+                count_news[i] = adminService.count_board_new(y, m, d);
+            } catch (Exception e) {
+                System.out.println("count_news[i] : " + count_news[i]);
+                count_news[i] = 0;
+            }
+        }
+
+        List<String> day = new ArrayList<>();
+        for ( int i = 0; i < dayList.size(); i++ ) {
+            day.add(dayList.get(i).toString());
+        }
+        System.out.println("new dayList후보"+ day.toString());
+
+        System.out.println("count_news : " + Arrays.toString(count_news));
+        mv.addObject("count_news", Arrays.toString(count_news));
+
+        try {
+            // 통계
+            int count_user_all = adminService.count_user_all("user");
+            int countUserBis = adminService.count_user_else("bis");
+            int countUserAdmin = adminService.count_user_else("admin");
+            int countUserGene = adminService.count_user_else("gene");
+            int countUserTemp = adminService.count_user_else("Tep");
+
+            mv.addObject("count_user_all", count_user_all);
+            mv.addObject("countUserBis", countUserBis);
+            mv.addObject("countUserAdmin", countUserAdmin);
+            mv.addObject("countUserGene", countUserGene);
+            mv.addObject("countUserTemp", countUserTemp);
+
+            LocalDate todayz = LocalDate.now();
+            int y = todayz.getYear();
+            int m = todayz.getMonthValue();
+            int d = todayz.getDayOfMonth();
+
+            int count_news_gene = adminService.count_news("gene", y, m, d);
+            int count_news_bis = adminService.count_news("bis", y, m, d);
+
+            mv.addObject("count_news_gene", count_news_gene);
+            mv.addObject("count_news_bis", count_news_bis);
+
+
+
+
+            // -----------------------------------------------
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
+
         mv.setViewName("Admin/statistics");
         return mv;
     }

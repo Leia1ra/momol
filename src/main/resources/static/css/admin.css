@@ -17,3 +17,20 @@
     align-items: center;
 
 }
+
+/*통계*/
+#user_statis {
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.user_statis__div {
+    display: flex;
+    align-items: center;
+}
+
+.mermaid {
+    height: 350px;
+}

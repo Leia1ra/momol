@@ -27,5 +27,11 @@ public interface AdminService {
     int cocktail_edit_submit(CocktailVO in);
     int cocktail_del(String num);
 
+    int count_user_all(String name);
+    int count_user_else(String name);
+    int count_news(String name, int y, int m, int d);
+    int count_board_new(int y, int m, int d);
+
+
 
 }

@@ -16,7 +16,7 @@
 <main>
     <!-- 담벼락 -->
     <div class="board-header">
-        <h2>담벼락</h2>
+        <h2 class="title">담벼락</h2>
         <p class="add">자유롭게 이야기를 나눠보세요..</p>
         <div class="sort">
             <button id="sort-lately" onclick="sortPosts('최신')">최신 순</button>
