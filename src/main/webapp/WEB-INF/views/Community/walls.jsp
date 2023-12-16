@@ -17,8 +17,10 @@
         <main>
             <!-- 담벼락 -->
             <div class="board-header">
-                <h2 class="title">담벼락</h2>
-                <p class="add">자유롭게 이야기를 나눠보세요..</p>
+                <div class="board_title_wrap">
+                    <h2 class="title">담벼락</h2>
+                    <p class="add">자유롭게 이야기를 나눠보세요..</p>
+                </div>
                 <div class="sort">
                     <button id="sort-lately" onclick="sortPosts('최신')">최신 순</button>
                     <button id="sort-likes" onclick="sortPosts('좋아요')">좋아요 순</button>
@@ -26,43 +28,47 @@
             </div>
             <section id="board">
                 <div class="table-header">
-                    <div>제목</div>
-                    <div>작성자</div>
-                    <div>작성일</div>
-                    <div>조회수</div>
-                    <div>좋아요</div>
+                    <div class="post_num">번호</div>
+                    <div class="post_title">제목</div>
+                    <div class="post_nick">작성자</div>
+                    <div class="post_time">작성일</div>
+                    <div class="post_view">조회수</div>
+                    <div class="post_like">좋아요</div>
                 </div>
                 <c:forEach var="board" items="${boards}">
                     <c:if test="${board.catnum == 1}">
                         <div class="post">
-                            <div>
+                            <div class="post_num">
+                                    ${board.num}
+                            </div>
+                            <div class="post_title">
                                 <a href="<c:url value='/community/walls/${board.num}'/>">${board.title}</a>
                             </div>
-                            <div>${board.nick}</div>
+                            <div class="post_nick">${board.nick}</div>
 
                             <c:choose>
                                 <c:when test="${today.year == board.writetime.year}">
                                     <c:choose>
                                         <c:when test="${today.month == board.writetime.month && today.date == board.writetime.date}">
-                                            <div>
+                                            <div class="post_time">
                                                 <fmt:formatDate value="${board.writetime_Ts}" pattern="HH:mm" />
                                             </div>
                                         </c:when>
                                         <c:otherwise>
-                                            <div>
+                                            <div class="post_time">
                                                 <fmt:formatDate value="${board.writetime_Ts}" pattern="MM.dd" />
                                             </div>
                                         </c:otherwise>
                                     </c:choose>
                                 </c:when>
                                 <c:otherwise>
-                                    <div>
+                                    <div class="post_time">
                                         <fmt:formatDate value="${board.writetime_Ts}" pattern="yyyy.MM.dd" />
                                     </div>
                                 </c:otherwise>
                             </c:choose>
-                            <div>${board.views}</div>
-                            <div>${board.likes}</div>
+                            <div class="post_view">${board.views}</div>
+                            <div class="post_like">${board.likes}</div>
                         </div>
                     </c:if>
                 </c:forEach>
@@ -70,16 +76,25 @@
 
             <!-- 게시판 하단 -->
             <section id="bottom">
+                <div class="write">
+                    <a href="writing">
+
+                        <button id="writeBtn" class="board_list__button_t1">
+                            <span class="material-icons">create</span>
+                            글쓰기
+                        </button>
+                    </a>
+                </div>
+
                 <div class="buttons">
-                    <div class="write">
-                        <a href="writing"> <button>글쓰기</button></a>
-                    </div>
-                    <div class="pages">
+
+                    <div class="pages no-drag">
                         <button>이전</button>
-                        <a href="#">1</a>
+                        <a class="page_nums" href="#">1</a>
                         <button>다음</button>
                     </div>
                 </div>
+
                 <div class="search">
                     <select name="case" id="case">
                         <option value="title">제목</option>
