@@ -23,7 +23,9 @@
                 imgPreview.src="";
             }
         }
-        const menu = new Menu(${list.size()}, '${business.getBizno()}')
+        <c:if test="${v == 't'}">
+            const menu = new Menu(${list.size()}, '${business.getBizno()}')
+        </c:if>
     </script>
     <!-- 사업자페이지 -->
     <p id="business-p1">사업장 정보 작성</p>
@@ -63,36 +65,37 @@
         </div>
     </form>
     
-    
+    <c:if test="${business.approved}">
     <!-- 주요메뉴 -->
     <article id="business-h2">
         <h3 id="business-p2">주요메뉴</h3>
         
         <div id="business-ul">
             <c:forEach var="m" items="${list}" begin="0" step="1" varStatus="index">
-            <form method="post" class="business-form" action="#" enctype="multipart/form-data">
-                <label class="menuImg">
-                    <img class="menu" src="${m.imgPath}" onerror="this.src='/resources/main/menuNone.png'"/>
-                    <input type="file" class="menu_imgFile" name="menu_imgFile" hidden
-                           onchange="menuImgUpLoad(${index.count - 1})" accept="image/jpeg, image/png">
-                    <div class="menuImgMessage">
-                        <div>
-                            사진을 변경하려면 클릭하세요
+                <form method="post" class="business-form" action="#" enctype="multipart/form-data">
+                    <label class="menuImg">
+                        <img class="menu" src="${m.imgPath}" onerror="this.src='/resources/main/menuNone.png'"/>
+                        <input type="file" class="menu_imgFile" name="menu_imgFile" hidden
+                               onchange="menuImgUpLoad(${index.count - 1})" accept="image/jpeg, image/png">
+                        <div class="menuImgMessage">
+                            <div>
+                                사진을 변경하려면 클릭하세요
+                            </div>
+                        </div>
+                    </label>
+                    <div class="menuInfo">
+                        <input type="text" class="menuSubject" name="subject" value="${m.subject}" placeholder="subject" required>
+                        <input type="text" class="menuContent" name="content" value="${m.content}" placeholder="content" required>
+                        <div class="menuInfoUpdate">
+                            <input type='button' class="menuUpdateBtn" value='메뉴 업데이트' onclick="menu.menuUpdate('${m.subject}', ${index.count-1})">
+                            <input type="button" class="menuDeleteBtn" value="메뉴 삭제" onclick="menu.menuDelete(${index.count-1})">
                         </div>
                     </div>
-                </label>
-                <div class="menuInfo">
-                    <input type="text" class="menuSubject" name="subject" value="${m.subject}" placeholder="subject" required>
-                    <input type="text" class="menuContent" name="content" value="${m.content}" placeholder="content" required>
-                    <div class="menuInfoUpdate">
-                        <input type='button' class="menuUpdateBtn" value='메뉴 업데이트' onclick="menu.menuUpdate('${m.subject}', ${index.count-1})">
-                        <input type="button" class="menuDeleteBtn" value="메뉴 삭제" onclick="menu.menuDelete(${index.count-1})">
-                    </div>
-                </div>
-            </form>
+                </form>
             </c:forEach>
         </div>
         <button id="expand-button" onclick="menu.expandMenu()">메뉴 작성란 추가하기</button>
     </article>
+    </c:if>
 </main>
 </body>
