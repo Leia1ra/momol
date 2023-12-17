@@ -43,7 +43,11 @@ public class CocktailController {
         CocktailVO vo = service.cocktailInfo(name);
         List<CockIngredientVO> list = service.cock_ingre(name);
 
+        List<CocktailVO> list2 = service.make_list2(vo.getBasetag());
+
+
         System.out.println(vo.toString());
+        mav.addObject("li2", list2);
         mav.addObject("vo",vo);
         mav.addObject("li", list);
         mav.setViewName("Cocktail/CakInformation");
