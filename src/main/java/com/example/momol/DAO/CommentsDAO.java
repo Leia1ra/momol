@@ -79,6 +79,27 @@ public class CommentsDAO {
 
         return -1;
     }
+    public String findAuthor(String UID2) {
+        String SQL = "SELECT UID2 FROM comments WHERE UID = ?";
+
+        try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+             PreparedStatement pstmt = connection.prepareStatement(SQL)) {
+
+            pstmt.setString(1, UID2);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getString("UID2");
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 }
 
 

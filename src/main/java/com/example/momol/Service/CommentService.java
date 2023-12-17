@@ -14,4 +14,6 @@ public interface CommentService {
     void deleteComment(int UID);
 
     int increaseLikes(int UID);
+
+    String getCommentAuthor(String commentUID2);
 }
