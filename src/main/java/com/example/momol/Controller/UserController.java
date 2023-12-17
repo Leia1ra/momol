@@ -244,6 +244,11 @@ public class UserController {
     private void fileUpload(HttpServletRequest req, String fileName, String path) throws IOException {
         MultipartHttpServletRequest mr = (MultipartHttpServletRequest) req;
         MultipartFile multipartFile = mr.getFile("Business_certificate");
+        File directory = new File(path);
+        if(!directory.exists()){
+            boolean created = directory.mkdirs();
+        }
+
         if(multipartFile != null && !multipartFile.isEmpty()){
             String orgFileName = multipartFile.getOriginalFilename();
             if(orgFileName != null && !orgFileName.equals("")){
