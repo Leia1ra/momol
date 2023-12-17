@@ -14,7 +14,13 @@
         #storePageMain>h1{
             font-size: 3em;
             text-align: center;
-            margin-bottom: 50px;
+            margin-top: 10px;
+            margin-bottom: 35px;
+        }
+        #storePageMain>h2{
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 20px;
         }
         #storeInfo{
 	       padding: 10px;
@@ -121,8 +127,13 @@
             /*width: 100%;*/
             height: 400px;
             margin: 10px;
-            border: 1px solid #1ebee6;
-
+            border: 1px solid #93C759;
+	        border-radius: 10px;
+	        transition: 0.3s ease-in-out;
+        }
+        .menuList:hover{
+	        background: #93C759;
+            color: white;
         }
         .menuList>div{
             height: 100%;
@@ -218,6 +229,7 @@
 		</div>
 		<div class="underLine" style="margin-top: 10px"></div>
 	</section>
+	<h2>주요 메뉴</h2>
 	<section id="menus">
 		<c:forEach var="li" items="${list}">
 			<article class="menuList">

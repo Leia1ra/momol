@@ -206,7 +206,7 @@ public class BusinessController {
 
         BusinessVO voo = businessService.businessSelectbyUID(logUID);
         vo.setBizno(voo.getBizno());
-
+        businessService.lastUpdate(voo.getBizno());
         try {
             String path = session.getServletContext().getRealPath("/img/Store/"+logUID+"/Menu");
             if(!multipartFile.isEmpty()){
