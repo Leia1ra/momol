@@ -250,10 +250,13 @@
 
                     <label for="activity-email">이메일</label>
                     <input type="text" class="activity-text" id="activity-email" name= "email" value="${user.getEmail()}" placeholder="이메일" readonly>
-
+                    
+                    <c:if test="">
                     <input type="button" id="activity-button-business"
                            onclick="location.href='/mmypage/business'"
                            value="사업자 인증하기 or 사업자 프로필 보기" />
+                    </c:if>
+                    
 
                     <%--<input type="button" id="activity-button" value="정보수정" />--%>
 

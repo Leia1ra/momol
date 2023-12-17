@@ -85,16 +85,10 @@ public class BusinessController {
         String logUID = (String) session.getAttribute("logUID");
         BusinessVO vo = businessService.businessSelectbyUID(logUID);
 
-        boolean isBusi = logUID.substring(0, logUID.indexOf("_")).equals("BUSI");
-
-        if(isBusi && vo == null){ // 비즈니스 사용자인데 레코드가 없을때
+        if(vo == null){ // 비즈니스 사용자인데 레코드가 없을때
             mav.addObject("v","f");
             mav.setViewName("Mypage/business");
-
-            // vo.setBizno("null");
-            // mav.addObject("business", vo);
-            // mav.addObject("list", 0);
-        } else if(isBusi && vo != null) { // 비즈니스 사용자이고 레코드가 있을때
+        } else if(vo != null) { // 비즈니스 사용자이고 레코드가 있을때
             List<MenuVO> menulist = businessService.bimenuSelectbybizno(vo.getBizno());
             mav.addObject("v", "t");
             mav.addObject("business", vo);
@@ -115,11 +109,7 @@ public class BusinessController {
             mav.addObject("list", menulist);
             mav.setViewName("Mypage/business");
 
-        } else {
-            session.invalidate();
-            mav.setViewName("redirect:/account/login");
         }
-
         return mav;
     }
     @PostMapping("/businessOk")
