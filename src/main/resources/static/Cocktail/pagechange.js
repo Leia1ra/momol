@@ -1,6 +1,5 @@
-window.onload = function () {
-    setDefaultActive();
-};
+window.onload = function () { };
+setDefaultActive();
 
 function setDefaultActive() {
     const defaultSection = document.querySelector('.section');
@@ -121,10 +120,4 @@ function filterData(formData) {
     //     }
     // });
 }
-
-
-
-
-
-
 
