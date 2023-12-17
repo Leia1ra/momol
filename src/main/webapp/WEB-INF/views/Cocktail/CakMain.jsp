@@ -90,3 +90,11 @@
 </main>
 </body>
 <script src="/resources/Cocktail/pagechange.js"></script>
+
+<script>
+    const headerText = document.querySelector("#ect_header__1 > a");
+    headerText.style.color = "#4299e1";
+
+    const headerGnb = document.querySelector("#ect_header__1 > div");
+    headerGnb.style.display = "block";
+</script>

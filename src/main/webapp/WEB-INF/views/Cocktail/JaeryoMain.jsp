@@ -4,15 +4,15 @@
 
 <main>
     <div class="container">
-        <a href="<%=request.getContextPath()%>/Cocktail/cakmain"><div class="section" onclick="changeActive(this)">
+        <a href="<%=request.getContextPath()%>/Cocktail/cakmain"><div class="section">
             <h2>칵테일 정보</h2>
         </div></a>
 
-        <a href="<%=request.getContextPath()%>/Cocktail/jaeryomain"><div class="section" onclick="changeActive(this)">
+        <a href="<%=request.getContextPath()%>/Cocktail/jaeryomain"><div class="section">
             <h2>재료 정보</h2>
         </div></a>
 
-        <a href="<%=request.getContextPath()%>/Cocktail/wordbook"><div class="section" onclick="changeActive(this)">
+        <a href="<%=request.getContextPath()%>/Cocktail/wordbook"><div class="section">
             <h2>용어 사전</h2>
         </div></a>
     </div>
@@ -62,3 +62,10 @@
 
 </main>
 <script src="/resources/Cocktail/jaeryosearch.js"></script>
+<script>
+    const headerText = document.querySelector("#ect_header__1 > a");
+    headerText.style.color = "#4299e1";
+
+    const headerGnb = document.querySelector("#ect_header__1 > div");
+    headerGnb.style.display = "block";
+</script>

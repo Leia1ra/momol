@@ -6,10 +6,8 @@
     width: 100%;
     height: 91px;
     /*background-color: gainsboro;*/
-    border-bottom: 1px solid var(--text-gray-500);
-
+    border-bottom: 32px solid var(--text-blue-500);
 }
-
 
 #ect_header_wrap {
     position: relative;
@@ -23,7 +21,7 @@
 }
 
 .ect_header__logo_img {
-    width: 100px;
+    width: auto;
     height: 70px;
 }
 
@@ -54,7 +52,7 @@
 }
 
 .ect_header__ul_text:hover {
-    color : var(--text-green-500);
+    color : var(--text-blue-500);
 }
 
 .ect_header__user {
@@ -88,7 +86,7 @@
 }
 
 .gnb_text:hover {
-    color : var(--text-green-500);
+    color : var(--text-blue-500);
 }
 
 /*GNB deep1 __ gnb 1차*/
@@ -102,9 +100,15 @@
     align-items: center;
     justify-content: center;
 
-    background-color: var(--text-green-200);
+    background-color: var(--text-blue-500);
     top : 91px;
     left : 0;
+}
+
+.gnb_deep1 > li > a {
+    color : white;
+    font-weight: bold;
+    letter-spacing: 1;
 }
 
 .gnb_deep1__con {
@@ -128,7 +132,7 @@
 
     width: 35px;
     height: 5px;
-    background-color: var(--text-green-600);
+    background-color: var(--text-blue-500);
     position: absolute;
     transform: translateY(43px);
 }
@@ -142,5 +146,5 @@
 }
 
 .header_active {
-    color : var(--text-green-500);
+    color : var(--text-blue-500);
 }

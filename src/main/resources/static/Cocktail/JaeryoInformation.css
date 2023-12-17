@@ -163,6 +163,7 @@ main {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     text-overflow: ellipsis;
+    height: 40px;
 }
 
 .rhksfus{
@@ -173,7 +174,7 @@ main {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
 }
 .tag10,.tag20,.tag30{
     line-height: 20px;
