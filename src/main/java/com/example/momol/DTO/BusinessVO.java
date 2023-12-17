@@ -17,4 +17,6 @@ public class BusinessVO {
     private String time;
     private String lasttouch;
     private boolean approved;
+
+    private String imgPath;
 }

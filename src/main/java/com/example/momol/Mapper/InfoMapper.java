@@ -28,4 +28,8 @@ public interface InfoMapper {
     void deleteMenu(MenuVO deleteMenu);
 
     void insertMenu(MenuVO menuVO);
+
+    List<BusinessVO> storeList();
+    BusinessVO businessSelectbyBIZNO(String bizno);
+
 }
