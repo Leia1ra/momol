@@ -13,5 +13,7 @@ public interface CommunityMapper {
 
     CommunityVO getPostByNum(@Param("num") int num);
 
+    List<CommunityVO> searchPosts(@Param("searchType") String searchType, @Param("keyword") String keyword);
+
 }
 

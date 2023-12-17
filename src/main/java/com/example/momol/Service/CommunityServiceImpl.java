@@ -42,4 +42,9 @@ public class CommunityServiceImpl implements CommunityService {
     public int updatePost(CommunityVO vo) {
         return dao.updatePost(vo);
     }
+
+    @Override
+    public List<CommunityVO> searchPosts(String searchType, String keyword) {
+        return mapper.searchPosts(searchType, keyword);
+    }
 }

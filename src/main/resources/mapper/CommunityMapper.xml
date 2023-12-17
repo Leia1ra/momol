@@ -19,4 +19,18 @@
     <select id="getPostsSortedByLikes" resultType="CommunityVO">
         SELECT * FROM board ORDER BY likes DESC
     </select>
+
+    <select id="searchPosts" resultType="CommunityVO" parameterType="map">
+        SELECT * FROM board
+        <if test="searchType == 'title'">
+            WHERE title LIKE '%' #{keyword} '%'
+        </if>
+        <if test="searchType == 'author'">
+            WHERE UID LIKE '%' #{keyword} '%'
+        </if>
+        <if test="searchType == 'content'">
+            WHERE content LIKE '%' #{keyword} '%'
+        </if>
+        ORDER BY writetime DESC
+    </select>
 </mapper>
