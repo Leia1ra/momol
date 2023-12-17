@@ -187,7 +187,6 @@ function find_make_cocktail() {
                         error: function (request, status, error) {
                             console.log("에러가 떳어용!!")
                             console.log("★code:" + request.status + "\n" + "★message:" + request.responseText + "\n" + "★error:" + error);
-                            reject(error);
                         }
                     });
                 }

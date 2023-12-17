@@ -238,14 +238,6 @@ public class CombainController {
             String cocktailInfo_detail = service.getCocktailInfo_detail(cocktailName);
             String cocktailInfo_img = service.getCocktailImg(cocktailName);
 
-            if (cocktailInfo_img == null && cocktailInfo_detail != null) {
-                cocktailInfo_img = "https://file.thisisgame.com/upload/tboard/user/2011/04/22/20110422071025_4335.jpg";
-            }
-
-            if (cocktailInfo_img == null && cocktailInfo_detail == null) {
-                return;
-            }
-
             cocktailInfo.add(cocktailInfo_detail);
             cocktailInfo.add(cocktailInfo_img);
 

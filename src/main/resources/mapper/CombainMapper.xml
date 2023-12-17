@@ -70,7 +70,7 @@
     </select>
 
     <select id="getCocktailInfo" parameterType="string" resultType="string">
-        select cocktail_num from cocktail where name=#{param1}
+        select name from cocktail where name=#{param1}
     </select>
 
     <select id="getCocktailInfo_detail" parameterType="string" resultType="string">
