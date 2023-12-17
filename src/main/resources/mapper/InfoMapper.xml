@@ -21,4 +21,48 @@
         from board join `board_ category` bc on board.catnum = bc.KeyNo
         where UID= #{UID}
     </select>
+
+
+
+    <select id="businessSelectbyUID" resultType="com.example.momol.DTO.BusinessVO">
+        SELECT * FROM Business WHERE UID = #{UID}
+    </select>
+
+    <select id="bimenuSelectbybizno" resultType="com.example.momol.DTO.MenuVO">
+        SELECT * FROM Bimenu WHERE bizno = #{bizno}
+    </select>
+
+    <!-- Insert query for adding new data -->
+    <insert id="insertBusiness" parameterType="com.example.momol.DTO.BusinessVO">
+        INSERT INTO Business (bizno, UID, place, other, address, date, time)
+        VALUES (#{bizno}, #{UID}, #{place}, #{other}, #{address}, #{date}, #{time})
+    </insert>
+
+    <!-- Update query for existing data -->
+    <update id="updateBusiness" parameterType="com.example.momol.DTO.BusinessVO">
+        UPDATE Business
+        SET bizno = #{bizno},
+            Place = #{place},
+            Other = #{other},
+            Address = #{address},
+            Date = #{date},
+            Time = #{time}
+        WHERE UID = #{UID}
+    </update>
+
+    <update id="updateMenu">
+        UPDATE bimenu
+        SET subject=#{subject}, content = #{content}
+        WHERE bizno=#{bizno} AND subject=#{beforeSubject}
+    </update>
+
+    <delete id="deleteMenu" parameterType="com.example.momol.DTO.MenuVO">
+        DELETE FROM bimenu
+        WHERE bizNo=#{bizno} AND subject=#{subject}
+    </delete>
+
+    <insert id="insertMenu" parameterType="com.example.momol.DTO.MenuVO">
+        INSERT INTO Bimenu (Bizno, Subject, Content)
+        VALUES (#{bizno}, #{subject}, #{content})
+    </insert>
 </mapper>

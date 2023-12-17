@@ -62,7 +62,7 @@ CREATE TABLE comments (
 /*사업자 테이블*/
 DROP TABLE business;
 CREATE TABLE business (
-    bizNo INT PRIMARY KEY AUTO_INCREMENT,
+    bizNo VARCHAR(50) PRIMARY KEY,
     UID VARCHAR(20) NOT NULL,
     place VARCHAR(50),
     other TEXT,
@@ -80,13 +80,13 @@ DELETE FROM business WHERE UID='BUSI_20231211 000000';
 
 DROP TABLE biMenu;
 CREATE TABLE biMenu (
-    bizNo INT NOT NULL,
-    subject VARCHAR(100),
+    bizNo VARCHAR(50) NOT NULL,
+    subject VARCHAR(100) UNIQUE ,
     content VARCHAR(300),
-    FOREIGN KEY (bizNo) REFERENCES business(bizNo) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (bizno) REFERENCES business(bizno) ON DELETE CASCADE ON UPDATE CASCADE
 ); DESC biMenu;
 SELECT * FROM biMenu;
-
+DELETE FROM biMenu;
 
 
 /* 칵테일 테이블 */
