@@ -20,8 +20,13 @@
         SELECT * FROM ingredient WHERE ing_categ = #{category}
     </select>
     <select id="make_list" resultType="com.example.momol.DTO.CocktailVO">
-        select cock_ingre.name as name, cocktail_detail, cocktail_img
-        from cock_ingre right join momol.cocktail c on cock_ingre.name = c.name
-        where ing_num = ${param1}
+        select
+            cock_ingre.name as name,
+            cocktail_detail,
+            cocktail_img
+        from
+            cock_ingre right join momol.cocktail c on cock_ingre.name = c.name
+        where
+            ing_num = ${param1}
     </select>
 </mapper>
