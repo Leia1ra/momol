@@ -149,7 +149,10 @@
                                 </div>
                                 <div class="comments">댓글 <%= commentCount %>
                                 </div> <!-- 확인하기 -->
-                                <button onclick="deletePost(<%= board.getNum() %>)">삭제</button>
+                                <c:if test="${board.UID == sessionScope.logUID}">
+                                    <button onclick="deletePost(<%= board.getNum() %>)">삭제</button>
+                                </c:if>
+
                             </div>
                         </div>
                     </div>
@@ -157,7 +160,10 @@
                         <%= board.getContent() %>
                     </div>
                     <div class="likes">
-                        <button onclick="likePost()">좋아요</button> (<span id="likesCount"><%= board.getLikes() %></span>)
+                        <button onclick="likePost()">좋아요</button>
+                        <span id="likesCount">
+                            (${board.likes})
+                        </span>
                     </div>
 
 

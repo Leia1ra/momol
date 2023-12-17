@@ -202,7 +202,7 @@
 }
 
 .likes {
-    /*margin-top: 10px;*/
+    text-align: end;
 }
 
 .viewcomment {
@@ -426,4 +426,10 @@
 
 .title_margin {
     margin : 15px 0;
+}
+
+.page_btn {
+    background-color: rgba(0,0,0,0);
+    border : none;
+
 }

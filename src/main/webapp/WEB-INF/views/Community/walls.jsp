@@ -89,9 +89,14 @@
                 <div class="buttons">
 
                     <div class="pages no-drag">
-                        <button>이전</button>
+                        <button class="page_btn">
+                            <span class="material-icons">navigate_before</span>
+                        </button>
                         <a class="page_nums" href="#">1</a>
-                        <button>다음</button>
+
+                        <button class="page_btn">
+                            <span class="material-icons">navigate_next</span>
+                        </button>
                     </div>
                 </div>
 
