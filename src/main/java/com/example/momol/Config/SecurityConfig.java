@@ -1,8 +1,9 @@
 package com.example.momol.Config;
 
-import com.example.momol.Config.Handler.AccessErrorDeniedHandler;
+import com.example.momol.Config.Handler.ErrorAccessDeniedHandler;
 import com.example.momol.Config.Handler.AuthFailureHandler;
 import com.example.momol.Config.Handler.AuthSuccessHandler;
+import com.example.momol.Config.Handler.ErrorAuthenticationEntryPoint;
 import com.example.momol.Config.Role.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -12,8 +13,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.access.AccessDeniedHandler;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -65,7 +64,10 @@ public class SecurityConfig {
         );
 
         http.exceptionHandling((handlingConfigurer)->
-            handlingConfigurer.accessDeniedHandler(new AccessErrorDeniedHandler())
+            handlingConfigurer
+                    .accessDeniedHandler(new ErrorAccessDeniedHandler())
+                    .authenticationEntryPoint(new ErrorAuthenticationEntryPoint())
+                    // .accessDeniedPage("/err")
         );
 
         return http.build();
