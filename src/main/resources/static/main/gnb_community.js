@@ -8,6 +8,7 @@ const headerGnb_inner2 = document.querySelector("#ect_header__2 > div.ect_header
 headerGnb_inner2.style.display = "flex";
 
 let header_area = document.querySelector("#ect_header__nav");
+
 header_area.addEventListener('mouseover', function () {
     gnb_mouseout();
 });
