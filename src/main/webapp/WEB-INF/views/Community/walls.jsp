@@ -122,3 +122,5 @@
     const headerGnb = document.querySelector("#ect_header__2 > div");
     headerGnb.style.display = "block";
 </script>
+
+<script src="/resources/main/gnb_community.js"></script>
