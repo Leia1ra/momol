@@ -7,6 +7,7 @@ import com.example.momol.Service.CommentService;
 import com.example.momol.Service.CommunityService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,7 @@ import java.util.Map;
 public class CommentController {
     private final CommentService commentService;
     private final CommunityService communityService;
-    private  final BoardDAO boardDAO;
+    private final BoardDAO boardDAO;
 
     @Autowired
     public CommentController(CommentService commentService, CommunityService communityService, BoardDAO boardDAO) {
@@ -47,7 +48,7 @@ public class CommentController {
         List<CommentsVO> commentList = commentService.getCommentsByBoardNum(num);
 
         mav.addObject("comments", commentList);
-        mav.setViewName("redirect:/community/walls/"+num);
+        mav.setViewName("redirect:/community/walls/" + num);
         return mav;
     }
 
@@ -59,10 +60,17 @@ public class CommentController {
     }
 
     @DeleteMapping("/deleteComment")
-    public ResponseEntity<Void> deleteComment(@RequestBody Map<String, Integer> params) {
-        int UID = params.get("UID");
-        commentService.deleteComment(UID);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<Void> deleteComment(@RequestBody Map<String, String> params, HttpSession session) {
+        String commentUID = params.get("UID");
+        String loggedInUID = (String) session.getAttribute("logUID");
+        String commentAuthorUID = commentService.getCommentAuthor(commentUID);
+
+        if (loggedInUID.equals(commentAuthorUID)) {
+            commentService.deleteComment(Integer.parseInt(commentUID));
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
     }
 }
 
