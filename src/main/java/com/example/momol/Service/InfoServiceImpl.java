@@ -62,6 +62,16 @@ public class InfoServiceImpl implements MypageService, BusinessService {
     }
 
     @Override
+    public List<BusinessVO> storeList() {
+        return mapper.storeList();
+    }
+
+    @Override
+    public BusinessVO businessSelectbyBIZNO(String bizno) {
+        return mapper.businessSelectbyBIZNO(bizno);
+    }
+
+    @Override
     public List<MenuVO> bimenuSelectbybizno(String bizno) {
         return mapper.bimenuSelectbybizno(bizno);
     }

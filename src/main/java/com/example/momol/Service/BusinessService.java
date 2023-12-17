@@ -19,4 +19,8 @@ public interface BusinessService {
     void deleteMenu(MenuVO deleteMenu);
 
     void insertMenu(MenuVO menuVO);
+
+    List<BusinessVO> storeList();
+
+    BusinessVO businessSelectbyBIZNO(String bizno);
 }

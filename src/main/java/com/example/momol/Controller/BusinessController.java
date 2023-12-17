@@ -103,7 +103,6 @@ public class BusinessController {
             for(MenuVO v : menulist){
                 v.setImgPath("/resources/img/Store/"+logUID+"/Menu/"+findFileName(v.getSubject(),menuPath));
             }
-            System.out.println(menulist);
 
             mav.addObject("storeImage", pImgPath);
             mav.addObject("list", menulist);
