@@ -66,7 +66,7 @@
             <div class="rhksfus">
                 <c:forEach var="data" items="${li2}">
                 <div class="make_cocktail_wrap">
-                <a href="#"><img src="${data.cocktail_img}" class="imgimg"></a>
+                <a href="<%=request.getContextPath()%>/Cocktail/cakinfo?name=${data.name}"><img src="${data.cocktail_img}" class="imgimg"></a>
                 <div class="title2">${data.name}</div>
                 <div class="explain2">${data.cocktail_detail}</div>
                 <div class="tagss">
