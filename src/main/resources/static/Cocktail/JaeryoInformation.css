@@ -6,7 +6,7 @@
     font-weight: normal;
     font-style: normal;
 }
-*{
+main{
     box-sizing: border-box;
 }
 body {
@@ -90,8 +90,8 @@ main {
 /*재료영어이름*/
 .engname{
     height:40px;
-    margin-left: 10px;
-    line-height: 40px;
+    margin-left: 15px;
+    line-height: 47px;
     font-weight: normal;
     font-size: 0.65em;
     color: darkgray;
@@ -142,25 +142,39 @@ main {
 }
 
 .title2{
-    margin: 10px;
+    margin: 10px 0;
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.5em;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .explain2{
     font-weight: bold;
     font-size: 0.9em;
     line-height: 20px;
-    width: 180px;
-    margin-left: 10px;
-    margin-bottom: 10px;
+    color: grey;
+    overflow: hidden;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    height: 40px;
 }
-/*관련칵테일이미지*/
-.imgimg{
-    width: 150px;
-}
+
 .rhksfus{
-    margin-right: 30px;
-    width: 300px;
+    width: 100%;
+
+    flex-wrap: wrap;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
 }
 .tag10,.tag20,.tag30{
     line-height: 20px;
@@ -188,13 +202,19 @@ main {
 .ang{
     /*width: 700px;*/
     display:flex;
-    padding:30px 20px;
+    padding: 10px;
     border-top: 1px solid grey;
 }
 .imgimg{
     border: 1px solid #ddd;
     border-radius: 20px;
-    width: 190px;
+    width: 100%;
     height: 200px;
+
+    object-fit: cover;
 }
 
+.make_cocktail_wrap {
+    width: 20%;
+    margin: 10px;
+}

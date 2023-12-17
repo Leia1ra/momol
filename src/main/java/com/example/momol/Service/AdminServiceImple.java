@@ -97,5 +97,32 @@ public class AdminServiceImple implements AdminService{
         return mapper.count_board_new(y, m, d);
     }
 
+    @Override
+    public BusinessVO businessSelectbyUID(String UID) {
+        return mapper.businessSelectbyUID(UID);
+    }
+
+    @Override
+    public UserVO userSelectByUID(String UID) {
+        return mapper.userSelectByUID(UID);
+    }
+    @Override
+    public int businessDeletebyUID(String UID){
+        return mapper.businessDeletebyUID(UID);
+    }
+    public int businessApprove(String UID){
+        return mapper.businessApprove(UID);
+    }
+
+    @Override
+    public String lastAdminUID(int index, String UID) {
+        return mapper.lastAdminUID(index, UID);
+    }
+
+    @Override
+    public int toAdmin(String UID, String newUID) {
+        return mapper.toAdmin(UID, newUID);
+    }
+
 
 }

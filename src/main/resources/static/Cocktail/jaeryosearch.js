@@ -1,17 +1,6 @@
-window.onload = function () {
-    setDefaultActive();
-    changeColor('labelOne');
-    let type = document.getElementsByName("drinkType");
-
-    type.forEach((value, key)=> {
-        let arr = ['One','Two','Three','Four','Five'];
-        value.addEventListener("",function () {
-            if(value.checked === true){
-                changeColor('label'+arr[key])
-            }
-        })
-    });
-};
+window.onload = function () { };
+setDefaultActive();
+changeColor('labelOne');
 
 function setDefaultActive() {
     //칵테일정보를 초기로 지정해놓고 글씩 커졌다 작아졌다 설정
@@ -44,7 +33,7 @@ function changeColor(labelId) {
     });
 
     var selectedLabel = document.getElementById(labelId);
-    selectedLabel.style.backgroundColor = 'lightgreen'; // 선택된 라벨의 배경색 변경
+    selectedLabel.style.backgroundColor = 'var(--text-blue-200'; // 선택된 라벨의 배경색 변경
 }
 
 function searchCocktails2(searchText,context) {

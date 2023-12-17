@@ -4,15 +4,15 @@
 
 <main>
     <div class="container">
-        <a href="<%=request.getContextPath()%>/Cocktail/cakmain"><div class="section" onclick="changeActive(this)">
+        <a href="<%=request.getContextPath()%>/Cocktail/cakmain"><div class="section">
             <h2>칵테일 정보</h2>
         </div></a>
 
-        <a href="<%=request.getContextPath()%>/Cocktail/jaeryomain"><div class="section" onclick="changeActive(this)">
+        <a href="<%=request.getContextPath()%>/Cocktail/jaeryomain"><div class="section">
             <h2>재료 정보</h2>
         </div></a>
 
-        <a href="<%=request.getContextPath()%>/Cocktail/wordbook"><div class="section" onclick="changeActive(this)">
+        <a href="<%=request.getContextPath()%>/Cocktail/wordbook"><div class="section">
             <h2>용어 사전</h2>
         </div></a>
     </div>
@@ -21,27 +21,22 @@
 
         <div class="topwrap">
             <label class="button" id="labelOne">
-                <input type="radio" name="drinkType" value="one" onclick="changeColor('labelOne')" checked="checked">전체
+                <input type="radio" name="drinkType" value="one" onclick="changeColor('labelOne'); searchCocktails2('','<%=request.getContextPath()%>')" checked>전체
             </label>
-
             <label class="button" id="labelTwo">
-                <input type="radio" name="drinkType" value="two" onclick="changeColor('labelTwo')">술(약한도수)
+                <input type="radio" name="drinkType" value="two" onclick="changeColor('labelTwo'); getCategoryData('<%=request.getContextPath()%>','약한도수')">약한도수
             </label>
 
             <label class="button" id="labelThree">
-                <input type="radio" name="drinkType" value="three" onclick="changeColor('labelThree')">술(강한도수)
+                <input type="radio" name="drinkType" value="three" onclick="changeColor('labelThree'); getCategoryData('<%=request.getContextPath()%>','강한도수')">강한도수
             </label>
 
             <label class="button" id="labelFour">
-                <input type="radio" name="drinkType" value="four" onclick="changeColor('labelFour')">음료수
+                <input type="radio" name="drinkType" value="four" onclick="changeColor('labelFour'); getCategoryData('<%=request.getContextPath()%>','음료수')">음료수
             </label>
 
             <label class="button" id="labelFive">
-                <input type="radio" name="drinkType" value="five" onclick="changeColor('labelFive')">주스
-            </label>
-
-            <label class="button" id="labelSix">
-                <input type="radio" name="drinkType" value="six" onclick="changeColor('labelSix')">기타
+                <input type="radio" name="drinkType" value="five" onclick="changeColor('labelFive') ; getCategoryData('<%=request.getContextPath()%>','주스')">주스
             </label>
         </div>
 
@@ -67,3 +62,4 @@
 
 </main>
 <script src="/resources/Cocktail/jaeryosearch.js"></script>
+<script src="/resources/main/gnb_cak.js"></script>

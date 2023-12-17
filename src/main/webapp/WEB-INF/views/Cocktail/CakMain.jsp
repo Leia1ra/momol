@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <head>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/resources/Cocktail/CakMain.css" type="text/css">
 </head>
@@ -83,9 +82,12 @@
                 <div class="tag2">${data.tastetag}</div>
                 <div class="tag3">${data.smelltag}</div>
             </div>
+        </div>
         </c:forEach>
+
     </div>
 
 </main>
 </body>
 <script src="/resources/Cocktail/pagechange.js"></script>
+<script src="/resources/main/gnb_cak.js"></script>

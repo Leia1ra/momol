@@ -78,15 +78,28 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    position: relative;
 }
+
+.search-container > span.material-icons {
+    margin : 0;
+    position: absolute;
+    left: 10px;
+    cursor: pointer;
+}
+
 /*검색*/
 .search{
-    background-color: #ddd;
-    border: 1px solid #ddd;
-    width: 250px;
+    background-color: white;
+    color: #333333;
+    border: 1px solid var(--border-gray);
+    border-radius: 9px;
+    width: 230px;
     height: 30px;
-    font-size: 0.9em;
-    text-align: center;
+    font-size: 0.9rem;
+    text-align: left;
+    padding : 0 5px 0 40px;
 }
 .material-icons{
     margin: 3px 0 0 4px ;
@@ -147,24 +160,27 @@ main {
     object-fit: cover;
 }
 .tags{
+    justify-content: space-around;
     display: flex;
-    gap: 20px;
-    padding: 10px;
+    gap: 5px;
     margin: 10px 0 0 0px;
 }
 .tag1,.tag2,.tag3{
+    flex-basis: 60px;
+    color: white;
+    border-radius: 10px;
     width: 50px;
-    font-size: 0.7em;
-    height: 20px;
-    line-height: 22px;
+    font-size: 0.8em;
+    height: 23px;
+    line-height: 23px;
     font-weight: bold;
 }
 .tag1 {
-    background-color:#ddd;
+    background-color:lightseagreen;
 }
 .tag2{
-    background-color:#ddd;
+    background-color:cornflowerblue;
 }
 .tag3{
-    background-color:#ddd;
+    background-color:orchid;
 }

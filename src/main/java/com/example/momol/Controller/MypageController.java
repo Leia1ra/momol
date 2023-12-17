@@ -31,8 +31,6 @@ public class MypageController {
             vo = service.userSelectbyUID((String) session.getAttribute("logUID"));
 
             String userUID = (String) session.getAttribute("logUID");
-            System.out.println("userUID : " + userUID);
-
             //본인이 작성한 게시글 불러오기
             try {
                 List<CommunityVO> postList = service.my_post(userUID);

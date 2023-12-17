@@ -42,12 +42,14 @@
             <a href="/account/signIn">
                 <div class="main_header__nav__iconbox">
                     <span class="material-icons">person_add</span>
+                    <p class="main_Header__nav__iconbox_text">회원가입</p>
                 </div>
             </a>
 
             <a href="/account/login">
                 <div class="main_header__nav__iconbox">
                     <span class="material-icons">login</span>
+                    <p class="main_Header__nav__iconbox_text">로그인</p>
                 </div>
             </a>
         </c:if>
@@ -57,6 +59,7 @@
             <a href="/account/logout">
                 <div class="main_header__nav__iconbox">
                     <span class="material-icons">logout</span>
+                    <p class="main_Header__nav__iconbox_text">로그아웃</p>
                 </div>
             </a>
 
@@ -64,6 +67,7 @@
             <a href="/mmypage/mypage">
                 <div class="main_header__nav__iconbox">
                     <span class="material-icons">account_circle</span>
+                    <p class="main_Header__nav__iconbox_text">마이페이지</p>
                 </div>
             </a>
         </c:if>
@@ -109,14 +113,14 @@
 
             <a href="<%=request.getContextPath()%>/combain">
                 <div class="main__nav__box">
-                    <span class="material-icons">shopping_bag</span>
+                    <span class="material-icons">kitchen</span>
                     <p class="bold">술장고</p>
                 </div>
             </a>
 
             <a href="<%=request.getContextPath()%>/worldcup">
                 <div class="main__nav__box">
-                    <span class="material-icons">thumb_up</span>
+                    <span class="material-icons">emoji_events</span>
                     <p class="bold">월드컵</p>
                 </div>
             </a>
@@ -263,7 +267,7 @@
         console.log(scrollY);
 
         if (scrollY >= 750) {
-            header.style.backgroundColor = "#70a4db"
+            header.style.backgroundColor = "#63b3ed" //text-blue-400
         } else {
             header.style.backgroundColor = "rgba(255, 255, 255, 0)";
 

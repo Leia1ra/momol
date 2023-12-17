@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <head>
-<%--    <link rel="stylesheet" href="resources/Account/login.css">--%>
+    <%--    <link rel="stylesheet" href="resources/Account/login.css">--%>
     <link rel="stylesheet" href="/resources/Cocktail/JaeryoInformation.css" type="text/css">
 </head>
 <body onload="setDefaultActive()">
@@ -38,11 +38,13 @@
         <div class="title">해당 재료로 만들 수 있는 칵테일</div>
         <div class="ang">
             <div class="rhksfus">
-                <c:forEach var="vo" items="${li}">
-                <a href="<%=request.getContextPath()%>/Cocktail/jaeryoinfo?ing_num=${data.ing_num}">
-                    <img src="${vo.cocktail_img}" class="imgimg"></a>
-                <div class="title2">${vo.name}</div>
-                <div class="explain2">${vo.cocktail_detail}</div>
+                <c:forEach var="list" items="${li}">
+                    <div class="make_cocktail_wrap">
+                        <a href="<%=request.getContextPath()%>/Cocktail/cakinfo?name=${list.name}">
+                            <img src="${list.cocktail_img}" class="imgimg"></a>
+                        <div class="title2">${list.name}</div>
+                        <div class="explain2">${list.cocktail_detail}</div>
+                    </div>
                 </c:forEach>
             </div>
         </div>
@@ -77,3 +79,4 @@
 
 </main>
 </body>
+<script src="/resources/main/gnb_cak.js"></script>

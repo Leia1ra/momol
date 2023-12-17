@@ -28,7 +28,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-import java.util.Base64;
+import java.util.Base64.Encoder;
 import java.util.Base64.Decoder;
 
 @Controller
@@ -51,6 +51,7 @@ public class UserController {
     @Autowired /* 암호 해싱(Bcrypt) */
     PasswordEncoder passwordEncoder;
     Decoder decode = Base64.getDecoder();
+    Encoder encode = Base64.getEncoder();
 
     /* 로그인 뷰 페이지 */
     @GetMapping("/login")
@@ -243,6 +244,11 @@ public class UserController {
     private void fileUpload(HttpServletRequest req, String fileName, String path) throws IOException {
         MultipartHttpServletRequest mr = (MultipartHttpServletRequest) req;
         MultipartFile multipartFile = mr.getFile("Business_certificate");
+        File directory = new File(path);
+        if(!directory.exists()){
+            boolean created = directory.mkdirs();
+        }
+
         if(multipartFile != null && !multipartFile.isEmpty()){
             String orgFileName = multipartFile.getOriginalFilename();
             if(orgFileName != null && !orgFileName.equals("")){
@@ -365,22 +371,24 @@ public class UserController {
         if(tmp != null){
             mav.addObject("type", "temporary");
             mav.addObject("tmp", tmp);
+            mav.addObject("UID", UID);
         } else {
             mav.addObject("type", "logUser");
+            mav.addObject("UID", new String(encode.encode(UID.getBytes())));
         }
-        mav.addObject("UID", UID);
         mav.setViewName("Account/pwChange");
         return mav;
     }
 
     @PostMapping("/pwChangeOk")
-    public void pwChangeAction(String newPw, String UID, HttpServletResponse res){
+    public void pwChangeAction(String newPw, String UID, HttpServletResponse res, HttpSession session){
         System.out.println(UID + " : " + newPw);
         String encodePw = passwordEncoder.encode(newPw);
 
         int result = service.pwUpdate(new String(decode.decode(UID)), encodePw);
         try {
             if(result != 0){
+                session.invalidate();
                 res.sendRedirect("/account/login");
             } else {
                 res.setContentType("text/html; charset=UTF-8");
@@ -396,24 +404,30 @@ public class UserController {
         }
     }
     @PostMapping("/pwChangeAsync") @ResponseBody
-    public Map pwChangeAsync(String Pw, String UID){
+    public Map pwChangeAsync(String Pw, String UID, String type){
         Map result = new HashMap();
         UserVO vo = service.pwMatchByUID(new String(decode.decode(UID)));
-        String decodePw = new String(decode.decode(Pw));
-        if(decodePw.substring(0, decodePw.indexOf("_")).equals("TemporaryPassword")){
-            if(vo.getPw().equals(decodePw)){
-                result.put("result", true);
-            } else {
-                result.put("result", false);
-                result.put("message", "잘못된 경로입니다.");
+
+        if(type.equals("temporary")){
+            String decodePw = new String(decode.decode(Pw));
+            if(decodePw.substring(0, decodePw.indexOf("_")).equals("TemporaryPassword")){
+                if(vo.getPw().equals(decodePw)){
+                    result.put("result", true);
+                } else {
+                    result.put("result", false);
+                    result.put("message", "잘못된 경로입니다.");
+                }
             }
-        } else {
-            if(passwordEncoder.matches(decodePw, vo.getPw())){
+        } else if(type.equals("logUser")){
+            if(passwordEncoder.matches(Pw, vo.getPw())){
                 result.put("result", true);
             } else {
                 result.put("result", false);
                 result.put("message", "기존 비밀번호가 잘못 입력되었습니다.");
             }
+        } else {
+            result.put("result", false);
+            result.put("message","잘못된 접근");
         }
         return result;
     }

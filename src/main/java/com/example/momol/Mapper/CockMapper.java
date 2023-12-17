@@ -14,6 +14,8 @@ public interface CockMapper {
     List<CocktailVO> searchCocktails(String searchText);
     List<CockIngredientVO> cock_ingre(String name);
     List<CocktailVO> getCategoryData2(CocktailVO vo);
+//    관련칵테일
+List<CocktailVO> make_list2(String tagName);
 
 
 }

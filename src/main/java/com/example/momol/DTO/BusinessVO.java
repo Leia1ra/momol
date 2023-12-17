@@ -10,7 +10,6 @@ public class BusinessVO {
     private String bizno;
     private String UID;
     private String place;
-    private String p_img;
 
     private String other;
     private String address;
@@ -18,4 +17,6 @@ public class BusinessVO {
     private String time;
     private String lasttouch;
     private boolean approved;
+
+    private String imgPath;
 }

@@ -19,7 +19,6 @@
     <select id="getPostsSortedByLikes" resultType="CommunityVO">
         SELECT * FROM board ORDER BY likes DESC
     </select>
-
     <select id="searchPosts" resultType="CommunityVO" parameterType="map">
         SELECT * FROM board
         <if test="searchType == 'title'">

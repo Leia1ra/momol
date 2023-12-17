@@ -1,6 +1,5 @@
-window.onload = function () {
-    setDefaultActive();
-};
+window.onload = function () { };
+setDefaultActive();
 
 function setDefaultActive() {
     const defaultSection = document.querySelector('.section');
@@ -93,7 +92,7 @@ function filterData(formData) {
         data.forEach(function (r) {
                 inner += `
              <div class="grid-item">
-                <a href="$/Cocktail/cakinfo?name=${r.name}">                  
+                <a href="/Cocktail/cakinfo?name=${r.name}">                  
                     <img src="${r.cocktail_img}" alt="게시물1썸네일" class="thumbnail">
                     <div>${r.name}</div>
                     <div class="dz">${r.cocktail_detail}</div>
@@ -121,10 +120,4 @@ function filterData(formData) {
     //     }
     // });
 }
-
-
-
-
-
-
 
