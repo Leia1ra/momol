@@ -69,10 +69,7 @@ public class CocktailController {
     @GetMapping("/jaeryoinfo")
     public ModelAndView JaeryoInfo(int ing_num){
         ModelAndView mav = new ModelAndView();
-
         IngredientVO vo = service2.jaeryoinfo(ing_num);
-//        System.out.println(vo.toString());
-
         List<CocktailVO> list = service2.make_list(String.valueOf(ing_num));
         System.out.println(list.toString());
 

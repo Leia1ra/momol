@@ -38,12 +38,12 @@
         <div class="title">해당 재료로 만들 수 있는 칵테일</div>
         <div class="ang">
             <div class="rhksfus">
-                <c:forEach var="vo" items="${li}">
+                <c:forEach var="list" items="${li}">
                     <div class="make_cocktail_wrap">
-                        <a href="<%=request.getContextPath()%>/Cocktail/jaeryoinfo?ing_num=${data.ing_num}">
-                            <img src="${vo.cocktail_img}" class="imgimg"></a>
-                        <div class="title2">${vo.name}</div>
-                        <div class="explain2">${vo.cocktail_detail}</div>
+                        <a href="<%=request.getContextPath()%>/Cocktail/cakinfo?name=${list.name}">
+                            <img src="${list.cocktail_img}" class="imgimg"></a>
+                        <div class="title2">${list.name}</div>
+                        <div class="explain2">${list.cocktail_detail}</div>
                     </div>
                 </c:forEach>
             </div>
