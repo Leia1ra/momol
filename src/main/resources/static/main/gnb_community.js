@@ -15,6 +15,6 @@ header_area.addEventListener('mouseover', function () {
 header_area.addEventListener('mouseout', function () {
     // 코드 작성
     $('#ect_header__nav > ul > li:nth-child(1) > div').show();
-    $('#ect_header__1 > div.ect_header__ul__deep1 > ul').show();
+    $('#ect_header__2 > div.ect_header__ul__deep1 > ul').show();
 
 });
