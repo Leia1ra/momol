@@ -37,6 +37,11 @@ public class CommentController {
 
         String user = (String) session.getAttribute("logUID");
 
+        if (user == null) {
+            mav.setViewName("redirect:/account/login");  // 로그인 페이지 경로에 맞게 변경
+            return mav;
+        }
+
         CommentsVO newComment = new CommentsVO();
         newComment.setUID2(user);
         newComment.setContent(content);
@@ -46,8 +51,8 @@ public class CommentController {
         commentService.addComment(newComment);
 
         List<CommentsVO> commentList = commentService.getCommentsByBoardNum(num);
-
         mav.addObject("comments", commentList);
+
         mav.setViewName("redirect:/community/walls/" + num);
         return mav;
     }
