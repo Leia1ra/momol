@@ -6,7 +6,7 @@ SHOW TABLES;
 
 /* 로그인 */
 INSERT INTO User(UID, Id, Pw, Nick, Name, Birth, Phone, Email, Gender)
-VALUES ('ADMIN_000000', 'admin', '$2a$10$6E9SJTlq9nxQ6ubsQfH/hO/1XJf9uZi2CG8oDHVY6ftokq2l/L/fq', 'ADMIN','관리자', now(), '000-0000-0000', 'leia92@icloud.com','none');
+VALUES ('ADMIN_000000', 'admin', '$2a$10$6E9SJTlq9nxQ6ubsQfH/hO/1XJf9uZi2CG8oDHVY6ftokq2l/L/fq', 'ADMIN','관리자', now(), '000-0000-0000', 'admin@momol.com','none');
 CREATE TABLE User (
     UID VARCHAR(20) NOT NULL PRIMARY KEY,
     Id VARCHAR(12) NOT NULL UNIQUE,
@@ -90,6 +90,15 @@ DELETE FROM biMenu;
 
 
 /* 칵테일 테이블 */
+CREATE TABLE liquor_refi (
+    UID VARCHAR(20) NOT NULL,
+    ing_name VARCHAR(500) NOT NULL,
+    save_time DATETIME DEFAULT now() NOT NULL,
+    FOREIGN KEY (UID) REFERENCES User(UID)
+);
+INSERT INTO liquor_refi (UID, ing_name, save_time) VALUES ('GENE_20231218 000000', '맥주,소주', '2023-12-18 01:46:07');
+
+
 CREATE TABLE baseTag (
     tagNo INT PRIMARY KEY AUTO_INCREMENT,
     tagName VARCHAR(15) NOT NULL
