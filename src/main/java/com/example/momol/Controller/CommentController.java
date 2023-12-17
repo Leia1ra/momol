@@ -5,6 +5,7 @@ import com.example.momol.DTO.CommentsVO;
 import com.example.momol.DTO.CommunityVO;
 import com.example.momol.Service.CommentService;
 import com.example.momol.Service.CommunityService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -30,11 +31,13 @@ public class CommentController {
 
 
     @PostMapping("/addComment")
-    public ModelAndView addComment(@RequestParam("content") String content, @RequestParam("num") int num, Model model) {
+    public ModelAndView addComment(@RequestParam("content") String content, @RequestParam("num") int num, HttpSession session, Model model) {
         ModelAndView mav = new ModelAndView();
 
+        String user = (String) session.getAttribute("logUID");
+
         CommentsVO newComment = new CommentsVO();
-        newComment.setUID2("user");
+        newComment.setUID2(user);
         newComment.setContent(content);
         newComment.setLikes(0);
         newComment.setNum(num);
