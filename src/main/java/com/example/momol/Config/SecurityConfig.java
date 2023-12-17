@@ -39,8 +39,8 @@ public class SecurityConfig {
         http.authorizeHttpRequests(authorize ->
             authorize
                 .requestMatchers("/").permitAll()
-                // .requestMatchers("/", "/account/login", "/community/**").permitAll()
-                .requestMatchers("/general/**").hasRole(Role.GENERAL.name()) // ROLE_를 자동으로 붙임
+                .requestMatchers("/account/**").permitAll()
+                .requestMatchers("/mmypage/mypage", "/mmypage/mypageOk").hasRole(Role.GENERAL.name()) // ROLE_를 자동으로 붙임
                 .requestMatchers("/mmypage/business","/mmypage/businessOk", "/mmypage/menuInsertOk", "/mmypage/menuDeleteOk","/mmypage/menuUpdate").hasRole(Role.BUSINESS.name())
                 .requestMatchers("/admin/**").hasRole(Role.ADMIN.name())
                 .anyRequest().permitAll()//.authenticated()
