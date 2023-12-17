@@ -1,5 +1,5 @@
 /* MYPAGE */
-*{
+main {
     box-sizing: border-box
 }
 
@@ -18,7 +18,7 @@
 }
 #activity-b1{
     font-weight: bold;
-    font-size: 20px;
+    font-size: 30px;
     margin-bottom: 10px;
 }
 .activity-b2, .activity-b3 {
@@ -288,4 +288,8 @@ input[type=radio]:checked+label>.activity-b3{
 
 .activity-li2 :hover {
     background-color: #f0f0f0;
+}
+
+#activity-pw {
+
 }

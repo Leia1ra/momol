@@ -90,3 +90,5 @@
     const headerGnb = document.querySelector("#ect_header__1 > div");
     headerGnb.style.display = "block";
 </script>
+
+<script src="/resources/main/gnb_cak.js"></script>

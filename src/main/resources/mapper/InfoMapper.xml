@@ -18,7 +18,7 @@
     <!-- 마이페이지 : 내 글 불러오기 -->
     <select id="my_post" resultType="com.example.momol.DTO.CommunityVO">
         SELECT num, Category, title, writetime, views, likes
-        from board join `board_ category` bc on board.catnum = bc.KeyNo
+        from board join `board_ category` bc on board.catnum = bc.catnum
         where UID= #{UID}
     </select>
 

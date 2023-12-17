@@ -250,3 +250,13 @@ document.addEventListener("DOMContentLoaded", function () {
     load_btn.addEventListener("click", combain_load);
 
 });
+
+let header_area = document.querySelector("#ect_header__nav");
+header_area.addEventListener('mouseover', function () {
+    gnb_mouseout();
+});
+
+header_area.addEventListener('mouseout', function () {
+    // 코드 작성
+    document.querySelector("#ect_header__nav > ul > li:nth-child(3) > div").style.display = "block";
+});
