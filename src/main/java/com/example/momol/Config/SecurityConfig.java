@@ -1,7 +1,9 @@
 package com.example.momol.Config;
 
+import com.example.momol.Config.Handler.ErrorAccessDeniedHandler;
 import com.example.momol.Config.Handler.AuthFailureHandler;
 import com.example.momol.Config.Handler.AuthSuccessHandler;
+import com.example.momol.Config.Handler.ErrorAuthenticationEntryPoint;
 import com.example.momol.Config.Role.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +13,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -40,7 +41,7 @@ public class SecurityConfig {
                 .requestMatchers("/").permitAll()
                 // .requestMatchers("/", "/account/login", "/community/**").permitAll()
                 .requestMatchers("/general/**").hasRole(Role.GENERAL.name()) // ROLE_를 자동으로 붙임
-                .requestMatchers("/business/**").hasRole(Role.BUSINESS.name())
+                .requestMatchers("/mmypage/business","/mmypage/businessOk", "/mmypage/menuInsertOk", "/mmypage/menuDeleteOk","/mmypage/menuUpdate").hasRole(Role.BUSINESS.name())
                 .requestMatchers("/admin/**").hasRole(Role.ADMIN.name())
                 .anyRequest().permitAll()//.authenticated()
         );
@@ -62,8 +63,16 @@ public class SecurityConfig {
                 .invalidateHttpSession(true)
         );
 
+        http.exceptionHandling((handlingConfigurer)->
+            handlingConfigurer
+                    .accessDeniedHandler(new ErrorAccessDeniedHandler())
+                    .authenticationEntryPoint(new ErrorAuthenticationEntryPoint())
+                    // .accessDeniedPage("/err")
+        );
+
         return http.build();
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder(){

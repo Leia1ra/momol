@@ -16,4 +16,5 @@ public interface CockService {
     List<CockIngredientVO> cock_ingre(String name);
     List<CocktailVO> getCategoryData2(CocktailVO vo);
 
+    List<CocktailVO> make_list2(String tagName);
 }

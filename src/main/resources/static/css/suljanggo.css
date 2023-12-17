@@ -257,6 +257,7 @@
 }
 
 .page_title__main {
+    color : var(--text-green-600);
     font-size : 30px;
     font-weight: bold;
 }

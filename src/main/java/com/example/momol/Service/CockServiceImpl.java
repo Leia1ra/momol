@@ -44,6 +44,11 @@ public class CockServiceImpl implements CockService{
 
     }
 
+    @Override
+    public List<CocktailVO> make_list2(String tagName) {
+        return mapper.make_list2(tagName);
+    }
+
 }
 
 

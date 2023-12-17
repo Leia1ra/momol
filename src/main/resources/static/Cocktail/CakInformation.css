@@ -96,8 +96,8 @@ main {
 /*칵테일영어이름*/
 .engname{
     height:40px;
-    margin-left: 10px;
-    line-height: 40px;
+    margin-left: 15px;
+    line-height: 47px;
     font-weight: normal;
     font-size: 0.65em;
     color: darkgray;
@@ -113,25 +113,23 @@ main {
     font-weight: bold;
     display: flex;
 }
-.tag1,.tag2,.tag3, .tag4{
-    border: 1px solid #ddd;
-    border-radius: 7px;
+.tag1,.tag2,.tag3{
+    color: beige;
+    border-radius: 10px;
     margin-right: 20px;
-    line-height: 15px;
+    height: 30px;
+    line-height: 21px;
     padding: 5px;
     font-size: 0.8em;
 }
-.tag1{
-    background-color: greenyellow;
+.tag1 {
+    background-color:lightseagreen;
 }
 .tag2{
-    background-color: orange;
+    background-color:cornflowerblue;
 }
 .tag3{
-    background-color: deepskyblue;
-}
-.tag4{
-    background-color: palevioletred;
+    background-color:orchid;
 }
 /*=====================================================*/
 .second{
@@ -174,7 +172,7 @@ main {
     width: 100%;
     padding : 5px;
     margin: 30px auto 15px auto;
-    line-height: 50px;
+    line-height: 60px;
 }
 .jaeryos{
     margin: 15px 0;
@@ -222,7 +220,7 @@ main {
 .title2{
     margin: 10px;
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.5em;
 }
 .fourthtitle{
     font-size: 1.7em;
@@ -235,6 +233,7 @@ main {
     font-weight: bold;
     font-size: 0.9em;
     line-height: 20px;
+    color: grey;
     width: 180px;
     margin-left: 10px;
     margin-bottom: 10px;
@@ -267,14 +266,14 @@ main {
     border: 1px solid #ddd;
     border-radius: 7px;
 }
-.tag10{
-    background-color: greenyellow;
+.tag10 {
+    background-color:lightseagreen;
 }
 .tag20{
-    background-color: orange;
+    background-color:cornflowerblue;
 }
 .tag30{
-    background-color: deepskyblue;
+    background-color:orchid;
 }
 .tagss{
     font-weight: bold;

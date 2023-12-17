@@ -43,7 +43,11 @@ public class CocktailController {
         CocktailVO vo = service.cocktailInfo(name);
         List<CockIngredientVO> list = service.cock_ingre(name);
 
+        List<CocktailVO> list2 = service.make_list2(vo.getBasetag());
+
+
         System.out.println(vo.toString());
+        mav.addObject("li2", list2);
         mav.addObject("vo",vo);
         mav.addObject("li", list);
         mav.setViewName("Cocktail/CakInformation");
@@ -65,10 +69,7 @@ public class CocktailController {
     @GetMapping("/jaeryoinfo")
     public ModelAndView JaeryoInfo(int ing_num){
         ModelAndView mav = new ModelAndView();
-
         IngredientVO vo = service2.jaeryoinfo(ing_num);
-//        System.out.println(vo.toString());
-
         List<CocktailVO> list = service2.make_list(String.valueOf(ing_num));
         System.out.println(list.toString());
 
@@ -110,6 +111,12 @@ public class CocktailController {
         if(vo.getBasetag() == null){
             vo.setBasetag("");
         }
+        if(vo.getTastetag() == null){
+            vo.setTastetag("");
+        }
+        //if(vo.getABV() == null){
+        //    vo.setABV(0.0F);
+        //}
 
 
         return service.getCategoryData2(vo);

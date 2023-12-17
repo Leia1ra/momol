@@ -5,6 +5,7 @@ import com.example.momol.DTO.CommentsVO;
 import com.example.momol.DTO.CommunityVO;
 import com.example.momol.Service.CommentService;
 import com.example.momol.Service.CommunityService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -61,6 +64,10 @@ public class CommunityController {
         BoardDAO boardDAO = new BoardDAO();
         List<CommunityVO> boards = boardDAO.getAllBoards();
 
+        System.out.println(boards.toString());
+
+        Calendar cal = Calendar.getInstance();
+        model.addAttribute("cal", cal);
         model.addAttribute("boards", boards);
         return "Community/walls";
     }
@@ -141,18 +148,37 @@ public class CommunityController {
         BoardDAO boardDAO = new BoardDAO();
         CommunityVO board = boardDAO.vo(num);
 
+        System.out.println(board.toString());
+
         // 조회수 업데이트
         boardDAO.viewUpdate(board.getViews() + 1, num);
         List<CommentsVO> commentList = commentService.getCommentsByBoardNum(num);
 
         model.addAttribute("board", board);
         model.addAttribute("comments", commentList);
+
         return "Community/post-view";
     }
 
+    // 글 쓰는 페이지
     @GetMapping("/writing")
-    public String posting() {
-        return "Community/posting";
+    public ModelAndView posting(HttpSession session) {
+
+        ModelAndView mv = new ModelAndView();
+
+        // 로그인중이 아니면
+        if ( !StringUtils.hasText((String) session.getAttribute("logUID")) ) {
+            mv.setViewName("redirect:/account/login"); // 로그인 페이지로
+
+        } else { //로그인 중이면
+            String userUID = (String) session.getAttribute("logUID");
+            System.out.println("userUID : " + userUID);
+
+            mv.addObject("userUID", userUID);
+            mv.setViewName("Community/posting"); // 글쓰기 페이지로
+        }
+
+        return mv;
     }
 
 
@@ -186,17 +212,25 @@ public class CommunityController {
         }
     }
 
+    // 포스팅 작성 누르면 실행되는거
     @PostMapping("/posting")
-    public String writePost(
+    public ModelAndView writePost(
             CommunityVO vo,
             @RequestPart(value = "file", required = false) MultipartFile file,
-            RedirectAttributes redirectAttributes) {
+            RedirectAttributes redirectAttributes, HttpSession session) {
+
+        ModelAndView mv = new ModelAndView();
+        String userUID = (String) session.getAttribute("logUID");
+        mv.addObject("userUID", userUID);
+
         System.out.println(">" + vo.toString());
 
         int result = service.communityInsert(vo);
+        System.out.println(result);
         redirectAttributes.addFlashAttribute("result", result);
 
-        return "redirect:/";
+        mv.setViewName("redirect:/community/walls");
+        return mv;
     }
 
     @GetMapping("/delete/{num}")
