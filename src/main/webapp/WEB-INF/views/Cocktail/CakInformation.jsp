@@ -66,14 +66,14 @@
             <div class="rhksfus">
                 <c:forEach var="data" items="${li2}">
                 <div class="make_cocktail_wrap">
-                <a href="<%=request.getContextPath()%>/Cocktail/cakinfo?name=${data.name}"><img src="${data.cocktail_img}" class="imgimg"></a>
-                <div class="title2">${data.name}</div>
-                <div class="explain2">${data.cocktail_detail}</div>
-                <div class="tagss">
-                    <div class="tag10">${data.basetag}</div>
-                    <div class="tag20">${data.tastetag}</div>
-                    <div class="tag30">${data.smelltag}</div>
-                </div>
+                    <a href="<%=request.getContextPath()%>/Cocktail/cakinfo?name=${data.name}"><img src="${data.cocktail_img}" class="imgimg"></a>
+                        <div class="title2">${data.name}</div>
+                        <div class="explain2">${data.cocktail_detail}</div>
+                    <div class="tagss">
+                        <div class="tag10">${data.basetag}</div>
+                        <div class="tag20">${data.tastetag}</div>
+                        <div class="tag30">${data.smelltag}</div>
+                    </div>
                 </div>
                 </c:forEach>
             </div>

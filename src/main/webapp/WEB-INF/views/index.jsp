@@ -142,14 +142,15 @@
             <div class="main__content__box">
 
                 <div class="main__beige_area"></div>
-                <div class="main__img_area_1"></div>
-                <div class="main__img_area_2"></div>
+                <div style="background-image:url('/resources/img/image 33.png')" class="main__img_area_1"></div>
+                <div style="background-image:url('/resources/img/image 11.png')" class="main__img_area_2"></div>
+
                 <div class="main__text_area_1">
-                    <p>텍스트 텍스트 텍스트 텍스트 텍스트</p>
+                    <p>Let's Drink!</p>
                 </div>
 
                 <a href="#">
-                    <div class="main__content__box_text">뭘로가기 ▶ </div>
+                    <div class="main__content__box_text">칵테일 보기 ▶ </div>
                 </a>
             </div>
         </div>
@@ -158,17 +159,20 @@
             <div class="main__content__box">
 
                 <div class="main__beige_area_2"></div>
-                <div class="main__img_area_3"></div>
-                <div class="main__img_area_4"></div>
+                <div style="background-image:url('/resources/img/image 28.png')" class="main__img_area_3"></div>
+
+                <div style="background-image:url('/resources/img/image 24.png')" class="main__img_area_4"></div>
+
                 <div class="main__text_area_2">
-                    <p>텍스트 텍스트 텍스트 텍스트 텍스트</p>
+                    <p>섞고, 섞고, 돌리고, 섞고.</p>
+                    <p>Mix, mix, spin, mix.</p>
                 </div>
                 <div class="main__text_area_3">
-                    <p>텍스트 텍스트 텍스트 텍스트 텍스트</p>
+                    <p>술은 행복한 자에게만 달콤하다.</p>
                 </div>
 
                 <a href="#">
-                    <div class="main__content__box_text">뭘로가기 ▶ </div>
+                    <div class="main__content__box_text">술장고 만들기 ▶ </div>
                 </a>
             </div>
         </div>
@@ -180,7 +184,7 @@
                 <div class="main__text_area_4 no-drag">칵테일 좋아하세요?</div>
 
                 <a href="#">
-                    <div class="main__content__box_text">뭘로가기 ▶</div>
+                    <div class="main__content__box_text">커뮤니티 ▶</div>
                 </a>
             </div>
         </div>
