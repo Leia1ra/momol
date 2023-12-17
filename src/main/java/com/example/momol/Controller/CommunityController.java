@@ -22,6 +22,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -62,6 +64,10 @@ public class CommunityController {
         BoardDAO boardDAO = new BoardDAO();
         List<CommunityVO> boards = boardDAO.getAllBoards();
 
+        System.out.println(boards.toString());
+
+        Calendar cal = Calendar.getInstance();
+        model.addAttribute("cal", cal);
         model.addAttribute("boards", boards);
         return "Community/walls";
     }
@@ -142,12 +148,15 @@ public class CommunityController {
         BoardDAO boardDAO = new BoardDAO();
         CommunityVO board = boardDAO.vo(num);
 
+        System.out.println(board.toString());
+
         // 조회수 업데이트
         boardDAO.viewUpdate(board.getViews() + 1, num);
         List<CommentsVO> commentList = commentService.getCommentsByBoardNum(num);
 
         model.addAttribute("board", board);
         model.addAttribute("comments", commentList);
+
         return "Community/post-view";
     }
 
@@ -157,15 +166,16 @@ public class CommunityController {
 
         ModelAndView mv = new ModelAndView();
 
+        // 로그인중이 아니면
         if ( !StringUtils.hasText((String) session.getAttribute("logUID")) ) {
-            mv.setViewName("redirect:/account/login");
-        } else {
+            mv.setViewName("redirect:/account/login"); // 로그인 페이지로
+
+        } else { //로그인 중이면
             String userUID = (String) session.getAttribute("logUID");
             System.out.println("userUID : " + userUID);
 
             mv.addObject("userUID", userUID);
-
-            mv.setViewName("Community/posting");
+            mv.setViewName("Community/posting"); // 글쓰기 페이지로
         }
 
         return mv;
