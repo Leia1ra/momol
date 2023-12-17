@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.ClientInfoStatus;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,6 +90,10 @@ public class BusinessController {
         if(isBusi && vo == null){ // 비즈니스 사용자인데 레코드가 없을때
             mav.addObject("v","f");
             mav.setViewName("Mypage/business");
+
+            // vo.setBizno("null");
+            // mav.addObject("business", vo);
+            // mav.addObject("list", 0);
         } else if(isBusi && vo != null) { // 비즈니스 사용자이고 레코드가 있을때
             List<MenuVO> menulist = businessService.bimenuSelectbybizno(vo.getBizno());
             mav.addObject("v", "t");
@@ -109,6 +114,7 @@ public class BusinessController {
             mav.addObject("storeImage", pImgPath);
             mav.addObject("list", menulist);
             mav.setViewName("Mypage/business");
+
         } else {
             session.invalidate();
             mav.setViewName("redirect:/account/login");
