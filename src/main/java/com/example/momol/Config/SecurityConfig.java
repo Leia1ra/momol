@@ -1,5 +1,6 @@
 package com.example.momol.Config;
 
+import com.example.momol.Config.Handler.AccessErrorDeniedHandler;
 import com.example.momol.Config.Handler.AuthFailureHandler;
 import com.example.momol.Config.Handler.AuthSuccessHandler;
 import com.example.momol.Config.Role.Role;
@@ -11,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -62,8 +64,13 @@ public class SecurityConfig {
                 .invalidateHttpSession(true)
         );
 
+        http.exceptionHandling((handlingConfigurer)->
+            handlingConfigurer.accessDeniedHandler(new AccessErrorDeniedHandler())
+        );
+
         return http.build();
     }
+
 
     @Bean
     public PasswordEncoder passwordEncoder(){

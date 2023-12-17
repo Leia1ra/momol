@@ -24,4 +24,12 @@ public class HomeController {
 
         return mv;
     }
+
+    @RequestMapping("/err")
+    public ModelAndView errorPage(){
+        ModelAndView mav = new ModelAndView();
+
+        mav.setViewName("errorPage");
+        return mav;
+    }
 }
