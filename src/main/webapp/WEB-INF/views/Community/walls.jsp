@@ -21,7 +21,7 @@
                     <h2 class="title">담벼락</h2>
                     <p class="add">자유롭게 이야기를 나눠보세요..</p>
                 </div>
-                <div class="sort">
+                <div class="sort" style="opacity: 0">
                     <button id="sort-lately" onclick="sortPosts('최신')">최신 순</button>
                     <button id="sort-likes" onclick="sortPosts('좋아요')">좋아요 순</button>
                 </div>
@@ -113,3 +113,14 @@
         </main>
     </body>
 </html>
+
+<script>
+    // 커뮤니티 메뉴에 파란색 표시
+    const headerText = document.querySelector("#ect_header__2 > a");
+    headerText.style.color = "#4299e1";
+
+    const headerGnb = document.querySelector("#ect_header__2 > div");
+    headerGnb.style.display = "block";
+</script>
+
+<script src="/resources/main/gnb_community.js"></script>

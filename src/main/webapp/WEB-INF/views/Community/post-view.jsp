@@ -231,3 +231,10 @@
         </footer>
     </body>
 </html>
+
+
+<script>
+    // 커뮤니티 메뉴에 파란색 표시
+    const headerText = document.querySelector("#ect_header__2 > a");
+    headerText.style.color = "#4299e1";
+</script>

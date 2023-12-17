@@ -90,3 +90,4 @@
 </main>
 </body>
 <script src="/resources/Cocktail/pagechange.js"></script>
+<script src="/resources/main/gnb_cak.js"></script>
