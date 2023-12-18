@@ -5,11 +5,12 @@
 
 <mapper namespace="com.example.momol.Mapper.CommentMapper">
     <insert id="addComment" parameterType="com.example.momol.DTO.CommentsVO">
-        insert into comments(UID2,num, content) values(#{UID2}, #{num}, #{content})
+        insert into comments(UID2, num, content) values(#{UID2}, #{num}, #{content})
     </insert>
 
     <select id="getCommentsbyBoardNum" resultType="com.example.momol.DTO.CommentsVO">
-        SELECT * FROM comments WHERE num = #{num}
+<!--        SELECT * FROM comments WHERE num = #{num}-->
+        select * from comments join user u on comments.UID2 = u.UID where num = #{num};
     </select>
 
     <select id ="getComLikeNum" resultType="com.example.momol.DTO.CommentsVO">
