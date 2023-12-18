@@ -53,8 +53,8 @@ CREATE TABLE board (
     title VARCHAR(100) NULL,
     writeTime DATETIME DEFAULT now(),
     content LONGTEXT NULL,
-    views INT NULL,
-    delete BOOLEAN NULL
+    views INT NULL DEFAULT 0,
+    deleted BOOLEAN NULL DEFAULT FALSE
 ); desc board;
 CREATE TABLE comments (
     UID2 VARCHAR(20) NOT NULL,
@@ -62,8 +62,8 @@ CREATE TABLE comments (
     UID INT NULL,
     writeTime DATETIME NULL DEFAULT now(),
     content LONGTEXT NULL,
-    likes INT NULL,
-    delete BOOLEAN NULL
+    likes INT NULL DEFAULT 0,
+    deleted BOOLEAN NULL DEFAULT FALSE
 );
 
 
@@ -86,11 +86,6 @@ SELECT * FROM business;
 INSERT INTO business(UID, place, other, address, date, time)
 VALUES ('BUSI_20231215 000000', '장소임', '오더가 뭐임', '주소', '영업일', '영업시간');
 DELETE FROM business WHERE UID='BUSI_20231211 000000';
-
-INSERT INTO business(UID, place, other, address, date, time, approved)
-VALUES ('BUSI_20231217 000001', '장소1', '상세1', '주소1', '영업일1', '영업시간1',TRUE);
-INSERT INTO business(UID, place, other, address, date, time, approved)
-VALUES ('BUSI_20231217 000002', '장소2', '상세2', '주소2', '영업일2', '영업시간2', TRUE);
 
 
 DROP TABLE biMenu;
@@ -132,6 +127,7 @@ CREATE TABLE smellTag (
 ); DESC smellTag;
 SELECT * FROM smellTag;
 
+DROP TABLE ingredient;
 CREATE TABLE ingredient (
     ing_num INT AUTO_INCREMENT PRIMARY KEY,
     ing_name VARCHAR(50) NOT NULL,
@@ -139,16 +135,17 @@ CREATE TABLE ingredient (
     ing_photo TEXT NULL,
     ing_detail TEXT NOT NULL,
     ing_categ VARCHAR(15) NOT NULL,
-    abv INT NULL,
+    abv INT NULL/*,
     baseTag INT NULL default 0,
     tasteTag INT Null default 0,
-    smellTag int null default 0/*,
+    smellTag int null default 0,
     FOREIGN KEY (baseTag) REFERENCES baseTag(tagNo) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (tasteTag) REFERENCES tasteTag(tagNo) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (smellTag) REFERENCES smellTag(tagNo) ON DELETE CASCADE ON UPDATE CASCADE*/
 ); DESC ingredient;
 SELECT * FROM ingredient;
 
+DROP TABLE cocktail;
 CREATE TABLE cocktail (
     name VARCHAR(30) PRIMARY KEY,
     name_eng VARCHAR(30) NULL,
@@ -166,6 +163,7 @@ CREATE TABLE cocktail (
 ); DESC cocktail;
 SELECT * FROM cocktail;
 
+DROP TABLE cock_ingre;
 CREATE TABLE cock_ingre (
     name VARCHAR(30) NOT NULL,
     ing_num INT NOT NULL,
@@ -173,7 +171,7 @@ CREATE TABLE cock_ingre (
     FOREIGN KEY (name) REFERENCES cocktail(name) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (ing_num) REFERENCES ingredient(ing_num) ON DELETE CASCADE ON UPDATE CASCADE
 ); DESC cock_ingre;
-SELECT * FROM cocktail;
+SELECT * FROM cock_ingre;
 
 /* 비즈니스 사용자 더미데이터 */
 INSERT INTO User(UID, Id, Pw, Nick, Name, Birth, Phone, Email, Gender)
@@ -554,6 +552,7 @@ INSERT INTO momol.cocktail (name, name_eng, ABV, cocktail_detail, recipe, cockta
 3. 부드럽게 저어준다.', null, 'https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_COCK_MASTER/65.white_russian.jpg', 4, 11, 2);
 
 /*베이스 태그*/
+SELECT * FROM tastetag;
 INSERT INTO momol.basetag (tagNo, tagName) VALUES (1, '진베이스');
 INSERT INTO momol.basetag (tagNo, tagName) VALUES (2, '럼베이스');
 INSERT INTO momol.basetag (tagNo, tagName) VALUES (3, '보드카');
@@ -582,6 +581,7 @@ INSERT INTO momol.tastetag (tagNo, tagName) VALUES (11, '민트맛');
 
 
 /* 재료 레코드 */
+SELECT * FROM ingredient;
 INSERT INTO momol.ingredient (ing_name, ing_name_eng, ing_photo, ing_detail, ing_categ, abv) VALUES ('아몬드 시럽', 'Almond syrup', 'https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/001.아몬드시럽
 .png', '아몬드로 만들어 달콤하고 우디하며 아몬드 맛이 나는 믹싱 시럽. ', '기타',  null );
 INSERT INTO momol.ingredient (ing_name, ing_name_eng, ing_photo, ing_detail, ing_categ, abv) VALUES ('앙고스투라 비터', 'Angostura bitter', 'https://cocktail-bucket.s3.ap-northeast-2.amazonaws.com/TB_ITEM_MASTER/002.앙

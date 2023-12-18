@@ -115,10 +115,12 @@ main {
 }
 .tag1,.tag2,.tag3{
     color: beige;
-    border-radius: 10px;
+    width: 75px;
+    text-align: center;
+    border-radius: 20px;
     margin-right: 20px;
     height: 30px;
-    line-height: 21px;
+    line-height: 30px;
     padding: 5px;
     font-size: 0.8em;
 }
@@ -193,7 +195,7 @@ main {
     margin : 20px;
 }
 .title2{
-    margin: 10px;
+    margin: 10px 0;
     font-weight: bold;
     font-size: 1.5em;
     display: -webkit-box;
@@ -264,6 +266,11 @@ main {
 
 }
 .tag10,.tag20,.tag30{
+    margin-top: 10px;
+    width: 50px;
+    text-align: center;
+    height: 20px;
+    color: white;
     line-height: 20px;
     padding: 4px 10px;
     font-size: 0.8em;
@@ -282,7 +289,7 @@ main {
 .tagss{
     font-weight: bold;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
 }
 
