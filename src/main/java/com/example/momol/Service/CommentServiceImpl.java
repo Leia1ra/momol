@@ -38,4 +38,9 @@ public class CommentServiceImpl implements CommentService {
     public int increaseLikes(int UID) {
         return commentsDAO.increaseLikes(UID);
     }
+
+    @Override
+    public String getCommentAuthor(String commentUID2) {
+        return commentsDAO.findAuthor(commentUID2);
+    }
 }

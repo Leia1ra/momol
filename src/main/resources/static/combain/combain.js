@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // ----------------------------------------------------
 
-//저장된 재료 불러오기 ( combain/load )
+    //저장된 재료 불러오기 ( combain/load )
     const load_btn = document.querySelector("#sel__load");
 
     function combain_load() {
@@ -120,7 +120,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
 
                 } catch (e) {
-                    //에러 이유
                     console.log("에러 이유 : " + e);
                 }
             },

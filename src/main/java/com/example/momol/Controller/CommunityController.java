@@ -276,5 +276,22 @@ public class CommunityController {
         return "redirect:/community/walls/" + num;
     }
 
+    @GetMapping("/search")
+    public String searchPosts(
+            @RequestParam(value = "searchType", required = false, defaultValue = "") String searchType,
+            @RequestParam(value = "keyword", required = false, defaultValue = "") String keyword,
+            Model model) {
+
+        System.out.println("searchType: " + searchType);
+        System.out.println("keyword: " + keyword);
+
+
+        List<CommunityVO> searchResults = service.searchPosts(searchType, keyword);
+
+        // 검색 결과를 모델에 추가
+        model.addAttribute("searchResults", searchResults);
+
+        return "Community/searchResult";
+    }
 
 }

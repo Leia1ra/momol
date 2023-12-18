@@ -251,11 +251,21 @@
                     <label for="activity-email">이메일</label>
                     <input type="text" class="activity-text" id="activity-email" name= "email" value="${user.getEmail()}" placeholder="이메일" readonly>
                     
-                    <c:if test="">
-                    <input type="button" id="activity-button-business"
-                           onclick="location.href='/mmypage/business'"
-                           value="사업자 인증하기 or 사업자 프로필 보기" />
-                    </c:if>
+                    <c:forEach var="authority" items="${user.authorities}">
+                        <c:if test="${authority.authority == 'ROLE_GENERAL'}">
+                        
+                        </c:if>
+                        <c:if test="${authority.authority == 'ROLE_BUSINESS'}">
+                            <input type="button" id="activity-button-business"
+                                   onclick="location.href='/mmypage/business'"
+                                   value="사업자 인증하기 or 사업자 프로필 보기" />
+                        </c:if>
+                        <c:if test="${authority.authority == 'ROLE_ADMIN'}">
+                            <input type="button" id="activity-button-business"
+                                   onclick="location.href='/admin'"
+                                   value="관리자 페이지로 가기" />
+                        </c:if>
+                    </c:forEach>
                     
 
                     <%--<input type="button" id="activity-button" value="정보수정" />--%>

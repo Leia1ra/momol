@@ -1,9 +1,6 @@
 package com.example.momol.Service;
 
-import com.example.momol.DTO.BusinessVO;
-import com.example.momol.DTO.CommunityVO;
-import com.example.momol.DTO.MenuVO;
-import com.example.momol.DTO.UserVO;
+import com.example.momol.DTO.*;
 import com.example.momol.Mapper.InfoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,6 +56,26 @@ public class InfoServiceImpl implements MypageService, BusinessService {
     @Override
     public void insertMenu(MenuVO menuVO) {
         mapper.insertMenu(menuVO);
+    }
+
+    @Override
+    public List<BusinessVO> storeList(PagingVO pvo) {
+        return mapper.storeList(pvo);
+    }
+
+    @Override
+    public BusinessVO businessSelectbyBIZNO(String bizno) {
+        return mapper.businessSelectbyBIZNO(bizno);
+    }
+
+    @Override
+    public void lastUpdate(String bizno) {
+        mapper.lastUpdate(bizno);
+    }
+
+    @Override
+    public int totalRecord(PagingVO pvo) {
+        return mapper.totalRecord(pvo);
     }
 
     @Override

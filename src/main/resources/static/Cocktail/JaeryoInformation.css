@@ -6,7 +6,7 @@
     font-weight: normal;
     font-style: normal;
 }
-*{
+main{
     box-sizing: border-box;
 }
 body {
@@ -115,7 +115,7 @@ main {
     margin : 20px;
 }
 .title2{
-    margin: 10px;
+    margin: 10px 0;
     font-weight: bold;
     font-size: 1.5em;
     display: -webkit-box;
@@ -147,7 +147,7 @@ main {
 .ang{
     /*width: 700px;*/
     display:flex;
-    padding:30px 20px;
+    padding: 10px;
     border-top: 1px solid grey;
 }
 .imgimg{

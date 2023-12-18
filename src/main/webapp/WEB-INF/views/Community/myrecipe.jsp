@@ -41,14 +41,17 @@
         <button>다음</button>
       </div>
     </div>
+    </div>
     <div class="search">
-      <select name="case" id="case">
-        <option value="title">제목</option>
-        <option value="author">글쓴이</option>
-        <option value="content">내용</option>
-      </select>
-      <input type="text">
-      <button>검색</button>
+      <form action="/community/search" method="get">
+        <select name="searchType" id="searchType">
+          <option value="title">제목</option>
+          <option value="author">글쓴이</option>
+          <option value="content">내용</option>
+        </select>
+        <input type="text" name="keyword">
+        <button type="submit">검색</button>
+      </form>
     </div>
   </section>
 </main>

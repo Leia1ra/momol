@@ -6,7 +6,7 @@
     font-weight: normal;
     font-style: normal;
 }
-*{
+main{
     box-sizing: border-box;
 }
 
@@ -157,7 +157,7 @@ main {
 }
 /*재료 사진*/
 .jaeryoimg{
-<<<<<<<<< Temporary merge branch 1
+
     width: 70px;
     height: 70px;
     border-radius: 50%;
@@ -201,18 +201,30 @@ main {
     -webkit-line-clamp: 1;
     overflow: hidden;
     text-overflow: ellipsis;
+
+}
+.fourthtitle{
+    font-size: 1.5em;
+    font-weight: bold;
+    border-bottom: 1px solid grey;
+    padding-bottom: 15px;
+    width: 100%;
+
 }
 .explain2{
     font-weight: bold;
     font-size: 0.9em;
     line-height: 20px;
     color: grey;
+    width: 100%;
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     text-overflow: ellipsis;
+    height: 40px;
 }
+
 .rhksfus{
     width: 100%;
     flex-wrap: wrap;
@@ -233,6 +245,15 @@ main {
     border-bottom: 1px solid grey;
     padding-bottom: 15px;
     width: 1200px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.ang{
+    width: 100%;
+    display:flex;
+
 }
 .imgimg{
     border: 1px solid #ddd;
@@ -240,15 +261,14 @@ main {
     width: 100%;
     height: 200px;
     object-fit: cover;
+
 }
 .tag10,.tag20,.tag30{
     line-height: 20px;
-    padding: 4px;
-    margin-left: 5px;
+    padding: 4px 10px;
     font-size: 0.8em;
-    margin-right: 10px;
     border: 1px solid #ddd;
-    border-radius: 7px;
+    border-radius: 10px;
 }
 .tag10 {
     background-color:lightseagreen;
@@ -262,7 +282,8 @@ main {
 .tagss{
     font-weight: bold;
     display: flex;
-    justify-content: left;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /*연주 추가 코드*/
@@ -289,4 +310,9 @@ main {
 
 .methods > div {
     white-space: pre-line;
+}
+
+.make_cocktail_wrap {
+    width: 23%;
+    margin : 10px;
 }

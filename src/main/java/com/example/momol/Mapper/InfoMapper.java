@@ -1,9 +1,6 @@
 package com.example.momol.Mapper;
 
-import com.example.momol.DTO.BusinessVO;
-import com.example.momol.DTO.CommunityVO;
-import com.example.momol.DTO.MenuVO;
-import com.example.momol.DTO.UserVO;
+import com.example.momol.DTO.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -28,4 +25,10 @@ public interface InfoMapper {
     void deleteMenu(MenuVO deleteMenu);
 
     void insertMenu(MenuVO menuVO);
+
+    List<BusinessVO> storeList(PagingVO pvo);
+    int totalRecord(PagingVO pvo);
+    BusinessVO businessSelectbyBIZNO(String bizno);
+
+    void lastUpdate(String bizno);
 }

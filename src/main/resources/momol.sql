@@ -6,7 +6,7 @@ SHOW TABLES;
 
 /* 로그인 */
 INSERT INTO User(UID, Id, Pw, Nick, Name, Birth, Phone, Email, Gender)
-VALUES ('ADMIN_000000', 'admin', '$2a$10$6E9SJTlq9nxQ6ubsQfH/hO/1XJf9uZi2CG8oDHVY6ftokq2l/L/fq', 'ADMIN','관리자', now(), '000-0000-0000', 'leia92@icloud.com','none');
+VALUES ('ADMIN_000000', 'admin', '$2a$10$6E9SJTlq9nxQ6ubsQfH/hO/1XJf9uZi2CG8oDHVY6ftokq2l/L/fq', 'ADMIN','관리자', now(), '000-0000-0000', 'admin@momol.com','none');
 CREATE TABLE User (
     UID VARCHAR(20) NOT NULL PRIMARY KEY,
     Id VARCHAR(12) NOT NULL UNIQUE,
@@ -23,7 +23,6 @@ SELECT * FROM User;
 DELETE FROM User;
 
 
-
 DROP TABLE LoginFailure;
 CREATE TABLE LoginFailure (
     UID VARCHAR(20),
@@ -37,6 +36,16 @@ SELECT count(Id) FROM LoginFailure WHERE Id='dl1197';
 
 
 /*커뮤니티*/
+create table board_category(
+    catnum int not null,
+    Category varchar(15) not null
+);
+INSERT INTO board_category (catnum, Category) VALUES (1, '담벼락');
+INSERT INTO board_category (catnum, Category) VALUES (2, '추천해주세요');
+INSERT INTO board_category (catnum, Category) VALUES (3, '다녀왔습니다');
+INSERT INTO board_category (catnum, Category) VALUES (4, '나만의레시피');
+INSERT INTO board_category (catnum, Category) VALUES (5, '위시리스트');
+
 CREATE TABLE board (
     num INT NOT NULL PRIMARY KEY ,
     catNum INT NULL,
@@ -78,6 +87,12 @@ INSERT INTO business(UID, place, other, address, date, time)
 VALUES ('BUSI_20231215 000000', '장소임', '오더가 뭐임', '주소', '영업일', '영업시간');
 DELETE FROM business WHERE UID='BUSI_20231211 000000';
 
+INSERT INTO business(UID, place, other, address, date, time, approved)
+VALUES ('BUSI_20231217 000001', '장소1', '상세1', '주소1', '영업일1', '영업시간1',TRUE);
+INSERT INTO business(UID, place, other, address, date, time, approved)
+VALUES ('BUSI_20231217 000002', '장소2', '상세2', '주소2', '영업일2', '영업시간2', TRUE);
+
+
 DROP TABLE biMenu;
 CREATE TABLE biMenu (
     bizNo VARCHAR(50) NOT NULL,
@@ -90,6 +105,15 @@ DELETE FROM biMenu;
 
 
 /* 칵테일 테이블 */
+CREATE TABLE liquor_refi (
+    UID VARCHAR(20) NOT NULL,
+    ing_name VARCHAR(500) NOT NULL,
+    save_time DATETIME DEFAULT now() NOT NULL,
+    FOREIGN KEY (UID) REFERENCES User(UID)
+);
+INSERT INTO liquor_refi (UID, ing_name, save_time) VALUES ('GENE_20231218 000000', '맥주,소주', '2023-12-18 01:46:07');
+
+
 CREATE TABLE baseTag (
     tagNo INT PRIMARY KEY AUTO_INCREMENT,
     tagName VARCHAR(15) NOT NULL
@@ -151,6 +175,51 @@ CREATE TABLE cock_ingre (
 ); DESC cock_ingre;
 SELECT * FROM cocktail;
 
+/* 비즈니스 사용자 더미데이터 */
+INSERT INTO User(UID, Id, Pw, Nick, Name, Birth, Phone, Email, Gender)
+VALUES
+    ('BUSI_20231217 000001', 'dummy1', '$2a$10$6E9SJTlq9nxQ6ubsQfH/hO/1XJf9uZi2CG8oDHVY6ftokq2l/L/fq', 'dummy1','관리자', NOW(), '000-0000-0001', 'dummy1@momol.com', 'none'),
+    ('BUSI_20231217 000002', 'dummy2', '$2a$10$6E9SJTlq9nxQ6ubsQfH/hO/1XJf9uZi2CG8oDHVY6ftokq2l/L/fq', 'dummy2','관리자', NOW(), '000-0000-0002', 'dummy2@momol.com', 'none'),
+    ('BUSI_20231217 000003', 'dummy3', '$2a$10$6E9SJTlq9nxQ6ubsQfH/hO/1XJf9uZi2CG8oDHVY6ftokq2l/L/fq', 'dummy3','관리자', NOW(), '000-0000-0003', 'dummy3@momol.com', 'none'),
+    ('BUSI_20231217 000004', 'dummy4', '$2a$10$6E9SJTlq9nxQ6ubsQfH/hO/1XJf9uZi2CG8oDHVY6ftokq2l/L/fq', 'dummy4','관리자', NOW(), '000-0000-0004', 'dummy4@momol.com', 'none'),
+    ('BUSI_20231217 000005', 'dummy5', '$2a$10$6E9SJTlq9nxQ6ubsQfH/hO/1XJf9uZi2CG8oDHVY6ftokq2l/L/fq', 'dummy5','관리자', NOW(), '000-0000-0005', 'dummy5@momol.com', 'none'),
+    ('BUSI_20231217 000006', 'dummy6', '$2a$10$6E9SJTlq9nxQ6ubsQfH/hO/1XJf9uZi2CG8oDHVY6ftokq2l/L/fq', 'dummy6','관리자', NOW(), '000-0000-0006', 'dummy6@momol.com', 'none'),
+    ('BUSI_20231217 000007', 'dummy7', '$2a$10$6E9SJTlq9nxQ6ubsQfH/hO/1XJf9uZi2CG8oDHVY6ftokq2l/L/fq', 'dummy7','관리자', NOW(), '000-0000-0007', 'dummy7@momol.com', 'none'),
+    ('BUSI_20231217 000008', 'dummy8', '$2a$10$6E9SJTlq9nxQ6ubsQfH/hO/1XJf9uZi2CG8oDHVY6ftokq2l/L/fq', 'dummy8','관리자', NOW(), '000-0000-0008', 'dummy8@momol.com', 'none'),
+    ('BUSI_20231217 000009', 'dummy9', '$2a$10$6E9SJTlq9nxQ6ubsQfH/hO/1XJf9uZi2CG8oDHVY6ftokq2l/L/fq', 'dummy9','관리자', NOW(), '000-0000-0009', 'dummy9@momol.com', 'none'),
+    ('BUSI_20231217 000010', 'dummy10', '$2a$10$6E9SJTlq9nxQ6ubsQfH/hO/1XJf9uZi2CG8oDHVY6ftokq2l/L/fq', 'dummy10','관리자', NOW(), '000-0000-0010', 'dummy10@momol.com', 'none'),
+    ('BUSI_20231217 000011', 'dummy11', '$2a$10$6E9SJTlq9nxQ6ubsQfH/hO/1XJf9uZi2CG8oDHVY6ftokq2l/L/fq', 'dummy11','관리자', NOW(), '000-0000-0011', 'dummy11@momol.com', 'none'),
+    ('BUSI_20231217 000012', 'dummy12', '$2a$10$6E9SJTlq9nxQ6ubsQfH/hO/1XJf9uZi2CG8oDHVY6ftokq2l/L/fq', 'dummy12','관리자', NOW(), '000-0000-0012', 'dummy12@momol.com', 'none'),
+    ('BUSI_20231217 000013', 'dummy13', '$2a$10$6E9SJTlq9nxQ6ubsQfH/hO/1XJf9uZi2CG8oDHVY6ftokq2l/L/fq', 'dummy13','관리자', NOW(), '000-0000-0013', 'dummy13@momol.com', 'none'),
+    ('BUSI_20231217 000014', 'dummy14', '$2a$10$6E9SJTlq9nxQ6ubsQfH/hO/1XJf9uZi2CG8oDHVY6ftokq2l/L/fq', 'dummy14','관리자', NOW(), '000-0000-0014', 'dummy14@momol.com', 'none'),
+    ('BUSI_20231217 000015', 'dummy15', '$2a$10$6E9SJTlq9nxQ6ubsQfH/hO/1XJf9uZi2CG8oDHVY6ftokq2l/L/fq', 'dummy15','관리자', NOW(), '000-0000-0015', 'dummy15@momol.com', 'none'),
+    ('BUSI_20231217 000016', 'dummy16', '$2a$10$6E9SJTlq9nxQ6ubsQfH/hO/1XJf9uZi2CG8oDHVY6ftokq2l/L/fq', 'dummy16','관리자', NOW(), '000-0000-0016', 'dummy16@momol.com', 'none'),
+    ('BUSI_20231217 000017', 'dummy17', '$2a$10$6E9SJTlq9nxQ6ubsQfH/hO/1XJf9uZi2CG8oDHVY6ftokq2l/L/fq', 'dummy17','관리자', NOW(), '000-0000-0017', 'dummy17@momol.com', 'none'),
+    ('BUSI_20231217 000018', 'dummy18', '$2a$10$6E9SJTlq9nxQ6ubsQfH/hO/1XJf9uZi2CG8oDHVY6ftokq2l/L/fq', 'dummy18','관리자', NOW(), '000-0000-0018', 'dummy18@momol.com', 'none'),
+    ('BUSI_20231217 000019', 'dummy19', '$2a$10$6E9SJTlq9nxQ6ubsQfH/hO/1XJf9uZi2CG8oDHVY6ftokq2l/L/fq', 'dummy19','관리자', NOW(), '000-0000-0019', 'dummy19@momol.com', 'none'),
+    ('BUSI_20231217 000020', 'dummy20', '$2a$10$6E9SJTlq9nxQ6ubsQfH/hO/1XJf9uZi2CG8oDHVY6ftokq2l/L/fq', 'dummy20','관리자', NOW(), '000-0000-0020', 'dummy20@momol.com', 'none');
+INSERT INTO business(bizno,UID, place, other, address, date, time, approved)
+VALUES
+    ('dummy1','BUSI_20231217 000001', '장소1', '상세1', '주소1', '영업일1', '영업시간1', TRUE),
+    ('dummy2','BUSI_20231217 000002', '장소2', '상세2', '주소2', '영업일2', '영업시간2', TRUE),
+    ('dummy3','BUSI_20231217 000003', '장소3', '상세3', '주소3', '영업일3', '영업시간3', TRUE),
+    ('dummy4','BUSI_20231217 000004', '장소4', '상세4', '주소4', '영업일4', '영업시간4', TRUE),
+    ('dummy5','BUSI_20231217 000005', '장소5', '상세5', '주소5', '영업일5', '영업시간5', TRUE),
+    ('dummy6','BUSI_20231217 000006', '장소6', '상세6', '주소6', '영업일6', '영업시간6', TRUE),
+    ('dummy7','BUSI_20231217 000007', '장소7', '상세7', '주소7', '영업일7', '영업시간7', TRUE),
+    ('dummy8','BUSI_20231217 000008', '장소8', '상세8', '주소8', '영업일8', '영업시간8', TRUE),
+    ('dummy9','BUSI_20231217 000009', '장소9', '상세9', '주소9', '영업일9', '영업시간9', TRUE),
+    ('dummy10','BUSI_20231217 000010', '장소10', '상세10', '주소10', '영업일10', '영업시간10', TRUE),
+    ('dummy11','BUSI_20231217 000011', '장소11', '상세11', '주소11', '영업일11', '영업시간11', TRUE),
+    ('dummy12','BUSI_20231217 000012', '장소12', '상세12', '주소12', '영업일12', '영업시간12', TRUE),
+    ('dummy13','BUSI_20231217 000013', '장소13', '상세13', '주소13', '영업일13', '영업시간13', TRUE),
+    ('dummy14','BUSI_20231217 000014', '장소14', '상세14', '주소14', '영업일14', '영업시간14', TRUE),
+    ('dummy15','BUSI_20231217 000015', '장소15', '상세15', '주소15', '영업일15', '영업시간15', TRUE),
+    ('dummy16','BUSI_20231217 000016', '장소16', '상세16', '주소16', '영업일16', '영업시간16', TRUE),
+    ('dummy17','BUSI_20231217 000017', '장소17', '상세17', '주소17', '영업일17', '영업시간17', TRUE),
+    ('dummy18','BUSI_20231217 000018', '장소18', '상세18', '주소18', '영업일18', '영업시간18', TRUE),
+    ('dummy19','BUSI_20231217 000019', '장소19', '상세19', '주소19', '영업일19', '영업시간19', TRUE),
+    ('dummy20','BUSI_20231217 000020', '장소20', '상세20', '주소20', '영업일20', '영업시간20', TRUE);
 
 
 INSERT INTO momol.cocktail (name, name_eng, ABV, cocktail_detail, recipe, cocktails, cocktail_img, baseNo, tasteNo, smellNo) VALUES ('B-52', 'B-52', 26, '미국의 폭격기 B-52에서 이름을 따온 칵테일로 뚜렷한 3개의 층이 특

@@ -99,19 +99,35 @@
                         </button>
                     </div>
                 </div>
+              
+    <!-- 게시판 하단 -->
+    <section id="bottom">
+        <div class="buttons">
+            <div class="write">
+                <a href="writing"> <button>글쓰기</button></a>
+            </div>
+            <div class="pages">
+                <button>이전</button>
+                <a href="#">1</a>
+                <button>다음</button>
+            </div>
+        </div>
+        </div>
+        <div class="search">
+            <form action="/community/search" method="get">
+                <select name="searchType" id="searchType">
+                    <option value="title">제목</option>
+                    <option value="author">글쓴이</option>
+                    <option value="content">내용</option>
+                </select>
+                <input type="text" name="keyword">
+                <button type="submit">검색</button>
+            </form>
+        </div>
+    </section>
+</main>
+</body>
 
-                <div class="search">
-                    <select name="case" id="case">
-                        <option value="title">제목</option>
-                        <option value="author">글쓴이</option>
-                        <option value="content">내용</option>
-                    </select>
-                    <input type="text">
-                    <button>검색</button>
-                </div>
-            </section>
-        </main>
-    </body>
 </html>
 
 <script>
@@ -122,3 +138,5 @@
     const headerGnb = document.querySelector("#ect_header__2 > div");
     headerGnb.style.display = "block";
 </script>
+
+<script src="/resources/main/gnb_community.js"></script>

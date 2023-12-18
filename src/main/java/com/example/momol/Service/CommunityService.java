@@ -14,4 +14,6 @@ public interface CommunityService {
     int likePost(int num);
 
     int updatePost(CommunityVO vo);
+
+    List<CommunityVO> searchPosts(String searchType, String keyword);
 }
