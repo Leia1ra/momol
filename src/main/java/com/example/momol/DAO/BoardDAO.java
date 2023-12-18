@@ -64,7 +64,7 @@ public class BoardDAO {
 
     public CommunityVO vo(int num) {
         // String SQL = "SELECT * from board where num = ?";
-        String SQL = "SELECT catnum, Category, u.nick as nick, title, content, writetime, views, likes, u.UID from board join user u on board.UID = u.UID join `board_ category` bc on catnum = bc.KeyNo where num = ?";
+        String SQL = "SELECT Category, u.nick as nick, title, content, writetime, views, likes, u.UID as UID from board join user u on board.UID = u.UID join `board_ category` bc on board.catNum = bc.catnum where num = ?";
 
         try {
             conn = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);

@@ -78,7 +78,6 @@
             <section id="bottom">
                 <div class="write">
                     <a href="writing">
-
                         <button id="writeBtn" class="board_list__button_t1">
                             <span class="material-icons">create</span>
                             글쓰기
@@ -99,44 +98,22 @@
                         </button>
                     </div>
                 </div>
-              
-    <!-- 게시판 하단 -->
-    <section id="bottom">
-        <div class="buttons">
-            <div class="write">
-                <a href="writing"> <button>글쓰기</button></a>
-            </div>
-            <div class="pages">
-                <button>이전</button>
-                <a href="#">1</a>
-                <button>다음</button>
-            </div>
-        </div>
-        </div>
-        <div class="search">
-            <form action="/community/search" method="get">
-                <select name="searchType" id="searchType">
-                    <option value="title">제목</option>
-                    <option value="author">글쓴이</option>
-                    <option value="content">내용</option>
-                </select>
-                <input type="text" name="keyword">
-                <button type="submit">검색</button>
-            </form>
-        </div>
-    </section>
-</main>
-</body>
+
+                <div class="search">
+                    <form action="/community/search" method="get">
+                        <select name="searchType" id="searchType">
+                            <option value="title">제목</option>
+                            <option value="author">글쓴이</option>
+                            <option value="content">내용</option>
+                        </select>
+                        <input type="text" name="keyword">
+                        <button type="submit">검색</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </body>
 
 </html>
-
-<script>
-    // 커뮤니티 메뉴에 파란색 표시
-    const headerText = document.querySelector("#ect_header__2 > a");
-    headerText.style.color = "#4299e1";
-
-    const headerGnb = document.querySelector("#ect_header__2 > div");
-    headerGnb.style.display = "block";
-</script>
 
 <script src="/resources/main/gnb_community.js"></script>

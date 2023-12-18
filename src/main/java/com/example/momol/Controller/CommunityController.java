@@ -77,6 +77,8 @@ public class CommunityController {
         BoardDAO boardDAO = new BoardDAO();
         CommunityVO board = boardDAO.vo(num);
 
+        System.out.println(board.toString());
+
         // 조회수 업데이트
         boardDAO.viewUpdate(board.getViews() + 1, num);
         List<CommentsVO> commentList = commentService.getCommentsByBoardNum(num);

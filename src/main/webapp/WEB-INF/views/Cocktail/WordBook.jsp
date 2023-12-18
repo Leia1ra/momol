@@ -204,3 +204,5 @@
 
 </main>
 </body>
+
+<script src="/resources/main/gnb_cak.js"></script>
