@@ -118,15 +118,16 @@
             grid-template-columns: 1fr 1fr 1fr 1fr;
             /*grid-template-rows: 1fr 1fr;*/
             justify-items: center;
+	        gap: 10px;
             /*flex-direction: row;*/
             /*flex-wrap: wrap;*/
         }
         .menuList{
             max-width: 300px;
             min-width: 200px;
-            /*width: 100%;*/
+            width: 100%;
             height: 400px;
-            margin: 10px;
+            /*margin: 10px;*/
             border: 1px solid #93C759;
 	        border-radius: 10px;
 	        transition: 0.3s ease-in-out;

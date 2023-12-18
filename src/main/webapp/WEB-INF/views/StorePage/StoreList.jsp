@@ -38,6 +38,7 @@
 			display: grid;
 			grid-template-columns: 1fr 1fr 1fr 1fr;
 			/*grid-template-rows: 1fr 1fr;*/
+            gap: 10px;
 			justify-items: center;
 			/*flex-direction: row;*/
 			/*flex-wrap: wrap;*/
@@ -45,9 +46,8 @@
 		.storeList{
 			max-width: 300px;
 			min-width: 200px;
-			/*width: 100%;*/
+			width: 100%;
 			height: 400px;
-            margin: 10px;
             border: 1px solid #93C759;
             border-radius: 10px;
             transition: 0.3s ease-in-out;
