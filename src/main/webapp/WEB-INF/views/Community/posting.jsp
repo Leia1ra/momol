@@ -231,3 +231,5 @@
 
 
 </script>
+
+<script src="/resources/main/gnb_community.js"></script>

@@ -60,3 +60,5 @@
 </main>
 </body>
 </html>
+
+<script src="/resources/main/gnb_community.js"></script>
