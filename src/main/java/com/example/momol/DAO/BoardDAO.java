@@ -25,7 +25,7 @@ public class BoardDAO {
         try (Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
              Statement statement = connection.createStatement();
              // ResultSet resultSet = statement.executeQuery("SELECT * FROM board ORDER BY num DESC ")) {
-            ResultSet resultSet = statement.executeQuery("SELECT num, Category, board.UID as UID, title, writeTime, views, likes, u.nick as nick, writetime, board.catNum as catnum  from board join user u on board.UID = u.UID join `board_ category` bc on board.catNum = bc.catnum ORDER BY writetime DESC")) {
+            ResultSet resultSet = statement.executeQuery("SELECT num, Category, board.UID as UID, title, writeTime, views, likes, u.nick as nick, writetime, board.catNum as catnum  from board join user u on board.UID = u.UID join `board_category` bc on board.catNum = bc.catnum ORDER BY writetime DESC")) {
             while (resultSet.next()) {
                 CommunityVO vo = new CommunityVO();
 
@@ -64,7 +64,7 @@ public class BoardDAO {
 
     public CommunityVO vo(int num) {
         // String SQL = "SELECT * from board where num = ?";
-        String SQL = "SELECT num, Category, u.nick as nick, title, content, writetime, views, likes, u.UID as UID from board join user u on board.UID = u.UID join `board_ category` bc on board.catNum = bc.catnum where num = ?";
+        String SQL = "SELECT num, Category, u.nick as nick, title, content, writetime, views, likes, u.UID as UID from board join user u on board.UID = u.UID join `board_category` bc on board.catNum = bc.catnum where num = ?";
 
         try {
             conn = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
