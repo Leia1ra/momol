@@ -1,9 +1,17 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style>
+
+	@font-face {
+		font-family: 'D2Coding';
+		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/D2Coding.woff') format('woff');
+		font-weight: normal;
+		font-style: normal;
+	}
+
     main{
-        max-width:1200px;
-        min-width:600px;
+        max-width:var(--max-width);
+        min-width:var(--min-width);
         margin:0 auto;
     }
 	#errorSection{
@@ -19,6 +27,7 @@
 		
 	}
 	#errorSection>h1{
+		font-family: 'D2Coding';
 		text-align: center;
 		font-size: 3em;
         font-weight: bolder;
@@ -48,27 +57,32 @@
 	    width: 120px;
 	    line-height: 40px;
 	    text-align: center;
-        border: 3px solid #1ebee6;
+        border: 3px solid var(--text-green-500);
 	    border-radius: 5px;
 	    transition: 0.3s ease;
     }
     #beforePage:hover{
 	    color: white;
-        background: #1ebee6;
+        background: var(--text-green-500);
     }
     #goToMain{
         height: 40px;
         width: 120px;
         line-height: 40px;
         text-align: center;
-        border: 3px solid #93C759;
+        border: 3px solid var(--text-blue-500);
         border-radius: 5px;
         transition: 0.3s ease;
     }
     #goToMain:hover{
         color: white;
-        background: #93C759;
+        background: var(--text-blue-500);
     }
+
+	#errorSection > div:nth-child(4) > div:nth-child(2) {
+		margin-top : 5px;
+	}
+
 </style>
 <main>
     <section id="errorSection">

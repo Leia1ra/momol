@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // ----------------------------------------------------
 
-//저장된 재료 불러오기 ( combain/load )
+    //저장된 재료 불러오기 ( combain/load )
     const load_btn = document.querySelector("#sel__load");
 
     function combain_load() {
@@ -120,7 +120,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
 
                 } catch (e) {
-                    //에러 이유
                     console.log("에러 이유 : " + e);
                 }
             },
@@ -249,4 +248,14 @@ document.addEventListener("DOMContentLoaded", function () {
     save_btn.addEventListener("click", ing_sava);
     load_btn.addEventListener("click", combain_load);
 
+});
+
+let header_area = document.querySelector("#ect_header__nav");
+header_area.addEventListener('mouseover', function () {
+    gnb_mouseout();
+});
+
+header_area.addEventListener('mouseout', function () {
+    // 코드 작성
+    document.querySelector("#ect_header__nav > ul > li:nth-child(3) > div").style.display = "block";
 });

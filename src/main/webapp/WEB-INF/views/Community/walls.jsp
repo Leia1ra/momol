@@ -21,7 +21,7 @@
                     <h2 class="title">담벼락</h2>
                     <p class="add">자유롭게 이야기를 나눠보세요..</p>
                 </div>
-                <div class="sort">
+                <div class="sort" style="opacity: 0">
                     <button id="sort-lately" onclick="sortPosts('최신')">최신 순</button>
                     <button id="sort-likes" onclick="sortPosts('좋아요')">좋아요 순</button>
                 </div>
@@ -99,17 +99,44 @@
                         </button>
                     </div>
                 </div>
+              
+    <!-- 게시판 하단 -->
+    <section id="bottom">
+        <div class="buttons">
+            <div class="write">
+                <a href="writing"> <button>글쓰기</button></a>
+            </div>
+            <div class="pages">
+                <button>이전</button>
+                <a href="#">1</a>
+                <button>다음</button>
+            </div>
+        </div>
+        </div>
+        <div class="search">
+            <form action="/community/search" method="get">
+                <select name="searchType" id="searchType">
+                    <option value="title">제목</option>
+                    <option value="author">글쓴이</option>
+                    <option value="content">내용</option>
+                </select>
+                <input type="text" name="keyword">
+                <button type="submit">검색</button>
+            </form>
+        </div>
+    </section>
+</main>
+</body>
 
-                <div class="search">
-                    <select name="case" id="case">
-                        <option value="title">제목</option>
-                        <option value="author">글쓴이</option>
-                        <option value="content">내용</option>
-                    </select>
-                    <input type="text">
-                    <button>검색</button>
-                </div>
-            </section>
-        </main>
-    </body>
 </html>
+
+<script>
+    // 커뮤니티 메뉴에 파란색 표시
+    const headerText = document.querySelector("#ect_header__2 > a");
+    headerText.style.color = "#4299e1";
+
+    const headerGnb = document.querySelector("#ect_header__2 > div");
+    headerGnb.style.display = "block";
+</script>
+
+<script src="/resources/main/gnb_community.js"></script>

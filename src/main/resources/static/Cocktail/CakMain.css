@@ -93,7 +93,7 @@ main {
 .search{
     background-color: white;
     color: #333333;
-    border: 1px solid var(--text-green-700);
+    border: 1px solid var(--border-gray);
     border-radius: 9px;
     width: 230px;
     height: 30px;
@@ -167,7 +167,7 @@ main {
 }
 .tag1,.tag2,.tag3{
     flex-basis: 60px;
-    color: beige;
+    color: white;
     border-radius: 10px;
     width: 50px;
     font-size: 0.8em;

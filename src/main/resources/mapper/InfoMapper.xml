@@ -18,7 +18,7 @@
     <!-- 마이페이지 : 내 글 불러오기 -->
     <select id="my_post" resultType="com.example.momol.DTO.CommunityVO">
         SELECT num, Category, title, writetime, views, likes
-        from board join `board_ category` bc on board.catnum = bc.KeyNo
+        from board join `board_ category` bc on board.catnum = bc.catnum
         where UID= #{UID}
     </select>
 
@@ -50,13 +50,14 @@
             Other = #{other},
             Address = #{address},
             Date = #{date},
-            Time = #{time}
+            Time = #{time},
+            lastTouch = now()
         WHERE UID = #{UID}
     </update>
 
     <update id="updateMenu">
         UPDATE bimenu
-        SET subject=#{subject}, content = #{content}
+        SET subject=#{subject}, content = #{content}, lastTouch = now()
         WHERE bizno=#{bizno} AND subject=#{beforeSubject}
     </update>
 
@@ -70,8 +71,24 @@
         VALUES (#{bizno}, #{subject}, #{content})
     </insert>
 
+    <update id="lastUpdate">
+        UPDATE Business SET lastTouch = now() WHERE bizno = #{bizno}
+    </update>
+
     <!-- 상점 리스트 -->
     <select id="storeList" resultType="com.example.momol.DTO.BusinessVO">
-        SELECT * FROM business WHERE approved=TRUE ORDER BY lastTouch DESC
+        SELECT * FROM business WHERE approved=TRUE
+        <if test="searchWord != null">
+            AND ${searchKey} LIKE '%${searchWord}%'
+        </if>
+        ORDER BY lastTouch DESC
+        LIMIT ${onePageRecord}
+        OFFSET ${offsetPoint}
+    </select>
+    <select id="totalRecord" resultType="int">
+        SELECT COUNT(bizno) FROM business
+        <if test="searchWord != null">
+            WHERE ${searchKey} LIKE '%${searchWord}%'
+        </if>
     </select>
 </mapper>

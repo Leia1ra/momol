@@ -65,7 +65,7 @@ main {
 }
 .button.selected {
     border: none;
-    background-color: lightgreen;
+    background-color: var(--text-blue-200);
 }
 .info_top_wrap {
     display: flex;

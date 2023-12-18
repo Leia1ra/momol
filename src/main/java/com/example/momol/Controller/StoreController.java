@@ -2,6 +2,7 @@ package com.example.momol.Controller;
 
 import com.example.momol.DTO.BusinessVO;
 import com.example.momol.DTO.MenuVO;
+import com.example.momol.DTO.PagingVO;
 import com.example.momol.Service.BusinessService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +39,10 @@ public class StoreController {
     }
 
     @GetMapping("/list")
-    public ModelAndView StoreListPage(HttpSession session){
+    public ModelAndView StoreListPage(PagingVO pvo, HttpSession session){
         ModelAndView mav = new ModelAndView();
 
-        List<BusinessVO> list = businessService.storeList();
+        List<BusinessVO> list = businessService.storeList(pvo);
         for(BusinessVO v : list){
             String fName = "StoreImage"+v.getUID();
             String path = session.getServletContext().getRealPath("/img/Store/"+v.getUID());
@@ -49,7 +50,9 @@ public class StoreController {
             System.out.println(v);
         }
         // findFileName()
+        pvo.setTotalRecord(businessService.totalRecord(pvo));
 
+        mav.addObject("pVO",pvo);
         mav.addObject("list", list);
         mav.setViewName("StorePage/StoreList");
         return mav;
