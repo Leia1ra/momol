@@ -128,7 +128,7 @@
                         <div class="title">${board.title}
                         </div>
                         <div class="post-info">
-                            <div class="author">${board.nick}
+                            <div class="author"> ${board.category}　|　${board.nick}
                             </div>
                             <div class="post-info__right_wrap">
                                 <div class="writetime">
@@ -150,7 +150,7 @@
                                 <div class="comments">댓글 <%= commentCount %>
                                 </div> <!-- 확인하기 -->
                                 <c:if test="${board.UID == sessionScope.logUID}">
-                                    <button onclick="deletePost(<%= board.getNum() %>)">삭제</button>
+                                    <button class="comBtns" onclick="deletePost(<%= board.getNum() %>)">삭제</button>
                                 </c:if>
 
                             </div>
@@ -160,7 +160,7 @@
                         <%= board.getContent() %>
                     </div>
                     <div class="likes">
-                        <button onclick="likePost()">좋아요</button>
+                        <button class="comBtns" onclick="likePost()">좋아요</button>
                         <span id="likesCount">
                             (${board.likes})
                         </span>
@@ -172,7 +172,7 @@
                         <c:forEach var="comments" items="${comments}">
                             <!-- 코멘트 데이터베이스 확인하고 수정 요함 -->
                             <div id="comment_${comments.getUID()}" class="comment">
-                                <div class="c-author">${comments.getUID2()}</div>
+                                <div class="c-author">${comments.getNick()}</div>
                                 <div class="c-comment">${comments.getContent()}</div>
                                 <div class="comment-info">
                                     <div class="c-writetime">
@@ -190,17 +190,17 @@
                                         </c:choose>
                                     </div>
                                     <div class="c-likes">
-                                        <button onclick="likeComment(${comments.getUID()})">좋아요</button> (<span id="likesCount_">${comments.getLikes()}</span>)
+                                        <button class="comBtns" onclick="likeComment(${comments.getUID()})">좋아요</button> (<span id="likesCount_">${comments.getLikes()}</span>)
                                     </div>
-                                    <button onclick="deleteComment(${comments.getUID()})">삭제</button>
+                                    <button class="comBtns" onclick="deleteComment(${comments.getUID()})">삭제</button>
                                 </div>
                             </div>
                         </c:forEach>
 
                         <div class="comment-input">
                             <form action="/addComment" method="post">
-                                <input type="hidden" name="UID2" value="ffff">
-                                <input type="hidden" name="num" value="<%= board.getNum() %>">
+                                <input type="hidden" name="UID2" value="${board.UID}">
+                                <input type="hidden" name="num" value="${board.num}">
                                 <input type="text" name="content" placeholder="댓글을 남겨보세요">
                                 <input type="submit" value="등록">
                             </form>
@@ -219,16 +219,13 @@
             <section id="bottom">
                 <div class="btns_p">
                     <a href="/community/edit/<%= board.getNum() %>">
-                        <button>수정</button>
+                        <button class="comBtns">수정</button>
                     </a>
-                    <button onclick="toList()">목록</button>
+                    <button class="comBtns" onclick="toList()">목록</button>
 
                 </div>
             </section>
         </main>
-
-        <footer>
-        </footer>
     </body>
 </html>
 

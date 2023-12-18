@@ -64,7 +64,7 @@ public class CommunityController {
         BoardDAO boardDAO = new BoardDAO();
         List<CommunityVO> boards = boardDAO.getAllBoards();
 
-        System.out.println(boards.toString());
+        // System.out.println(boards.toString());
 
         Calendar cal = Calendar.getInstance();
         model.addAttribute("cal", cal);
@@ -81,10 +81,15 @@ public class CommunityController {
 
         // 조회수 업데이트
         boardDAO.viewUpdate(board.getViews() + 1, num);
-        List<CommentsVO> commentList = commentService.getCommentsByBoardNum(num);
+
+        try {
+            List<CommentsVO> commentList = commentService.getCommentsByBoardNum(num);
+            model.addAttribute("comments", commentList);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         model.addAttribute("board", board);
-        model.addAttribute("comments", commentList);
         return "Community/post-view";
     }
 
