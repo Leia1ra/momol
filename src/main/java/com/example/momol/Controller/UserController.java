@@ -252,7 +252,7 @@ public class UserController {
         if(multipartFile != null && !multipartFile.isEmpty()){
             String orgFileName = multipartFile.getOriginalFilename();
             if(orgFileName != null && !orgFileName.equals("")){
-                String ext = orgFileName.substring(orgFileName.indexOf("."));
+                String ext = orgFileName.substring(orgFileName.indexOf(".")).toLowerCase();
                 String newFileName = fileName + ext;
                 File newFile = new File(path, newFileName);
 

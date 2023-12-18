@@ -56,6 +56,7 @@ CREATE TABLE board (
     views INT NULL DEFAULT 0,
     deleted BOOLEAN NULL DEFAULT FALSE
 ); desc board;
+SELECT * FROM board;
 CREATE TABLE comments (
     UID2 VARCHAR(20) NOT NULL,
     num INT NOT NULL,
@@ -65,7 +66,7 @@ CREATE TABLE comments (
     likes INT NULL DEFAULT 0,
     deleted BOOLEAN NULL DEFAULT FALSE
 );
-
+INSERT INTO board(num, catNum, UID, title, content) VALUES (1,1,'BUSI_20231217 000001', '안녕하세요','반갑고 어서오고')
 
 
 /*사업자 테이블*/
