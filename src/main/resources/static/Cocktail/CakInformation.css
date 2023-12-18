@@ -157,7 +157,7 @@ main {
 }
 /*재료 사진*/
 .jaeryoimg{
-<<<<<<<<< Temporary merge branch 1
+
     width: 70px;
     height: 70px;
     border-radius: 50%;
@@ -188,39 +188,20 @@ main {
     font-weight: bold;
     font-size: 1rem;
 }
-/*=========================================*/
-.third{
-    margin: 20px 0 0 50px;
-}
-.anju{
-    margin: 30px auto;
-    margin-left: 20px;
-    display: flex;
-}
-/*안주사진*/
-.anjuimg{
-    width: 120px;
-    border: 1px solid black;
-    border-radius: 140px;
-}
-/*안주이름*/
-.anjuname{
-    font-weight: bold;
-    margin: 15px;
-    text-align: center;
-}
-.d{
-    margin-right: 40px;
-}
 /*==============================================*/
 .fourth{
-    margin: 190px;
-    margin-left: 50px;
+    margin : 20px;
 }
 .title2{
     margin: 10px;
     font-weight: bold;
     font-size: 1.5em;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
 }
 .fourthtitle{
     font-size: 1.5em;
@@ -228,6 +209,7 @@ main {
     border-bottom: 1px solid grey;
     padding-bottom: 15px;
     width: 100%;
+
 }
 .explain2{
     font-weight: bold;
@@ -236,7 +218,6 @@ main {
     color: grey;
     width: 100%;
     overflow: hidden;
-
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -246,6 +227,25 @@ main {
 
 .rhksfus{
     width: 100%;
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.ang{
+    /*width: 700px;*/
+    display:flex;
+    padding:30px 20px;
+    border-top: 1px solid grey;
+}
+.fourthtitle{
+    font-size: 1.7em;
+    font-weight: bold;
+    border-bottom: 1px solid grey;
+    padding-bottom: 15px;
+    width: 1200px;
+
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -253,13 +253,15 @@ main {
 .ang{
     width: 100%;
     display:flex;
+
 }
 .imgimg{
     border: 1px solid #ddd;
     border-radius: 20px;
     width: 100%;
-    object-fit: cover;
     height: 200px;
+    object-fit: cover;
+
 }
 .tag10,.tag20,.tag30{
     line-height: 20px;
@@ -302,7 +304,6 @@ main {
     width: 100%;
 
 }
-
 .method {
     margin : 0 15px;
 }
