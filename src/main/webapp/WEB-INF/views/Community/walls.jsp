@@ -116,13 +116,4 @@
 
 </html>
 
-<script>
-    // 커뮤니티 메뉴에 파란색 표시
-    const headerText = document.querySelector("#ect_header__2 > a");
-    headerText.style.color = "#4299e1";
-
-    const headerGnb = document.querySelector("#ect_header__2 > div");
-    headerGnb.style.display = "block";
-</script>
-
 <script src="/resources/main/gnb_community.js"></script>

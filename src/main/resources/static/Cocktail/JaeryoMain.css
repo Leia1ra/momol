@@ -79,15 +79,27 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
+
+.search-container > span.material-icons {
+    margin : 0;
+    position: absolute;
+    left : 10px;
+    cursor: pointer;
+}
+
+
 /*검색*/
 .search{
-    background-color: #ddd;
-    border: 1px solid #ddd;
-    width: 250px;
+    background-color: #fff;
+    border: 1px solid var(--border-gray);
+    border-radius: 9px;
+    width: 230px;
     height: 30px;
     font-size: 0.9em;
-    text-align: center;
+    text-align: left;
+    padding : 0 5px 0 40px;
 }
 .material-icons{
     margin: 3px 0 0 4px ;

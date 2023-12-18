@@ -60,7 +60,7 @@ th, td {
     text-align: left;
 }
 th {
-    background-color: #4CAF50;
+    background-color: var(--text-blue-500);
     color: white;
 }
 tr:nth-child(even) {
